@@ -7,7 +7,11 @@
     <title>MiniQuiz</title>
 </head>
 <body>
+    <!--Spørsmål angitt som et avsnitt-->
     <p>Hva er hovedstaden i Norge?</p>
+
+    <!--Feil svaralternativ kaller på funksjonen test(), som først sjekker om et svar er avgitt (med variabelen "trykt"), for så å kalle på wrongAnswer()-->
+    <!--Riktig svaralternativ kaller direkte på rightAnswer(), som også sjekker om et svar er avgitt først-->
 
     <h5 id="a" onclick="test(this)">Kristiansand</h5>
     <h5 id="b" onclick="test(this)">Bergen</h5>
@@ -15,6 +19,8 @@
 
 
     <script>
+
+        //Variabelen "trykt" representerer om et svar er avgitt eller ikke
 
         var trykt = false;
 
