@@ -4,42 +4,38 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="Style.css" />
-    <title></title>
+    <title>MiniQuiz</title>
 </head>
 <body>
     <p>Hva er hovedstaden i Norge?</p>
 
-    <h5 id="a" onclick="wrongAnswer1(this)">Kristiansand</h5>
-    <h5 id="b" onclick="wrongAnswer2(this)">Bergen</h5>
+    <h5 id="a" onclick="test(this)">Kristiansand</h5>
+    <h5 id="b" onclick="test(this)">Bergen</h5>
     <h5 id="c" onclick="rightAnswer(this)">Oslo</h5>
 
 
     <script>
+
         var trykt = false;
+
+        function test(arg1) {
+            if (!trykt) {
+                arg1.onclick = wrongAnswer(arg1);
+            }
+        }
 
 
         function rightAnswer() {
-            c.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
-            trykt = true;
-            erTrykt();
-            //if (erTrykt()) {
-            //    c.innerHTML = "<span style=\"color:green\">" + '!!!!' + "</span>";
-            //}
-        }
-        function wrongAnswer1() {
-            a.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
-            trykt = true;
-        }
-        function wrongAnswer2() {
-            b.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
-            trykt = true;
-
-        }
-
-        function erTrykt() {
-            if (trykt) {
-                c.innerHTML = "<span style=\"color:green\">" + '!!!!' + "</span>";
+            if (!trykt) {
+                c.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
+                trykt = true;
             }
+
+        }
+
+        function wrongAnswer(arg1) {
+            arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
+            trykt = true;
         }
 
 
