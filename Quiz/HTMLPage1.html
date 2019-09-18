@@ -7,29 +7,50 @@
     <title>MiniQuiz</title>
 
     <style>
-        button.svar {
+        div.svaralternativer {
+            margin: 20px 0px 10px 10px;
+            /*display: block;*/
+            /*clear: left;*/
+        }
+
+        button.svaralternativ {
             margin: 20px 0px 10px 10px;
             display: block;
             clear: left;
+        }
+
+        button.neste {
+            display: none;
         }
     </style>
 
 </head>
 <body>
-    <!--Spørsmål angitt som et avsnitt-->
+    <!--Navnet angitt som en overskrift-->
     <h1>Bjørnars miniquiz!</h1>
     <hr />
+    <!--Spørsmål angitt som en litt mindre overskrift-->
     <h2 id="vissporsmal"></h2>
     <hr />
 
     <!--Feil svaralternativ kaller på funksjonen test(), som først sjekker om et svar er avgitt (med variabelen "trykt"), for så å kalle på wrongAnswer()-->
     <!--Riktig svaralternativ kaller direkte på rightAnswer(), som også sjekker om et svar er avgitt først-->
 
-    <button class="svar" id="a" onclick="test(this)"></button>
-    <button class="svar" id="b" onclick="test(this)"></button>
-    <button class="svar" id="c" onclick="nyttsporsmal(this); riktig();"></button>
-    <p>Antall riktige svar:</p>
-    <p id= "riktigesvar">0</p>
+    <div class="svaralternativer">
+        <button class="svaralternativ feilsvar" id="a" onclick="svaravgitt(this)"></button>
+        <button class="svaralternativ feilsvar" id="b" onclick="svaravgitt(this)"></button>
+        <button class="svaralternativ riktigsvar" id="c" onclick=" svaravgitt(this);"></button>
+        <p>Antall riktige svar:</p>
+        <p id="riktigesvar">0</p>
+        <button class="neste" id="nestesp" onclick="nyttsporsmal()">Neste spørsmål</button>
+    </div>
+
+    <!--nyttsporsmal(this);-->
+    <!--  -->
+    <!--  -->
+    <!-- START OF JAVASCRIPT -->
+    <!--  -->
+    <!--  -->
 
 
     <script>
@@ -43,19 +64,21 @@
         var feilsvar2 = ["Bergen", "GET Academy", "Bowling", "Døden på Oslo S"];
 
 
-        function nyttsporsmal() {
-            trykt = false;
-            document.getElementById('vissporsmal').innerHTML = sporsmal[teller];
-            document.getElementById('a').innerHTML = feilsvar1[teller];
-            document.getElementById('b').innerHTML = feilsvar2[teller];
-            document.getElementById('c').innerHTML = riktigsvar[teller];
-            teller++;
-        }
-
-
         //Variabelen "trykt" representerer om et svar er avgitt eller ikke
 
-        var trykt = false;
+        var trykt = true;
+
+        function nyttsporsmal() {
+            if (trykt) {
+                trykt = false;
+                document.getElementById("nestesp").style.display = "none";
+                document.getElementById('vissporsmal').innerHTML = sporsmal[teller];
+                document.getElementById('a').innerHTML = feilsvar1[teller];
+                document.getElementById('b').innerHTML = feilsvar2[teller];
+                document.getElementById('c').innerHTML = riktigsvar[teller];
+                teller++;
+            }
+        }
 
         function test(arg1) {
             if (!trykt) {
@@ -64,22 +87,40 @@
         }
 
 
-        function rightAnswer() {
-            if (!trykt) {
-                c.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
-                trykt = true;
-            }
-
-        }
+        //function rightAnswer() {
+        //    if (!trykt) {
+        //        c.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
+        //        svaravgitt();
+        //        //trykt = true;
+        //    }
+        //}
 
         function wrongAnswer(arg1) {
             arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
             trykt = true;
         }
 
-        function riktig() {
-            antallriktige += 1;
-            riktigesvar.innerHTML = antallriktige;
+        function riktig(arg1) {
+            if (!trykt) {
+                arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
+                //trykt = true;
+                antallriktige += 1;
+                riktigesvar.innerHTML = antallriktige;
+            }
+        }
+
+        function svaravgitt(arg1) {
+            if (!trykt) {
+                if (arg1.classList.contains("riktigsvar")) {
+                    riktig(arg1);
+                    //arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
+                } else {
+                    arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
+                }
+            }
+
+            trykt = true;
+            document.getElementById("nestesp").style.display = "inline";
         }
 
         nyttsporsmal();
