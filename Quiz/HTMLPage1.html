@@ -87,23 +87,9 @@
         }
 
 
-        //function rightAnswer() {
-        //    if (!trykt) {
-        //        c.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
-        //        svaravgitt();
-        //        //trykt = true;
-        //    }
-        //}
-
-        function wrongAnswer(arg1) {
-            arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
-            trykt = true;
-        }
-
         function riktig(arg1) {
             if (!trykt) {
-                arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
-                //trykt = true;
+                arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span
                 antallriktige += 1;
                 riktigesvar.innerHTML = antallriktige;
             }
@@ -113,7 +99,6 @@
             if (!trykt) {
                 if (arg1.classList.contains("riktigsvar")) {
                     riktig(arg1);
-                    //arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
                 } else {
                     arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
                 }
