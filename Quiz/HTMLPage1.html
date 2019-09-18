@@ -80,16 +80,10 @@
             }
         }
 
-        function test(arg1) {
-            if (!trykt) {
-                arg1.onclick = wrongAnswer(arg1);
-            }
-        }
-
 
         function riktig(arg1) {
             if (!trykt) {
-                arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span
+                arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
                 antallriktige += 1;
                 riktigesvar.innerHTML = antallriktige;
             }
