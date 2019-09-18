@@ -5,20 +5,53 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="Style.css" />
     <title>MiniQuiz</title>
+
+    <style>
+        button.svar {
+            margin: 20px 0px 10px 10px;
+            display: block;
+            clear: left;
+        }
+    </style>
+
 </head>
 <body>
     <!--Spørsmål angitt som et avsnitt-->
-    <p>Hva er hovedstaden i Norge?</p>
+    <h1>Bjørnars miniquiz!</h1>
+    <hr />
+    <h2 id="vissporsmal"></h2>
+    <hr />
 
     <!--Feil svaralternativ kaller på funksjonen test(), som først sjekker om et svar er avgitt (med variabelen "trykt"), for så å kalle på wrongAnswer()-->
     <!--Riktig svaralternativ kaller direkte på rightAnswer(), som også sjekker om et svar er avgitt først-->
 
-    <h5 id="a" onclick="test(this)">Kristiansand</h5>
-    <h5 id="b" onclick="test(this)">Bergen</h5>
-    <h5 id="c" onclick="rightAnswer(this)">Oslo</h5>
+    <button class="svar" id="a" onclick="test(this)"></button>
+    <button class="svar" id="b" onclick="test(this)"></button>
+    <button class="svar" id="c" onclick="nyttsporsmal(this); riktig();"></button>
+    <p>Antall riktige svar:</p>
+    <p id= "riktigesvar">0</p>
 
 
     <script>
+
+        var teller = 0;
+        var antallriktige = 0;
+
+        var sporsmal = ["Hva er hovedstaden i Norge?", "Hvilket av disse selskapene er størst i omsetning per år (per 2019)?", "Hvilken idrett er Joachim Schrøder kjent for å utøve?", "Hvilken av disse filmene er produsert i Hollywood?"];
+        var riktigsvar = ["Oslo", "Komplett.no", "Boling", "Terminator 2: Judgement day"];
+        var feilsvar1 = ["Kristiansand", "Bjørnars javascript og mekk AS", "Badminton", "Hansinatorens vrede 2: Dra te Hæljeroa"];
+        var feilsvar2 = ["Bergen", "GET Academy", "Bowling", "Døden på Oslo S"];
+
+
+        function nyttsporsmal() {
+            trykt = false;
+            document.getElementById('vissporsmal').innerHTML = sporsmal[teller];
+            document.getElementById('a').innerHTML = feilsvar1[teller];
+            document.getElementById('b').innerHTML = feilsvar2[teller];
+            document.getElementById('c').innerHTML = riktigsvar[teller];
+            teller++;
+        }
+
 
         //Variabelen "trykt" representerer om et svar er avgitt eller ikke
 
@@ -43,6 +76,13 @@
             arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
             trykt = true;
         }
+
+        function riktig() {
+            antallriktige += 1;
+            riktigesvar.innerHTML = antallriktige;
+        }
+
+        nyttsporsmal();
 
 
     </script>
