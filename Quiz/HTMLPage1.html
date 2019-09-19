@@ -3,7 +3,6 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="Style.css" />
     <title>MiniQuiz</title>
 
     <style>
@@ -13,19 +12,29 @@
             margin: 20px 0px 10px 10px;
         }
 
+        /*Dette er svaralternativknappene*/
+
         button.svaralternativ {
             margin: 20px 0px 10px 10px;
             display: block;
             clear: left;
         }
 
-        /*Dette meter knappen som aktiverer neste spørsmål*/
+        /*Dette er knappen som aktiverer neste spørsmål*/
 
         button.neste {
             display: none;
         }
 
+        /*dette er knappen som nullstiller og starter på nytt*/
+
         button.omigjen {
+            display: none;
+        }
+
+        p.resultat {
+            font-size: 40px;
+            color: forestgreen;
             display: none;
         }
     </style>
@@ -46,10 +55,15 @@
         <button class="svaralternativ" id="1" onclick="svaravgitt(this)"></button>
         <button class="svaralternativ" id="2" onclick="svaravgitt(this)"></button>
         <button class="svaralternativ" id="3" onclick=" svaravgitt(this);"></button>
-        <p>Antall riktige svar:</p>
+        <p id="kontrolltekst">Antall riktige svar:</p>
         <p id="riktigesvar">0</p>
         <button class="neste" id="nestesp" onclick="nyttsporsmal()">Neste spørsmål</button>
+        <br />
+        <p class="resultat" id="resultat"></p>
+        <br />
+        <br />
         <button class="omigjen" id="paanytt" onclick="restart(); nyttsporsmal();">Prøv på nytt</button>
+
     </div>
 
 
@@ -86,40 +100,34 @@
         //Nyttsporsmal() sjekker at det er avgitt svar, nullstiller tryktvariabelen. Fjerner "Neste spørsmål"-knappen og kaster inn spørsmålet som er neste i lista.
 
         function nyttsporsmal() {
-            if (teller < sporsmal.length) {
-                if (trykt) {
-                    randomizer = [];
-                    for (var plassering = 0; plassering < 3; plassering++) {
-                        var gikkgjennom = false;
-                        while (gikkgjennom == false) {
-                            gikkgjennom = generertall();
-                        }
+            if (trykt) {
+                randomizer = [];
+                for (var plassering = 0; plassering < 3; plassering++) {
+                    var gikkgjennom = false;
+                    while (gikkgjennom == false) {
+                        gikkgjennom = generertall();
                     }
-
-                    trykt = false;
-                    document.getElementById("nestesp").style.display = "none";
-                    document.getElementById('vissporsmal').innerHTML = sporsmal[teller];
-                    document.getElementById(randomizer[0]).innerHTML = feilsvar1[teller];
-                    document.getElementById(randomizer[0]).classList.remove("riktigsvar");
-                    document.getElementById(randomizer[1]).innerHTML = feilsvar2[teller];
-                    document.getElementById(randomizer[1]).classList.remove("riktigsvar");
-                    document.getElementById(randomizer[2]).innerHTML = riktigsvar[teller];
-                    document.getElementById(randomizer[2]).classList.add("riktigsvar");
-
-
                 }
-
-            } else {
-
-                //TODO
+                trykt = false;
                 document.getElementById("nestesp").style.display = "none";
-                document.getElementById("paanytt").style.display = "inline";
+                document.getElementById('vissporsmal').innerHTML = sporsmal[teller];
+                document.getElementById(randomizer[0]).innerHTML = feilsvar1[teller];
+                document.getElementById(randomizer[0]).classList.remove("riktigsvar");
+                document.getElementById(randomizer[1]).innerHTML = feilsvar2[teller];
+                document.getElementById(randomizer[1]).classList.remove("riktigsvar");
+                document.getElementById(randomizer[2]).innerHTML = riktigsvar[teller];
+                document.getElementById(randomizer[2]).classList.add("riktigsvar");
+                teller++;
             }
-            teller++;
         }
+
+        //restart() nullstiller alt og gjør klar for ny runde
 
         function restart() {
             document.getElementById("paanytt").style.display = "none";
+            document.getElementById("resultat").style.display = "none";
+            document.getElementById("kontrolltekst").style.display = "inline";
+            document.getElementById("riktigesvar").style.display = "inline";
             teller = 0;
             antallriktige = 0;
             riktigesvar.innerHTML = antallriktige;
@@ -150,7 +158,16 @@
             }
 
             trykt = true;
-            document.getElementById("nestesp").style.display = "inline";
+            if (teller < sporsmal.length) {
+                document.getElementById("nestesp").style.display = "inline";
+            } else {
+                document.getElementById("resultat").style.display = "inline";
+                document.getElementById("kontrolltekst").style.display = "none";
+                document.getElementById("riktigesvar").style.display = "none";
+                document.getElementById("resultat").innerHTML = "Gratulerer! Du klarte " + antallriktige + " av " + teller + " riktige svar!"
+                document.getElementById("nestesp").style.display = "none";
+                document.getElementById("paanytt").style.display = "inline";
+            }
         }
 
 
