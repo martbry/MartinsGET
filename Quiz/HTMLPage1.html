@@ -7,10 +7,10 @@
     <title>MiniQuiz</title>
 
     <style>
+        
+        /*Alle svaralternativknappene er inne i en div-beholder*/
         div.svaralternativer {
             margin: 20px 0px 10px 10px;
-            /*display: block;*/
-            /*clear: left;*/
         }
 
         button.svaralternativ {
@@ -18,6 +18,8 @@
             display: block;
             clear: left;
         }
+
+        /*Dette meter knappen som aktiverer neste spørsmål*/
 
         button.neste {
             display: none;
@@ -45,12 +47,12 @@
         <button class="neste" id="nestesp" onclick="nyttsporsmal()">Neste spørsmål</button>
     </div>
 
-    <!--nyttsporsmal(this);-->
-    <!--  -->
-    <!--  -->
-    <!-- START OF JAVASCRIPT -->
-    <!--  -->
-    <!--  -->
+    
+                                                                                    <!--  -->
+                                                                                    <!--  -->
+                                                                            <!-- START OF JAVASCRIPT -->
+                                                                                    <!--  -->
+                                                                                    <!--  -->
 
 
     <script>
@@ -68,6 +70,8 @@
 
         var trykt = true;
 
+        //Nyttsporsmal() sjekker at det er avgitt svar, nullstiller tryktvariabelen. Fjerner "Neste spørsmål"-knappen og kaster inn spørsmålet som er neste i lista.
+
         function nyttsporsmal() {
             if (trykt) {
                 trykt = false;
@@ -81,13 +85,8 @@
         }
 
 
-        function riktig(arg1) {
-            if (!trykt) {
-                arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
-                antallriktige += 1;
-                riktigesvar.innerHTML = antallriktige;
-            }
-        }
+        //svaravgitt(par1) sjekker at det ikke er avgitt svar fra før og sjekker hvorvidt spørsmålet er en del av klassen for riktig svar, eller ikke. Dersom den er det kaller den også på riktig(par1).
+        //Deretter aktiverer den tryktvariabelen og displayer "neste spørsmål"-knappen.
 
         function svaravgitt(arg1) {
             if (!trykt) {
@@ -101,6 +100,19 @@
             trykt = true;
             document.getElementById("nestesp").style.display = "inline";
         }
+
+
+        //riktig(par1) blir kun kalt på dersom svar avgitt er riktig og gjør om teksten på knappen til "Riktig svar!" og øker telleren for riktige svar hittil.
+
+        function riktig(arg1) {
+
+            arg1.innerHTML = "<span style=\"color:green\">" + 'Riktig Svar!' + "</span>";
+            antallriktige += 1;
+            riktigesvar.innerHTML = antallriktige;
+
+        }
+
+
 
         nyttsporsmal();
 
