@@ -32,7 +32,7 @@
             display: none;
         }
 
-        /*Dette meter teksten som viser hvor mange riktige du fikk*/
+        /*Dette er teksten som viser hvor mange riktige du fikk*/
 
         p.resultat {
             font-size: 40px;
@@ -136,8 +136,8 @@
             document.getElementById("vissporsmal").style.display = "block";
             document.getElementById("paanytt").style.display = "none";
             document.getElementById("resultat").style.display = "none";
-            document.getElementById("kontrolltekst").style.display = "inline";
-            document.getElementById("riktigesvar").style.display = "inline";
+            document.getElementById("kontrolltekst").style.display = "block";
+            document.getElementById("riktigesvar").style.display = "block";
             teller = 0;
             antallriktige = 0;
             riktigesvar.innerHTML = antallriktige;
@@ -172,7 +172,7 @@
             }
             trykt = true;
             if (teller < sporsmal.length) {
-                document.getElementById("nestesp").style.display = "inline";
+                document.getElementById("nestesp").style.display = "block";
             } else {
                 resultat();
             }
@@ -208,7 +208,7 @@
                 tilbakemeldingstekst(2) +
                 tilbakemeldingstekst(3) +
                 tilbakemeldingstekst(4) +
-                "Gratulerer! Du klarte " + antallriktige + " av " + teller + " riktige svar!";
+                tilbakemeldingstekst("tilsist");
             document.getElementById("nestesp").style.display = "none";
             document.getElementById("paanytt").style.display = "inline";
         }
@@ -216,12 +216,18 @@
         function tilbakemeldingstekst(sporsmalx) {
             if (avgittesvar[sporsmalx - 1] == 1) {
                 return "Spørsmal " + sporsmalx + ": <span style=\"color:forestgreen\">" + 'Riktig svar!' + "</span> <br/>";
-            } else {
+            } else if (sporsmalx == "tilsist"){
+                if (antallriktige <= 1) {
+                    return "<br/>" + antallriktige + " av " + teller + " rette. Slapt!";
+                } else if (antallriktige > 1 && antallriktige < 3) {
+                    return "<br/>" + antallriktige + " av " + teller + " rette. Jaja. Ikke aller verst!";
+                } else {
+                    return "<br/> Gratulerer! " + antallriktige + " av " + teller + "! Veldig bra! =)";
+                }
+            }else{
                 return "Spørsmal " + sporsmalx + ": <span style=\"color:red\">" + 'FEIL Svar!' + "</span> <br/>";
             }
         }
-
-        ////////////////////<p>My mother has <span style="color:blue">blue</span> eyes.</p>
 
 
         nyttsporsmal();
