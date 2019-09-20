@@ -32,9 +32,11 @@
             display: none;
         }
 
+        /*Dette meter teksten som viser hvor mange riktige du fikk*/
+
         p.resultat {
             font-size: 40px;
-            color: forestgreen;
+            /*color: forestgreen;*/
             display: none;
         }
     </style>
@@ -51,7 +53,7 @@
 
     <!--Alle svaralternativ kaller på funksjonen svaravgitt(). Der sjekkes klassene for å determinere hvorvidt svaret er riktig eller ikke.-->
 
-    <div class="svaralternativer">
+    <div id="svarcontainer">
         <button class="svaralternativ" id="1" onclick="svaravgitt(this)"></button>
         <button class="svaralternativ" id="2" onclick="svaravgitt(this)"></button>
         <button class="svaralternativ" id="3" onclick=" svaravgitt(this);"></button>
@@ -86,6 +88,7 @@
         //Telleren over passer på at både spørsmål og svaralternativer blir hentet fra samme indeks
 
         var randomizer = [];
+        var avgittesvar = [];
 
         var sporsmal = ["Hva er hovedstaden i Norge?", "Hvilket av disse selskapene er størst i omsetning per år (per 2019)?", "Hvilken idrett er Joachim Schrøder kjent for å utøve?", "Hvilken av disse filmene er produsert i Hollywood?"];
         var riktigsvar = ["Oslo", "Komplett.no", "Boling", "Terminator 2: Judgement day"];
@@ -97,7 +100,8 @@
 
         var trykt = true;
 
-        //Nyttsporsmal() sjekker at det er avgitt svar, nullstiller tryktvariabelen. Fjerner "Neste spørsmål"-knappen og kaster inn spørsmålet som er neste i lista.
+        //Nyttsporsmal() sjekker at det er avgitt svar, før den genererer en tilfeldig rekkefølge på tallene 1 – 3 (som er IDen på svaralternativene) og legger den i lista "randomizer" ved hjelp av generertall().
+        //Deretter nullstilles tryktvariabelen, fjerner "Neste spørsmål"-knappen og kaster inn spørsmålet som er neste i lista ved hjelp av indeksene i den nevnte lista.
 
         function nyttsporsmal() {
             if (trykt) {
@@ -124,6 +128,12 @@
         //restart() nullstiller alt og gjør klar for ny runde
 
         function restart() {
+            var antallsvarknapper = document.getElementById("svarcontainer").getElementsByClassName("svaralternativ").length;
+            for (var i = 0; i < antallsvarknapper; i++) {
+                document.getElementById("svarcontainer").getElementsByClassName("svaralternativ")[i].style.display = "block";
+            }
+            avgittesvar = [];
+            document.getElementById("vissporsmal").style.display = "block";
             document.getElementById("paanytt").style.display = "none";
             document.getElementById("resultat").style.display = "none";
             document.getElementById("kontrolltekst").style.display = "inline";
@@ -133,6 +143,8 @@
             riktigesvar.innerHTML = antallriktige;
             trykt = true;
         }
+
+        //Denne funksjonen genererer et tilfeldig tall mellom 1 og 3 og pusher inn i randomizerlista dersom det ikke er der fra før. Returnerer true/false avhengig av om et nytt tall ble pushet inn eller ikke
 
         function generertall() {
             var forslag = Math.floor(Math.random() * 3) + 1;
@@ -151,22 +163,18 @@
         function svaravgitt(arg1) {
             if (!trykt) {
                 if (arg1.classList.contains("riktigsvar")) {
+                    avgittesvar.push(1);
                     riktig(arg1);
                 } else {
                     arg1.innerHTML = "<span style=\"color:red\">" + 'FEIL Svar!' + "</span>";
+                    avgittesvar.push(0);
                 }
             }
-
             trykt = true;
             if (teller < sporsmal.length) {
                 document.getElementById("nestesp").style.display = "inline";
             } else {
-                document.getElementById("resultat").style.display = "inline";
-                document.getElementById("kontrolltekst").style.display = "none";
-                document.getElementById("riktigesvar").style.display = "none";
-                document.getElementById("resultat").innerHTML = "Gratulerer! Du klarte " + antallriktige + " av " + teller + " riktige svar!"
-                document.getElementById("nestesp").style.display = "none";
-                document.getElementById("paanytt").style.display = "inline";
+                resultat();
             }
         }
 
@@ -179,6 +187,41 @@
             antallriktige += 1;
             riktigesvar.innerHTML = antallriktige;
         }
+
+        //resultat() blir kalt på når alle svarene er avgitt og endrer siden til en slags resultatside med tekst som gir tilbakemelding på hvordan brukeren har gjort det
+
+        function resultat() {
+            var antallsvarknapper = document.getElementById("svarcontainer").getElementsByClassName("svaralternativ").length;
+            for (var i = 0; i < antallsvarknapper; i++) {
+                console.log("loop");
+                document.getElementById("svarcontainer").getElementsByClassName("svaralternativ")[i].style.display = "none";
+            }
+            //*******************************************************************************
+            //*******************************************************************************
+            //*******************************************************************************
+            document.getElementById("vissporsmal").style.display = "none";
+            document.getElementById("resultat").style.display = "inline";
+            document.getElementById("kontrolltekst").style.display = "none";
+            document.getElementById("riktigesvar").style.display = "none";
+            document.getElementById("resultat").innerHTML =
+                tilbakemeldingstekst(1) +
+                tilbakemeldingstekst(2) +
+                tilbakemeldingstekst(3) +
+                tilbakemeldingstekst(4) +
+                "Gratulerer! Du klarte " + antallriktige + " av " + teller + " riktige svar!";
+            document.getElementById("nestesp").style.display = "none";
+            document.getElementById("paanytt").style.display = "inline";
+        }
+
+        function tilbakemeldingstekst(sporsmalx) {
+            if (avgittesvar[sporsmalx - 1] == 1) {
+                return "Spørsmal " + sporsmalx + ": <span style=\"color:forestgreen\">" + 'Riktig svar!' + "</span> <br/>";
+            } else {
+                return "Spørsmal " + sporsmalx + ": <span style=\"color:red\">" + 'FEIL Svar!' + "</span> <br/>";
+            }
+        }
+
+        ////////////////////<p>My mother has <span style="color:blue">blue</span> eyes.</p>
 
 
         nyttsporsmal();
