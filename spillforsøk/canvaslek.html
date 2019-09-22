@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        canvas{
+            margin: 20px;
+            outline: 1px;
+            outline: solid;
+            outline-color: black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" onclick="tegn()" width="500" height="500"></canvas>
+
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    //canvas.onclick = console.log()
+    //canvas.onclick = console.log(event.clientX);
+
+    function museposisjon(event) {
+        var rect = canvas.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
+    }
+
+    function musX() {
+        var rect = canvas.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        return x;
+    }
+
+    function musY() {
+        var rect = canvas.getBoundingClientRect();
+        var y = event.clientY - rect.top;
+        return y;
+    }
+
+    function tegn(){
+        ctx.strokeRect(musX()-10, musY()-10, 20, 20);
+    }
+
+
+
+</script>
+</body>
+
+
+
+</html>
