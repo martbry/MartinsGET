@@ -5,30 +5,30 @@
     <meta charset="utf-8" />
     <title>canvas</title>
     <style>
-        body{
+        body {
             margin: 0px;
             padding: 0px;
         }
 
         div.page {
-			height: 100vh;
-			display: grid;
-			grid-template-columns: 1fr 9fr;
-			grid-template-rows: 1fr 10fr 1fr;
-			grid-template-areas: 'menu header' 'menu canvas' 'footer footer';
-		}
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 9fr;
+            grid-template-rows: 1fr 10fr 1fr;
+            grid-template-areas: 'menu header' 'menu canvas' 'footer footer';
+        }
 
-        div.header{
+        div.header {
             background-color: aqua;
             grid-area: header;
         }
 
-        div.menu{
+        div.menu {
             background-color: red;
             grid-area: menu;
         }
 
-        canvas{
+        canvas {
             background-color: white;
             /*margin: 2px;*/
             /*outline: 1px;*/
@@ -39,11 +39,10 @@
             grid-area: canvas;
         }
 
-        div.footer{
+        div.footer {
             background-color: forestgreen;
             grid-area: footer;
         }
-
     </style>
 </head>
 <!--<body onload="storrelse()">-->
