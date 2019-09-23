@@ -3,55 +3,112 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>canvas</title>
     <style>
         body{
             margin: 0px;
             padding: 0px;
         }
+
+        div.page {
+			height: 100vh;
+			display: grid;
+			grid-template-columns: 1fr 9fr;
+			grid-template-rows: 1fr 10fr 1fr;
+			grid-template-areas: 'menu header' 'menu canvas' 'footer footer';
+		}
+
+        div.header{
+            background-color: aqua;
+            grid-area: header;
+        }
+
+        div.menu{
+            background-color: red;
+            grid-area: menu;
+        }
+
         canvas{
-            margin: 20px;
-            outline: 1px;
+            background-color: white;
+            /*margin: 2px;*/
+            /*outline: 1px;*/
             outline: solid;
             outline-color: black;
+            /*height: 100%;
+            width: 100%;*/
+            grid-area: canvas;
         }
+
+        div.footer{
+            background-color: forestgreen;
+            grid-area: footer;
+        }
+
     </style>
 </head>
+<!--<body onload="storrelse()">-->
 <body>
-    <canvas id="myCanvas" onclick="tegn()" width="500" height="500"></canvas>
-
-<script>
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-
-    //canvas.onclick = console.log()
-    //canvas.onclick = console.log(event.clientX);
-
-    function museposisjon(event) {
-        var rect = canvas.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
-    }
-
-    function musX() {
-        var rect = canvas.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        return x;
-    }
-
-    function musY() {
-        var rect = canvas.getBoundingClientRect();
-        var y = event.clientY - rect.top;
-        return y;
-    }
-
-    function tegn(){
-        ctx.strokeRect(musX()-10, musY()-10, 20, 20);
-    }
+    <div class="page">
+        <div class="header"></div>
+        <div class="menu"></div>
+        <canvas id="myCanvas" onclick="tegn();"></canvas>  <!--oncontextmenu="storrelse()" width=bredde height=hoyde-->
+        <div class="footer"></div>
+    </div>
 
 
+    <script>
 
-</script>
+        var bredde = (document.documentElement.clientWidth / 10) * 9;
+        var hoyde = (document.documentElement.clientHeight / 12) * 10;
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        function storrelse() {
+            //ctx.canvas.width = bredde;
+            //ctx.canvas.height = hoyde;
+            canvas.width = bredde;
+            canvas.height = hoyde;
+            //document.getElementById("myCanvas").width = bredde;
+            //document.getElementById("myCanvas").height = hoyde;
+            console.log("bredde: " + document.documentElement.clientWidth);
+            console.log((document.documentElement.clientWidth / 10) * 9);
+            console.log("høyde: " + document.documentElement.clientHeight);
+            console.log((document.documentElement.clientHeight / 12) * 10);
+        }
+
+        window.addEventListener("resize", storrelse);
+
+
+
+
+        //canvas.onclick = console.log()
+        //canvas.onclick = console.log(event.clientX);
+
+        function museposisjon(event) {
+            var rect = canvas.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+        }
+
+        function musX() {
+            var rect = canvas.getBoundingClientRect();
+            var x = event.clientX - rect.left;
+            return x;
+        }
+
+        function musY() {
+            var rect = canvas.getBoundingClientRect();
+            var y = event.clientY - rect.top;
+            return y;
+        }
+
+        function tegn() {
+            ctx.strokeRect(musX() - 10, musY() - 10, 20, 20);
+        }
+
+
+
+    </script>
 </body>
 
 
