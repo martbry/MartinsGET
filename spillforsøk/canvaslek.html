@@ -65,18 +65,22 @@
         function storrelse() {
             //ctx.canvas.width = bredde;
             //ctx.canvas.height = hoyde;
-            canvas.width = bredde;
-            canvas.height = hoyde;
+            
             //document.getElementById("myCanvas").width = bredde;
             //document.getElementById("myCanvas").height = hoyde;
             console.log("bredde: " + document.documentElement.clientWidth);
             console.log((document.documentElement.clientWidth / 10) * 9);
             console.log("høyde: " + document.documentElement.clientHeight);
             console.log((document.documentElement.clientHeight / 12) * 10);
+            endre();
         }
 
         window.addEventListener("resize", storrelse);
 
+        function endre() {
+            canvas.width = bredde;
+            canvas.height = hoyde;
+        }
 
 
 
