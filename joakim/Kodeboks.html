@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+        div.kodeboks {
+            height: 200px;
+            width: 200px;
+            border: solid;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-areas: 'en to tre' 'fire fem seks' 'syv åtte ni';
+        }
+
+        div.en {
+            background-color: red; /*setter bakgrunnsfarge*/
+            display: flex; /*setter display til flex*/
+            justify-content: center; /*setter inhold til senter*/
+            flex-direction: column; /*velger vilken vei de to linjene over skal gjelde*/
+            text-align: center; /*sentrerer teksten horisontalt*/
+        }
+
+        div.to {
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.tre {
+            background-color: green;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.fire {
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.fem {
+            background-color: yellow;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.seks {
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.syv {
+            background-color: brown;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.åtte {
+            background-color: turquoise;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        div.ni {
+            background-color: purple;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="kodeboks">
+        <div class="en" onclick="trykkPåTall(this)">1</div>
+        <div class="to" onclick="trykkPåTall(this)">2</div>
+        <div class="tre" onclick="trykkPåTall(this)">3</div>
+        <div class="fire" onclick="trykkPåTall(this)">4</div>
+        <div class="fem" onclick="trykkPåTall(this)">5</div>
+        <div class="seks" onclick="trykkPåTall(this)">6</div>
+        <div class="syv"onclick="trykkPåTall(this)">7</div>
+        <div class="åtte" onclick="trykkPåTall(this)">8</div>
+        <div class="ni" onclick="trykkPåTall(this)">9</div>
+
+    </div>
+    <div class="bekreft" onclick="refresh()">Bekreft</div>
+    <script>
+        alert("Velkommen til kodeboksen.\nDen har 4 tall, trykk bekreft når du har tastet fire tall")
+        var tastet = "";
+
+        function trykkPåTall(par1) {
+            tastet += par1.innerHTML;
+            console.log(tastet);
+
+        }
+        function refresh() {
+            if (tastet == '8312') {
+                alert("Riktig kode");
+                tastet = "";
+                location.href = "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fofx%2Ffiles%2F2018%2F09%2FOFX3-iStock-492595743-1200x800.jpg";
+            } else {
+                alert("Feil");
+                tastet = ""; 
+            }
+
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>

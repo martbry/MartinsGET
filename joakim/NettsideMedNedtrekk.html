@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        div.side {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 2fr 1fr 10fr 2fr;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas: 'header header header' 'meny meny meny ' 'innhold innhold innhold' 'footer footer footer';
+        }
+
+        div.header {
+            background-color: black;
+            grid-area: header;
+        }
+
+        div.meny {
+            background-color: lightgrey;
+            grid-area: meny;
+            margin: 0;
+            float: left;
+        }
+
+        div.innhold {
+            background-color: white;
+            grid-area: innhold;
+        }
+
+        div.footer {
+            background-color: black;
+            grid-area: footer;
+        }
+
+        div.container {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: red;
+        }
+
+        button {
+            width: 300px;
+            background-color: red;
+            fill: red;
+        }
+        /*ul.dropdown-menu{
+            color: red;
+        }
+        li.dropdown-menu{
+            color: red;
+        }*/
+        .dropdown.btn {
+           fill:red;
+            background-color: red;
+        }
+        
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+    <div class="side">
+        <div class="header">_____</div>
+        <div class="meny">
+            <div class="container" >
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >
+                        Dropdown Example
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-left">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Test1</a></li>
+                        <li><a href="#">Test2</a></li>
+                        <li><a href="#">Test3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="innhold"> <button type="button" color="red">test</button></div>
+        <div class="footer">_____</div>
+    </div>
+
+   
+</body>
+</html>
