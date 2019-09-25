@@ -13,7 +13,7 @@ body {
     background-color: darkgray;
 }*/
 
-nav {
+#hovedmeny {
     width: 100%;
     height: 100px;
     background-color: darkgray;
@@ -25,7 +25,7 @@ ul {
     /*margin: 2px;*/  
 }
 
-    ul li {
+    #hovedmeny ul li {
         display: inline-block;
         float: left;
         list-style: none;
@@ -33,7 +33,7 @@ ul {
         /*text-align: center;*/
     }
 
-        ul li a {
+        #hovedmeny ul li a {
             /*background-color: darkred;*/
             display: block;
             text-decoration: none;
@@ -44,22 +44,30 @@ ul {
             padding: 0 20px;
         }
 
-            ul li a:hover {
+            #hovedmeny ul li a:hover {
                 color: dimgray;
             }
 
 nav.undermeny{
+    /*width: 200 px;*/
     display: none;
 }
-           
+
+       
 
           
+nav.undermeny ul li{
+    /*display: block;*/
+    /*list-style: square;*/
+    /*line-height: 20px;
+    padding: 5px;
+    float: none;
+    display: list-item;*/
+}
 
-/*nav ul li a.forside:hover{
-    nav.forsidehover: display: block;
-}*/
 
-
-/*nav.undermeny ul li .undermeny{
+/*nav.undermeny ul li .menylink{
     color:aqua;
 }*/
+
+/*^^^^^ Virker*/
