@@ -48,6 +48,13 @@ ul {
                 color: dimgray;
             }
 
+nav.undermeny{
+    display: none;
+}
+           
+
+          
+
 /*nav ul li a.forside:hover{
     nav.forsidehover: display: block;
 }*/

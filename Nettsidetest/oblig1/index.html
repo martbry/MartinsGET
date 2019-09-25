@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="stylesheet.css" />
 </head>
 <body>
-    <nav class="hovedmeny">
+    <nav id="hovedmeny" class="hovedmeny">
         <ul>
-            <li><a class="menylink" href="#">Forside</a></li>
+            <li><a id="forside" class="menylink" href="#">Forside</a></li>
             <li><a class="menylink" href="#">Test1</a></li>
             <li><a class="menylink" href="#">Test2</a></li>
             <li><a class="menylink" href="#">Test3</a></li>
@@ -19,9 +19,9 @@
     
     <!--<div class="test"></div>-->
 
-    <nav class="undermeny">
+    <nav id="undermeny" class="undermeny" onmouseleave="skjul(this)">
         <ul>
-            <li><a class="menylink" href="#">Under1</a></li>
+            <li><a id="hei "class="menylink" href="#">Under1</a></li>
             <li><a class="menylink" href="#">Under1</a></li>
             <li><a class="menylink" href="#">Under2</a></li>
             <li><a class="menylink" href="#">Under3</a></li>
@@ -29,7 +29,31 @@
         </ul>
     </nav>
 
+    <script>
 
+        document.getElementById("forside").addEventListener("mouseover", visUndermeny);
+        
+
+        function visUndermeny() {
+            document.getElementById("undermeny").style.display = "block";
+        }
+
+        function skjul(par1) {
+            par1.style.display = "none";
+        }
+
+        //function visUndermeny(par1) {
+        //    while (par1.onmouseover || document.getElementById("undermeny").onmouseover) {
+        //        document.getElementById("undermeny").style.display = "block";
+        //    }
+        //}
+
+        //function skjulUndermeny() {
+        //    document.getElementById("undermeny").style.display = "none";
+        //}
+
+
+    </script>
 
 </body>
 </html>
