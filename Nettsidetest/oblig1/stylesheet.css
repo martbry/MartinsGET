@@ -7,6 +7,12 @@ body {
     background-color: lightblue;
 }
 
+/*div.test{
+    width: 100%;
+    height: 0;
+    background-color: darkgray;
+}*/
+
 nav {
     width: 100%;
     height: 100px;
@@ -16,7 +22,7 @@ nav {
 
 ul {
     /*display: inline;*/
-    /*margin: 2px;*/
+    /*margin: 2px;*/  
 }
 
     ul li {
@@ -29,7 +35,7 @@ ul {
 
         ul li a {
             /*background-color: darkred;*/
-            /*display: block;*/
+            display: block;
             text-decoration: none;
             font-size: 20px;
             font-weight: 700;
