@@ -7,50 +7,107 @@
     <link rel="stylesheet" href="stylesheet.css" />
 </head>
 <body>
-    <nav id="hovedmeny" class="hovedmeny">
+    <nav id="hovedmeny">
         <ul>
             <li><a id="forside" class="menylink" href="#">Forside</a></li>
-            <li><a class="menylink" href="#">Test1</a></li>
-            <li><a class="menylink" href="#">Test2</a></li>
-            <li><a class="menylink" href="#">Test3</a></li>
-            <li><a class="menylink" href="#">Test4</a></li>
+            <li><a id="test1" class="menylink" href="#">Test1</a></li>
+            <li><a id="test2" class="menylink" href="#">Test2</a></li>
+            <li><a id="test3" class="menylink" href="#">Test3</a></li>
+            <li><a id="test4" class="menylink" href="#">Test4</a></li>
         </ul>
     </nav>
-    
-    <!--<div class="test"></div>-->
 
-    <nav id="undermeny" class="undermeny" onmouseleave="skjul(this)">
+    <nav id="u1" class="undermeny" onmouseleave="skjul(this)">
         <ul>
-            <li><a id="hei "class="menylink" href="#">Under1</a></li>
-            <li><a class="menylink" href="#">Under1</a></li>
-            <li><a class="menylink" href="#">Under2</a></li>
-            <li><a class="menylink" href="#">Under3</a></li>
-            <li><a class="menylink" href="#">Under4</a></li>
+            <li><a class="menylink" href="#">t11</a></li>
+            <li><a class="menylink" href="#">t12</a></li>
+            <li><a class="menylink" href="#">t13</a></li>
+            <li><a class="menylink" href="#">t14</a></li>
+            <li><a class="menylink" href="#">t15</a></li>
+        </ul>
+    </nav>
+
+    <nav id="u2" class="undermeny" onmouseleave="skjul(this)">
+        <ul>
+            <li><a class="menylink" href="#">t21</a></li>
+            <li><a class="menylink" href="#">t22</a></li>
+            <li><a class="menylink" href="#">t23</a></li>
+            <li><a class="menylink" href="#">t24</a></li>
+            <li><a class="menylink" href="#">t25</a></li>
+        </ul>
+    </nav>
+
+    <nav id="u3" class="undermeny" onmouseleave="skjul(this)">
+        <ul>
+            <li><a class="menylink" href="#">t31</a></li>
+            <li><a class="menylink" href="#">t32</a></li>
+            <li><a class="menylink" href="#">t33</a></li>
+            <li><a class="menylink" href="#">t34</a></li>
+            <li><a class="menylink" href="#">t35</a></li>
+        </ul>
+    </nav>
+
+    <nav id="u4" class="undermeny" onmouseleave="skjul(this)">
+        <ul>
+            <li><a class="menylink" href="#">t41</a></li>
+            <li><a class="menylink" href="#">t42</a></li>
+            <li><a class="menylink" href="#">t43</a></li>
+            <li><a class="menylink" href="#">t44</a></li>
+            <li><a class="menylink" href="#">t45</a></li>
+        </ul>
+    </nav>
+
+    <nav id="u5" class="undermeny" onmouseleave="skjul(this)">
+        <ul>
+            <li><a class="menylink" href="#">t51</a></li>
+            <li><a class="menylink" href="#">t52</a></li>
+            <li><a class="menylink" href="#">t53</a></li>
+            <li><a class="menylink" href="#">t54</a></li>
+            <li><a class="menylink" href="#">t55</a></li>
         </ul>
     </nav>
 
     <script>
-
+        var test = "Yesda";
         document.getElementById("forside").addEventListener("mouseover", visUndermeny);
-        
+        document.getElementById("test1").addEventListener("mouseover", visUndermeny);
+        document.getElementById("test2").addEventListener("mouseover", visUndermeny);
+        document.getElementById("test3").addEventListener("mouseover", visUndermeny);
+        document.getElementById("test4").addEventListener("mouseover", visUndermeny);
 
-        function visUndermeny() {
-            document.getElementById("undermeny").style.display = "block";
+
+        function visUndermeny(par1) {
+            var id = par1.target.id;
+            var sisteTegn = id.charAt(id.length - 1);
+            console.log(par1.target.id.charAt(id.length - 1));
+            console.log(sisteTegn);
+
+            if (sisteTegn == "e") {
+                console.log("IFIFIF");
+                document.getElementById("u1").style.display = "block";
+            } else {
+                
+                var sisteitall = parseInt(sisteTegn);
+                var sisteitall += 1;
+                
+                console.log(sisteitall);
+            }
+            
         }
 
         function skjul(par1) {
             par1.style.display = "none";
         }
 
-        //function visUndermeny(par1) {
-        //    while (par1.onmouseover || document.getElementById("undermeny").onmouseover) {
-        //        document.getElementById("undermeny").style.display = "block";
-        //    }
-        //}
+                        //function visUndermeny(par1) {
+                        //    while (par1.onmouseover || document.getElementById("undermeny").onmouseover) {
+                        //        document.getElementById("undermeny").style.display = "block";
+                        //    }
+                        //}
 
-        //function skjulUndermeny() {
-        //    document.getElementById("undermeny").style.display = "none";
-        //}
+                        //function skjulUndermeny() {
+                        //    document.getElementById("undermeny").style.display = "none";
+                        //}
 
 
     </script>
