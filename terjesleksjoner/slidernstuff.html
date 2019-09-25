@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+
+    <style>
+        div.resultat {
+            margin: 30px;
+        }
+    </style>
 </head>
-<style>
-    div.resultat{
-        margin: 30px;
-    }
 
-
-</style>
 <body>
     <p>Ferdighet 6 - Sette sammen tekst av flere deler  og  bruke dette til å bygge HTML dynamisk</p>
 
@@ -19,17 +19,21 @@
     <p>Avrunda kanter: <input id="cornerSlider" type="range" min="0" max="100" step="1" oninput="showDiv()" /></p>
     <p>Rammetykkelse (hvis valgt): <input id="rammeSlider" type="range" min="0" max="20" step="1" oninput="showDiv()" /></p>
     <span>Tekst i boksen: <input id="textInput" type="text" oninput="showDiv()" value="" /></span>
-    <span>Velg farge: <select id="colorChooser" onchange="showDiv()"></span>
-    <option value="red">Red color</option>
-    <option selected value="green">Green color</option>
-    <option value="blue">Blue color</option>
-    </select>
-    <span>Rammetype: <select id="rammetype" onchange="showDiv()"></span>
-    <option selected value="">Ingen</option>
-    <option value="solid">Solid</option>
-    <option value="dotted">Dotted</option>
-    <option value="double">Dobbel</option>
-    </select>
+    <span>
+        Velg farge: <select id="colorChooser" onchange="showDiv()">
+            <option value="red">Red color</option>
+            <option selected value="green">Green color</option>
+            <option value="blue">Blue color</option>
+        </select>
+    </span>
+    <span>
+        Rammetype: <select id="rammetype" onchange="showDiv()">
+            <option selected value="">Ingen</option>
+            <option value="solid">Solid</option>
+            <option value="dotted">Dotted</option>
+            <option value="double">Dobbel</option>
+        </select>
+    </span>
     <div class="resultat" id="resultat"></div>
     <div id="resultatHtml" style="font-family: monospace"></div>
     <script>
