@@ -22,52 +22,88 @@ body {
 
 ul {
     /*display: inline;*/
-    /*margin: 2px;*/  
+    /*margin: 2px;*/
 }
 
-    #hovedmeny ul li {
-        display: inline-block;
-        float: left;
-        list-style: none;
-        line-height: 100px;
-        /*text-align: center;*/
+#hovedmeny ul li {
+    display: inline-block;
+    float: left;
+    list-style: none;
+    line-height: 100px;
+    /*text-align: center;*/
+}
+
+    #hovedmeny ul li a {
+        /*background-color: darkred;*/
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        font-size: 20px;
+        width: 80px;
+        font-weight: 700;
+        font-family: Arial;
+        color: black;
+        padding: 0 20px;
     }
 
-        #hovedmeny ul li a {
-            /*background-color: darkred;*/
-            display: block;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 700;
-            font-family: Arial;
-            color: black;
-            padding: 0 20px;
+        #hovedmeny ul li a:hover {
+            color: dimgray;
         }
 
-            #hovedmeny ul li a:hover {
-                color: dimgray;
-            }
-
-nav.undermeny{
-    /*width: 200 px;*/
+nav.undermeny {
+    width: 120px;
     display: none;
+    background-color: lightgray;
 }
 
-       
 
-          
-nav.undermeny ul li{
-    /*display: block;*/
-    /*list-style: square;*/
-    /*line-height: 20px;
+    nav.undermeny li {
+        list-style: none;
+        line-height: 30px;
+    }
+
+    /*nav.undermeny ul li{
+    display: block;
+    list-style: square;
+    line-height: 20px;
     padding: 5px;
     float: none;
-    display: list-item;*/
+    display: list-item;
+}*/
+
+
+    nav.undermeny ul li .menylink {
+        text-decoration: none;
+        color: black;
+        margin: 50px;
+    }
+
+.undermeny#u1 {
+    margin: 0;
+    background-color: green;
+}
+
+.undermeny#u2 {
+    margin: 0 0 0 120px;
+    background-color: blue;
+    /*position: absolute;*/
+}
+
+.undermeny#u3 {
+    margin: 0 0 0 240px;
+    background-color: yellow;
+}
+
+.undermeny#u4 {
+    margin: 0 0 0 360px;
+    background-color: orange;
+}
+
+.undermeny#u5 {
+    margin: 0 0 0 480px;
+    background-color: purple;
 }
 
 
-/*nav.undermeny ul li .menylink{
-    color:aqua;
-}*/
 
 /*^^^^^ Virker*/
