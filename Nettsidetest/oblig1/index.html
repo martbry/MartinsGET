@@ -79,18 +79,15 @@
         function visUndermeny(par1) {
             var id = par1.target.id;
             var sisteTegn = id.charAt(id.length - 1);
-            console.log(par1.target.id.charAt(id.length - 1));
-            console.log(sisteTegn);
 
             if (sisteTegn == "e") {
-                console.log("IFIFIF");
                 document.getElementById("u1").style.display = "block";
             } else {
-                
                 var sisteitall = parseInt(sisteTegn);
-                var sisteitall += 1;
+                sisteitall += 1;
+                var undermenyid = "u" + sisteitall;
+                document.getElementById(undermenyid).style.display = "block";
                 
-                console.log(sisteitall);
             }
             
         }
