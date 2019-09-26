@@ -8,76 +8,88 @@
 </head>
 <body>
 
-    <!-- STARTEN PÅ MENY -->
-    <!--Hovedmeny er baren helt på toppen av siden. Den inneholder en liste med listeelementer (som igjen inneholder lenker)-->
+    <div class="page">
 
-    <nav id="hovedmeny">
-        <ul>
-            <li><a id="forside" class="menylink" href="index.html">Forside</a></li>
-            <li><a id="test1" class="menylink" href="#">Start IT</a></li>
-            <li><a id="test2" class="menylink" href="gruppe1.html">Gruppe 1</a></li>
-            <li><a id="test3" class="menylink" href="#">Test3</a></li>
-            <li><a id="test4" class="menylink" href="#">Test4</a></li>
-        </ul>
-    </nav>
+        <!-- STARTEN PÅ MENY -->
+        <!--Hovedmeny er baren helt på toppen av siden. Den inneholder en liste med listeelementer (som igjen inneholder lenker)-->
 
-    <!--Undermenyene er bygd opp på akkurat samme måte og har skjult by default. De har id u1–u5 (undermeny1 til undermeny5)-->
+        <nav id="hovedmeny">
+            <ul>
+                <li><a id="forside" class="menylink" href="index.html">Forside</a></li>
+                <li><a id="test1" class="menylink" href="#">Start IT</a></li>
+                <li><a id="test2" class="menylink" href="gruppe1.html">Gruppe 1</a></li>
+                <li><a id="test3" class="menylink" href="#">Test3</a></li>
+                <li><a id="test4" class="menylink" href="#">Test4</a></li>
+            </ul>
+        </nav>
 
-    <nav id="u1" class="undermeny" onmouseleave="skjul(this)">
-        <ul class="u1">
-            <li><a class="menylink" href="#">t11</a></li>
-            <li><a class="menylink" href="#">t12</a></li>
-            <li><a class="menylink" href="#">t13</a></li>
-            <li><a class="menylink" href="#">t14</a></li>
-            <li><a class="menylink" href="#">t15</a></li>
-        </ul>
-    </nav>
+        <!--Undermenyene er bygd opp på akkurat samme måte og har skjult by default. De har id u1–u5 (undermeny1 til undermeny5)-->
 
-    <nav id="u2" class="undermeny" onmouseleave="skjul(this)">
-        <ul>
-            <li><a class="menylink" href="#">t21</a></li>
-            <li><a class="menylink" href="#">t22</a></li>
-            <li><a class="menylink" href="#">t23</a></li>
-            <li><a class="menylink" href="#">t24</a></li>
-            <li><a class="menylink" href="#">t25</a></li>
-            <li><a class="menylink" href="#">Putter flere her</a></li>
-        </ul>
-    </nav>
+        <nav id="u1" class="undermeny" onmouseleave="skjul(this)">
+            <ul class="u1">
+                <li><a class="menylink" href="#">t11</a></li>
+                <li><a class="menylink" href="#">t12</a></li>
+                <li><a class="menylink" href="#">t13</a></li>
+                <li><a class="menylink" href="#">t14</a></li>
+                <li><a class="menylink" href="#">t15</a></li>
+            </ul>
+        </nav>
 
-    <nav id="u3" class="undermeny" onmouseleave="skjul(this)">
-        <ul>
-            <li><a class="menylink" href="#">Albin M. Hansen</a></li>
-            <li><a class="menylink" href="#">Lena T. Gran</a></li>
-            <li><a class="menylink" href="#">Marcus B. Henriksen</a></li>
-            <li><a class="menylink" href="#">Joakim N. Schrøder</a></li>
-            <li><a class="menylink" href="#">Martin Brygmann</a></li>
-        </ul>
-    </nav>
+        <nav id="u2" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li><a class="menylink" href="#">t21</a></li>
+                <li><a class="menylink" href="#">t22</a></li>
+                <li><a class="menylink" href="#">t23</a></li>
+                <li><a class="menylink" href="#">t24</a></li>
+                <li><a class="menylink" href="#">t25</a></li>
+                <li><a class="menylink" href="#">Putter flere her</a></li>
+            </ul>
+        </nav>
 
-    <nav id="u4" class="undermeny" onmouseleave="skjul(this)">
-        <ul>
-            <li><a class="menylink" href="#">t41</a></li>
-            <li><a class="menylink" href="#">t42</a></li>
-            <li><a class="menylink" href="#">t43</a></li>
-            <li><a class="menylink" href="#">t44</a></li>
-            <li><a class="menylink" href="#">t45</a></li>
-        </ul>
-    </nav>
+        <nav id="u3" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li><a class="menylink" href="#">Albin M. Hansen</a></li>
+                <li><a class="menylink" href="#">Lena T. Gran</a></li>
+                <li><a class="menylink" href="#">Marcus B. Henriksen</a></li>
+                <li><a class="menylink" href="#">Joakim N. Schrøder</a></li>
+                <li><a class="menylink" href="#">Martin Brygmann</a></li>
+            </ul>
+        </nav>
 
-    <nav id="u5" class="undermeny" onmouseleave="skjul(this)">
-        <ul>
-            <li><a class="menylink" href="#">t51</a></li>
-            <li><a class="menylink" href="#">t52</a></li>
-            <li><a class="menylink" href="#">t53</a></li>
-            <li><a class="menylink" href="#">t54</a></li>
-            <li><a class="menylink" href="#">t55</a></li>
-        </ul>
-    </nav>
+        <nav id="u4" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li><a class="menylink" href="#">t41</a></li>
+                <li><a class="menylink" href="#">t42</a></li>
+                <li><a class="menylink" href="#">t43</a></li>
+                <li><a class="menylink" href="#">t44</a></li>
+                <li><a class="menylink" href="#">t45</a></li>
+            </ul>
+        </nav>
 
-    <!-- SLUTTEN PÅ MENY -->
+        <nav id="u5" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li><a class="menylink" href="#">t51</a></li>
+                <li><a class="menylink" href="#">t52</a></li>
+                <li><a class="menylink" href="#">t53</a></li>
+                <li><a class="menylink" href="#">t54</a></li>
+                <li><a class="menylink" href="#">t55</a></li>
+            </ul>
+        </nav>
 
-    <div>
-        <h1>VELKOMMEN</h1>
+        <!-- SLUTTEN PÅ MENY -->
+
+        <div class="sidemeny">
+            <h4>Menyting</h4>
+        </div>
+
+        <div class="hovedinnhold">
+            <h1>VELKOMMEN</h1>
+        </div>
+
+        <div class="footer">
+            <p>Her er litt info</p>
+        </div>
+
     </div>
 
     <script type="text/javascript" src="oblig1.js"></script>

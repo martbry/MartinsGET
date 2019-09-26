@@ -14,6 +14,7 @@ body {
 }*/
 
 #hovedmeny {
+    grid-area: mainmenu;
     width: 100%;
     height: 100px;
     background-color: darkslategray;
@@ -54,11 +55,16 @@ ul {
             color: black;
         }
 
+
+/*-------------UNDERMENYER START-------------*/
+
 nav.undermeny {
+    
     width: 140px;
     display: none;
     background-color: lightgray;
     position: fixed;
+    top:100px;
 }
 
 
@@ -77,6 +83,7 @@ nav.undermeny {
     display: list-item;
 }*/
 
+    
 
     nav.undermeny ul li .menylink {
         display: block;
@@ -127,8 +134,36 @@ nav.undermeny {
     background-color: darkseagreen;
 }
 
+/*-------------UNDERMENYER SLUTT-------------*/
+
+div.hovedinnhold{
+    grid-area: maincontent;
+    background-color: darkslateblue;
+}
+
+div.sidemeny{
+    grid-area: sidebar;
+    background-color: steelblue;
+}
+
 h1{
     margin: 50px 0 30px 70px;
+}
+
+div.footer{
+    grid-area: footer;
+    background-color: darkslategray;
+}
+
+div.page {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 100px 1500px 100px;
+    grid-template-areas:
+        'mainmenu mainmenu'
+        'sidebar maincontent'
+        'footer footer';
 }
 
 
