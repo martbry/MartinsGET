@@ -17,7 +17,7 @@
             <ul>
                 <li id="firstli"><a id="forside" class="menylink" href="index.html">Forside</a></li>
                 <li><a id="test1" class="menylink" href="#">Start IT</a></li>
-                <li><a id="test2" class="menylink" href="gruppe1.html">Gruppe 1</a></li> <!--onclick="nyttInnhold('gruppe1')"-->
+                <li><a id="test2" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'gruppe1')">Gruppe 1</a></li> <!--onclick="nyttInnhold('gruppe1')"-->
                 <li><a id="test3" class="menylink" href="#">Test3</a></li>
                 <li><a id="test4" class="menylink" href="#">Test4</a></li>
             </ul>
@@ -47,11 +47,11 @@
 
         <nav id="u3" class="undermeny" onmouseleave="skjul(this)">
             <ul>
-                <li class="firstliu"><a class="menylink" href="#">Albin M. Hansen</a></li>
-                <li><a class="menylink" href="#">Lena T. Gran</a></li>
-                <li><a class="menylink" href="#">Marcus B. Henriksen</a></li>
-                <li><a class="menylink" href="#">Joakim N. Schrøder</a></li>
-                <li><a class="menylink" href="#">Martin Brygmann</a></li>
+                <li class="firstliu"><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'albin')">Albin M. Hansen</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'lena')">Lena T. Gran</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'marcus')">Marcus B. Henriksen</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'joakim')">Joakim N. Schrøder</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'martin')">Martin Brygmann</a></li>
             </ul>
         </nav>
 
@@ -96,7 +96,7 @@
 
         <div class="footer">
             <p>Her er litt info</p>
-            
+
         </div>
 
     </div>
