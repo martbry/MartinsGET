@@ -76,12 +76,17 @@
         document.getElementById("test2").addEventListener("mouseover", visUndermeny);
         document.getElementById("test3").addEventListener("mouseover", visUndermeny);
         document.getElementById("test4").addEventListener("mouseover", visUndermeny);
+        document.getElementById("hovedmeny").addEventListener("mouseover", visUndermeny);
 
 
         function visUndermeny(par1) {
 
             if (forrigeMeny != undefined) {
                 forrigeMeny.style.display = "none";
+            }
+
+            if (par1.target.id == "hovedmeny") {
+                return;
             }
 
             forrigeMeny = par1.target;
@@ -106,6 +111,7 @@
         function skjul(par1) {
             par1.style.display = "none";
         }
+
 
                         //function visUndermeny(par1) {
                         //    while (par1.onmouseover || document.getElementById("undermeny").onmouseover) {
