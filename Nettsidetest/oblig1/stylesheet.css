@@ -159,7 +159,7 @@ div.page {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: 100px 1500px 100px;
+    grid-template-rows: 100px 1fr 50px;
     grid-template-areas:
         'mainmenu mainmenu'
         'sidebar maincontent'
