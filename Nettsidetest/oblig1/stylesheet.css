@@ -34,6 +34,10 @@ ul {
     /*text-align: center;*/
 }
 
+    #hovedmeny ul li#firstli {
+        margin-left: calc(100vw/7);
+    }
+
     #hovedmeny ul li a {
         /*background-color: darkred;*/
         display: block;
@@ -46,6 +50,7 @@ ul {
         color: lightblue;
         padding: 0 20px;
     }
+
 
         #hovedmeny ul li:hover{
             background-color: cadetblue;
@@ -110,13 +115,13 @@ nav.undermeny {
 }
 
 .undermeny#u2 {
-    margin: 0 0 0 calc(1*140px);
+    margin: 0 0 0 calc(100vw/7 + 1*140px);
     background-color: darkseagreen;
     /*position: absolute;*/
 }
 
 .undermeny#u3 {
-    margin: 0 0 0 calc(2*140px);
+    margin: 0 0 0 calc(100vw/7 + 2*140px);
     background-color: darkseagreen;
 }
 
@@ -125,12 +130,13 @@ nav.undermeny {
 }
 
 .undermeny#u4 {
-    margin: 0 0 0 calc(3*140px);
+    margin: 0 0 0 calc(100vw/7 + 3*140px);
     background-color: darkseagreen;
 }
 
 .undermeny#u5 {
-    margin: 0 0 0 calc(4*140px);
+    margin: 0 0 0 calc(100vw/7 + 4*140px);
+
     background-color: darkseagreen;
 }
 
@@ -138,6 +144,7 @@ nav.undermeny {
 
 div.hovedinnhold{
     grid-area: maincontent;
+    padding: 70px 100px 70px 70px;
     background-color: darkslateblue;
 }
 
@@ -147,7 +154,7 @@ div.sidemeny{
 }
 
 h1{
-    margin: 50px 0 30px 70px;
+    margin: 0 0 30px 0;
 }
 
 div.footer{
