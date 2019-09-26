@@ -35,7 +35,7 @@ ul {
 }
 
     #hovedmeny ul li#firstli {
-        margin-left: calc(100vw/8);
+        margin-left: 200px;
     }
 
     #hovedmeny ul li a {
@@ -115,17 +115,17 @@ nav.undermeny {
         }
 
 .undermeny#u1 {
-    /*margin: 0;*/
+    margin: 200px;
     background-color: darkseagreen;
 }
 
 .undermeny#u2 {
-    margin: 0 0 0 calc(100vw/8 + 1*140px);
+    margin: 0 0 0 calc(200px + 1*140px);
     background-color: darkseagreen;
 }
 
 .undermeny#u3 {
-    margin: 0 0 0 calc(100vw/8 + 2*140px);
+    margin: 0 0 0 calc(200px + 2*140px);
     background-color: darkseagreen;
 }
 
@@ -134,12 +134,12 @@ nav.undermeny {
     }
 
 .undermeny#u4 {
-    margin: 0 0 0 calc(100vw/8 + 3*140px);
+    margin: 0 0 0 calc(200px + 3*140px);
     background-color: darkseagreen;
 }
 
 .undermeny#u5 {
-    margin: 0 0 0 calc(100vw/8 + 4*140px);
+    margin: 0 0 0 calc(200px + 4*140px);
     background-color: darkseagreen;
 }
 
@@ -153,7 +153,8 @@ nav.undermeny {
 div.hovedinnhold {
     grid-area: maincontent;
     padding: 70px 100px 70px 70px;
-    background-color: darkslateblue;
+    /*background-color: darkslateblue;*/
+    width: 50%;
 }
 
 div.sidemeny {
@@ -179,7 +180,7 @@ div.page {
     width: 100vw;
     /*max-width: 100%;
     max-height: 100%;*/
-    grid-template-columns: 1fr 7fr;
+    grid-template-columns: 200px 7fr;
     grid-template-rows: 100px 1fr 50px;
     grid-template-areas: 'mainmenu mainmenu' 'sidebar maincontent' 'footer footer';
 }
@@ -238,5 +239,66 @@ div.sidemenygruppe1 ul li a:hover {
 }
 
 /*-------------SIDEMENY GRUPPE 1 SLUTT-------------*/
+
+/*På 900px bredde er det ikke lenger plass til alle menyene på toppen med den marginen de har nå*/
+
+@media only screen and (max-width: 900px) {
+        #hovedmeny ul li#firstli {
+        margin-left: 0px;
+    }
+
+    .undermeny#u1 {
+        margin: 0;
+        background-color: darkseagreen;
+    }
+
+    .undermeny#u2 {
+        margin: 0 0 0 calc(1*140px);
+        background-color: darkseagreen;
+    }
+
+    .undermeny#u3 {
+        margin: 0 0 0 calc(2*140px);
+        background-color: darkseagreen;
+    }
+
+       
+
+    .undermeny#u4 {
+        margin: 0 0 0 calc(3*140px);
+        background-color: darkseagreen;
+    }
+
+    .undermeny#u5 {
+        margin: 0 0 0 calc(4*140px);
+        background-color: darkseagreen;
+    }
+}
+
+/*På 700px bredde må vi sette hovedmenyen til venstre*/
+
+@media only screen and (max-width: 700px){
+    div.page {
+        grid-template-areas: 'mainmenu maincontent' 'mainmenu maincontent' 'footer footer';
+    }
+
+    #hovedmeny{
+        /*grid-area: sidebar;*/
+        width: 150px;
+        display: block;
+        border: none;
+    }
+
+    div.sidemeny{
+        display: none;
+    }
+
+    div.hovedinnhold{
+        margin: 20px 0 0 0;
+        padding: 0;
+    }
+
+
+}
 
 

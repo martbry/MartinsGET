@@ -9,8 +9,6 @@ var startinnhold;
 
 function pushStartinnhold() {
     document.getElementById("hovedinnhold").innerHTML = document.getElementById(sessionStorage.getItem("startinnhold")).innerHTML;
-    //document.getElementById("hovedinnhold").innerHTML = document.getElementById(sessionStorage.getItem("startinnhold"));
-    console.log(startinnhold);
 }
 
 //Hovedmenyen en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene.
@@ -86,6 +84,5 @@ function hoverhoved(par1) {
 }
 
 function nyttInnhold(par1) {
-    console.log(par1);
     document.getElementById("hovedinnhold").innerHTML = document.getElementById(par1).innerHTML;
 }
