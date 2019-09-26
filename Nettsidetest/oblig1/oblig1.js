@@ -3,14 +3,19 @@
                             //forrigeMeny er, når siden lastes, en tom variabel. Når siden er i bruk holder den på den forrige undermenyen som var åpen
 
 var forrigeMeny;
+var forrigeHovedmeny;
 
                             //Hovedmenyen en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene.
                             //Eventlisteneren sender det elementet som trigget mouseover som første argument.
 
 document.getElementById("hovedmeny").addEventListener("mouseover", visUndermeny);
+document.getElementsByClassName("undermeny")[1].addEventListener("mouseover", hoverhoved);
+document.getElementsByClassName("undermeny")[2].addEventListener("mouseover", hoverhoved);
+document.getElementsByClassName("undermeny")[3].addEventListener("mouseover", hoverhoved);
+document.getElementsByClassName("undermeny")[4].addEventListener("mouseover", hoverhoved);
 
 
-                            //visUndermeny(par1) tar i mot elementet som trigger mouseover fra EventListerene over
+                                 //visUndermeny(par1) tar i mot elementet som trigger mouseover fra EventListerene over
 
 function visUndermeny(par1) {
 
@@ -50,6 +55,8 @@ function visUndermeny(par1) {
         var undermenyid = "u" + sisteitall;
         document.getElementById(undermenyid).style.display = "block";
         forrigeMeny = document.getElementById(undermenyid);
+        forrigeHovedmeny = id;
+        //hoverhoved();
 
     }
 
@@ -58,5 +65,14 @@ function visUndermeny(par1) {
                             //Denne funksjonen tar inn et HTML-element og skjuler det. Den blir kalt på av undermenyene dersom man trigger eventet ounmouseleave
 
 function skjul(par1) {
+    //document.getElementById(forrigeHovedmeny).style.color = "lightblue";
     par1.style.display = "none";
+    document.getElementById(forrigeHovedmeny).style.color = "lightblue";
+    document.getElementById(forrigeHovedmeny).style.backgroundColor = "darkslategray";
+}
+
+
+function hoverhoved(par1) {
+    document.getElementById(forrigeHovedmeny).style.color = "black";
+    document.getElementById(forrigeHovedmeny).style.backgroundColor = "cadetblue";
 }
