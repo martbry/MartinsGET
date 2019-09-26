@@ -58,6 +58,8 @@ function visUndermeny(par1) {
 
 }
 
+//Denne funksjonen tar inn et HTML-element og skjuler det. Den blir kalt på av undermenyene dersom man trigger eventet ounmouseleave
+
 function skjul(par1) {
     par1.style.display = "none";
 }
