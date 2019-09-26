@@ -76,3 +76,8 @@ function hoverhoved(par1) {
     document.getElementById(forrigeHovedmeny).style.color = "black";
     document.getElementById(forrigeHovedmeny).style.backgroundColor = "cadetblue";
 }
+
+function nyttInnhold(par1) {
+    console.log(par1);
+    document.getElementById("hovedinnhold").innerHTML = document.getElementById(par1).innerHTML;
+}
