@@ -4,7 +4,8 @@
 
 var forrigeMeny;
 
-//Alle hovedmenytaggene har en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene. Eventlisteneren sender det elementet som trigget mouseover som første argument.
+//Alle hovedmenytaggene og den delen av baren som ikke har lenker har en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene.
+// Eventlisteneren sender det elementet som trigget mouseover som første argument.
 
 document.getElementById("forside").addEventListener("mouseover", visUndermeny);
 document.getElementById("test1").addEventListener("mouseover", visUndermeny);
@@ -57,6 +58,6 @@ function visUndermeny(par1) {
 
 }
 
-//function skjul(par1) {
-//    par1.style.display = "none";
-//}
+function skjul(par1) {
+    par1.style.display = "none";
+}
