@@ -16,6 +16,7 @@ body {
     height: 100px;
     background-color: darkslategray;
     display: block;
+
 }
 
 ul {
@@ -160,10 +161,13 @@ div.page {
 
 /*-------------SIDEMENY GRUPPE 1 START-------------*/
 
-
+div.sidemenygruppe1 ul {
+    box-sizing: border-box;
+    height: calc((100vh - 165px) / 6);
+}
 
 div.sidemenygruppe1 ul li {
-    box-sizing: border-box;
+    
     display: block;
     /*float: left;*/
     list-style: none;
