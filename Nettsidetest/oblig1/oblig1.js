@@ -4,14 +4,9 @@
 
 var forrigeMeny;
 
-//Alle hovedmenytaggene og den delen av baren som ikke har lenker har en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene.
-// Eventlisteneren sender det elementet som trigget mouseover som første argument.
+//Hovedmenyen en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene.
+//Eventlisteneren sender det elementet som trigget mouseover som første argument.
 
-document.getElementById("forside").addEventListener("mouseover", visUndermeny);
-document.getElementById("test1").addEventListener("mouseover", visUndermeny);
-document.getElementById("test2").addEventListener("mouseover", visUndermeny);
-document.getElementById("test3").addEventListener("mouseover", visUndermeny);
-document.getElementById("test4").addEventListener("mouseover", visUndermeny);
 document.getElementById("hovedmeny").addEventListener("mouseover", visUndermeny);
 
 
@@ -45,6 +40,7 @@ function visUndermeny(par1) {
     //slik at test1 åpner u2, test2 åpner u3 osv. forrigemeny tilordnes så denne undermenyen.
 
     if (sisteTegn == "e") {
+        return;
         document.getElementById("u1").style.display = "block";
         forrigeMeny = document.getElementById("u1");
     } else {
