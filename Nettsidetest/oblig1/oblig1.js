@@ -7,9 +7,7 @@ var forrigeHovedmeny;
 
 var startinnhold;
 
-function pushStartinnhold() {
-    document.getElementById("hovedinnhold").innerHTML = document.getElementById(sessionStorage.getItem("startinnhold")).innerHTML;
-}
+
 
 //Hovedmenyen en evenListener som kaller på visUndermeny() når musen hovres over en av lenkene.
 //Eventlisteneren sender det elementet som trigget mouseover som første argument.
@@ -83,6 +81,16 @@ function hoverhoved(par1) {
     document.getElementById(forrigeHovedmeny).style.backgroundColor = "cadetblue";
 }
 
-function nyttInnhold(par1) {
-    document.getElementById("hovedinnhold").innerHTML = document.getElementById(par1).innerHTML;
+function nyttInnhold() {
+    var tekstString;
+    if (arguments.length == 0) {
+        tekstString = sessionStorage.getItem("startinnhold");
+    } else {
+        tekstString = arguments[0];
+    }
+    document.getElementById("hovedinnhold").innerHTML = document.getElementById(tekstString).innerHTML;
+   
+    document.getElementById("sideinnhold").innerHTML = "<img id='bilde' src='" + tekstString + ".png' alt='Her skal det egentlig være et bilde' style='width: 500px; height: 500px;' />";
+   
+           
 }
