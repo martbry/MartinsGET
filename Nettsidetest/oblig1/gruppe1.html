@@ -14,8 +14,8 @@
 
         <nav id="hovedmeny">
             <ul>
-                <li id="firstli"><a id="forside" class="menylink" href="index.html">Forside</a></li>
-                <li><a id="test1" class="menylink" href="startit.html">Start IT</a></li>
+                <li id="firstli"><a id="forside" class="menylink" href="index.html" onclick="sessionStorage.setItem('startinnhold', 'velkommen')">Forside</a></li>
+                <li><a id="test1" class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'startit')">Start IT</a></li>
                 <li><a id="test2" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'gruppe1')">Gruppe 1</a></li> <!--onclick="nyttInnhold('gruppe1')"-->
                 <li><a id="test3" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'martin')">Om meg</a></li>
                 <li><a id="test4" class="menylink" href="kontakt.html">Kontakt</a></li>
@@ -36,11 +36,10 @@
 
         <nav id="u2" class="undermeny" onmouseleave="skjul(this)">
             <ul>
-                <li class="firstliu"><a class="menylink" href="#">Start IT</a></li>
-                <li><a class="menylink" href="#">Slidepuzzle</a></li>
-                <li><a class="menylink" href="#">Leksjon 1</a></li>
-                <li><a class="menylink" href="#">Leksjon 2</a></li>
-                <li><a class="menylink" href="#">Leksjon 3</a></li>
+                <li class="firstliu"><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'slidepuzzle')">Slidepuzzle</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon1')">Leksjon 1</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon2')">Leksjon 2</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon3')">Leksjon 3</a></li>
             </ul>
         </nav>
 
@@ -88,7 +87,17 @@
         </div>
 
         <div id="hovedinnhold" class="hovedinnhold">
+            <h1>Gruppe 1</h1>
+            <p>
+                The union of Sabia. Built upon the bountiful nature, darker times and leadership of its past, this union is now among the most blessed countries in its corner of the world.
+                Their food production, industry and housing are among its current greatest strengths. Unfortunately they lack a little in infrastructure and literacy.
 
+                Sabia is a democratic union. There are fairly strong opposing groups against the current leadership and they slowly gain more and more public interest.
+                However, the current greatest threat to the nation is a failed harvest, but the current leadership is unable to solve this issue.
+
+                The people of Sabia are jolly. They live wonderful lives and while infrastructure might be lacking, their food production helps relief most of their issues.
+                Religion holds no importance at all in their lives and, if anything, has made them more creative. The people of Sabia aren't spiritual at all either and they rely more on the world around them and each other.
+            </p>
         </div>
 
         <div id="sideinnhold" class="sideinnhold">
