@@ -158,11 +158,9 @@ div.hovedinnhold {
     /*width: 50%;*/
 }
 
-/*div.sideinnhold {
-    display: none;
-}*/
+
     div.sideinnhold {
-    display: none;                
+    display: none;
     grid-area: sidecontent;
     /*width: 100%;
     height: 100%;*/
