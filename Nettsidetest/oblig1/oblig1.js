@@ -49,11 +49,11 @@ function visUndermeny(par1) {
     //I alle andre tilfeller tar jeg siste tegn i IDen (som alltid er et tall (test1, test2 osv.)) og viser undermenyen med id som starter på "u" (for undermeny) og slutter på dette tallet pluss 1
     //slik at test1 åpner u2, test2 åpner u3 osv. forrigemeny tilordnes så denne undermenyen.
 
-    if (sisteTegn == "e") {
+    if (sisteTegn == "e" || sisteTegn == "3" || sisteTegn == "4") {
         return;
         document.getElementById("u1").style.display = "block";
         forrigeMeny = document.getElementById("u1");
-    } else {
+    }else{
         var sisteitall = parseInt(sisteTegn);
         sisteitall += 1;
         var undermenyid = "u" + sisteitall;

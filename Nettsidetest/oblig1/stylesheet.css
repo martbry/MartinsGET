@@ -183,6 +183,8 @@ div.footer {
     grid-area: footer;
     border-top: solid;
     border-top-width: 3px;
+    border-color: black;
+    color: lightblue;
     background-color: darkslategray;
 }
 
@@ -197,6 +199,10 @@ div.page {
     grid-template-rows: 100px 1fr 50px;
     grid-template-areas: 'mainmenu mainmenu mainmenu' 'sidebar maincontent sidecontent' 'footer footer footer';
     /*grid-template-areas: 'mainmenu mainmenu mainmenu' 'sidebar maincontent maincontent' 'footer footer footer';*/
+}
+
+div.sidemeny {
+    border-right-style: solid;
 }
 
 /*-------------SIDEMENY GRUPPE 1 START-------------*/
@@ -215,7 +221,7 @@ div.sidemenygruppe1 ul {
         /*height: calc((100vh - 190px) / 6);*/
         line-height: calc((100vh - 165px) / 6);
         border-bottom-style: solid;
-        border-right-style: solid;
+        /*border-right-style: solid;*/
         border-color: black;
         border-width: 3px;
         /*text-align: center;*/
