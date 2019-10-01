@@ -4,7 +4,6 @@
 
 var forrigeMeny;
 var forrigeHovedmeny;
-
 var startinnhold;
 
 
