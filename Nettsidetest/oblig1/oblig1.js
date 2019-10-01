@@ -76,24 +76,21 @@ function skjul(par1) {
 }
 
 
-function hoverhoved(par1) {
+function hoverhoved() {
     document.getElementById(forrigeHovedmeny).style.color = "black";
     document.getElementById(forrigeHovedmeny).style.backgroundColor = "cadetblue";
 }
 
 function nyttInnhold() {
-    //console.log(sessionStorage.getItem("startinnhold"));
     var tekstString;
     if (arguments.length == 0) {
         tekstString = sessionStorage.getItem("startinnhold");
     } else {
         tekstString = arguments[0];
     }
-    console.log("venstre: " + document.getElementById("hovedinnhold"));
-    console.log("høyre: " + document.getElementById(tekstString));
+
     document.getElementById("hovedinnhold").innerHTML = document.getElementById(tekstString).innerHTML;
 
-    //console.log(href = "albin.png" == HTMLImageElement);
     try {
         document.getElementById("sideinnhold").innerHTML = "<img id='bilde' src='" + tekstString + ".png' alt='Her skal det egentlig være et bilde' style='width: 500px; height: 500px;' />"
     } catch{
