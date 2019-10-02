@@ -35,20 +35,44 @@ function calcColor(min, max, val) {
 }
 
 function marker(par1) {
-
-    console.log(document.getElementById("chart").childNodes[0]);
+    
+    //console.log(par1.style.stroke);
+    //console.log(document.getElementById("chart").childNodes[0]);
 
     if (markert == par1) {
-        markert.style.stroke = "none";
+        rammeSwitch(par1);
         markert = undefined;
-        valgtstolpe.innerHTML = "<i>ingen<i>";
+        valgtstolpe.innerHTML = "<i>ingen</i>"
         return;
-    } else if (markert != undefined){
-        markert.style.stroke = "none";
+        //markert.style.stroke = "none";
+        //markert = undefined;
+        //valgtstolpe.innerHTML = "<i>ingen<i>";
+        return;
+    } else if (markert != undefined) {
+        rammeSwitch(markert);
+        rammeSwitch(par1);
+        markert = par1;
+        valgtstolpe.innerHTML = par1.id;
+        return;
     }
     
     markert = par1;
+    rammeSwitch(par1, "bytt");
     valgtstolpe.innerHTML = par1.id;
-    
+    //par1.style.stroke = "1px";
+    //par1.style.stroke = "black";
+    //par1.style.stroke = "solid";
     
 }
+
+function rammeSwitch(stolpe) {
+        if (stolpe.style.stroke == "black") {
+            stolpe.style.stroke = "none";
+            return;
+        } else {
+            stolpe.style.stroke = "solid";
+            stolpe.style.stroke = "black";
+            stolpe.style.stroke = "1px";
+            return;
+        }
+    }
