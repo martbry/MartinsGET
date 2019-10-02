@@ -82,8 +82,13 @@ function buttonSwitch(tekst) {
         document.getElementById("knapp1").disabled = false;
         document.getElementById("knapp2").disabled = false;
     } else {
-        document.getElementById("knapp1").disabled = false;
-        document.getElementById("knapp2").disabled = false;
+        document.getElementById("knapp1").disabled = true;
+        document.getElementById("knapp2").disabled = true;
     }
     
 }
+
+//TODO
+//leggTil();
+//fjern();
+//Fjern må endre IDene i en loop og endre plasseringene
