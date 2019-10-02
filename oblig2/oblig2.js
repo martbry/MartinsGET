@@ -35,7 +35,7 @@ function calcColor(min, max, val) {
 }
 
 function marker(par1) {
-    
+
     //console.log(par1.style.stroke);
     //console.log(document.getElementById("chart").childNodes[0]);
 
@@ -55,24 +55,35 @@ function marker(par1) {
         valgtstolpe.innerHTML = par1.id;
         return;
     }
-    
+
     markert = par1;
     rammeSwitch(par1, "bytt");
     valgtstolpe.innerHTML = par1.id;
     //par1.style.stroke = "1px";
     //par1.style.stroke = "black";
     //par1.style.stroke = "solid";
-    
+
 }
 
 function rammeSwitch(stolpe) {
-        if (stolpe.style.stroke == "black") {
-            stolpe.style.stroke = "none";
-            return;
-        } else {
-            stolpe.style.stroke = "solid";
-            stolpe.style.stroke = "black";
-            stolpe.style.stroke = "1px";
-            return;
-        }
+    if (stolpe.style.stroke == "black") {
+        stolpe.style.stroke = "none";
+        return;
+    } else {
+        stolpe.style.stroke = "solid";
+        stolpe.style.stroke = "black";
+        stolpe.style.stroke = "1px";
+        return;
     }
+}
+
+function buttonSwitch(tekst) {
+    if (tekst == "av") {
+        document.getElementById("knapp1").disabled = false;
+        document.getElementById("knapp2").disabled = false;
+    } else {
+        document.getElementById("knapp1").disabled = false;
+        document.getElementById("knapp2").disabled = false;
+    }
+    
+}
