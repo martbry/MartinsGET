@@ -34,38 +34,46 @@ function calcColor(min, max, val) {
     return colString;
 }
 
+function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
+
+    var inputtall = document.getElementById("input").value;
+    var antallstolper = parseInt(document.getElementById("chart").childNodes.length) + 1;
+
+    if (inputtall < 1 || inputtall > 10) {
+        console.log("Not today");
+        return;
+    }
+
+    svgTag.innerHTML += createBar(inputtall, antallstolper);
+
+}
+
 function marker(par1) {
 
-    //console.log(par1.style.stroke);
-    //console.log(document.getElementById("chart").childNodes[0]);
-
-    if (markert == par1) {
+    if (markert == par1) { //hvis du trykker på den samme igjen (deselect)
         rammeSwitch(par1);
         markert = undefined;
         valgtstolpe.innerHTML = "<i>ingen</i>"
+        buttonSwitch("av");
         return;
-        //markert.style.stroke = "none";
-        //markert = undefined;
-        //valgtstolpe.innerHTML = "<i>ingen<i>";
-        return;
-    } else if (markert != undefined) {
+
+    } else if (markert != undefined) { //den første du trykker på
         rammeSwitch(markert);
         rammeSwitch(par1);
         markert = par1;
         valgtstolpe.innerHTML = par1.id;
+        buttonSwitch();
         return;
     }
+    //Når det ikke er første markering av stolpe, og det heller ikke er den samme som sist:
 
     markert = par1;
-    rammeSwitch(par1, "bytt");
+    rammeSwitch(par1);
     valgtstolpe.innerHTML = par1.id;
-    //par1.style.stroke = "1px";
-    //par1.style.stroke = "black";
-    //par1.style.stroke = "solid";
-
+    buttonSwitch();
 }
 
-function rammeSwitch(stolpe) {
+function rammeSwitch(stolpe) { //Setter ramme av eller på (avhengig av om stolpen har ramme fra før, eller ikke).
     if (stolpe.style.stroke == "black") {
         stolpe.style.stroke = "none";
         return;
@@ -77,18 +85,30 @@ function rammeSwitch(stolpe) {
     }
 }
 
-function buttonSwitch(tekst) {
+function buttonSwitch(tekst) { //Deaktiverer knappene hvis "av" er sendt med som argument. Aktiverer ellers.
     if (tekst == "av") {
-        document.getElementById("knapp1").disabled = false;
-        document.getElementById("knapp2").disabled = false;
-    } else {
         document.getElementById("knapp1").disabled = true;
         document.getElementById("knapp2").disabled = true;
+    } else {
+        document.getElementById("knapp1").disabled = false;
+        document.getElementById("knapp2").disabled = false;
     }
-    
 }
 
+
+
+
+
+
 //TODO
-//leggTil();
 //fjern();
 //Fjern må endre IDene i en loop og endre plasseringene
+
+
+//console.log(markert.getBBox().height);
+
+
+//fungerende høydeendring:
+//console.log(markert.getAttribute("height"));
+//markert.setAttribute("height", "30");
+//markert.setAttribute("y", (60 - parseInt(markert.getAttribute("height"))));
