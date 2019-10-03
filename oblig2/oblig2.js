@@ -38,6 +38,13 @@ function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
     var inputtall = document.getElementById("input").value;
     var antallstolper = parseInt(document.getElementById("chart").childNodes.length) + 1;
 
+    if (inputtall < 1 || inputtall > 10) {
+        document.getElementById("feilmelding").style.display = "block";
+        return;
+    }
+
+    document.getElementById("feilmelding").style.display = "none";
+
     if (markert != undefined) {
         rammeSwitch(markert);
         markert = undefined;
@@ -45,17 +52,12 @@ function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
         buttonSwitch("av");
     }
 
-
-    if (inputtall < 1 || inputtall > 10) {
-        console.log("Not today");
-        return;
-    }
-
     svgTag.innerHTML += createBar(inputtall, antallstolper);
 
 }
 
 function fjernStolpe() {
+    document.getElementById("feilmelding").style.display = "none";
     svgTag.removeChild(markert);
     markert = undefined;
     valgtstolpe.innerHTML = "<i>ingen</i>"
@@ -70,12 +72,21 @@ function fjernStolpe() {
 
 function endreStolpe() {
     var inputtall = document.getElementById("input").value;
+
+    if (inputtall < 1 || inputtall > 10) {
+        document.getElementById("feilmelding").style.display = "block";
+        return;
+    }
+
+    document.getElementById("feilmelding").style.display = "none";
+
     markert.setAttribute("height", inputtall * 10);
     markert.setAttribute("y", 60 - (inputtall * 10));
 
 }
 
 function marker(par1) {
+    document.getElementById("feilmelding").style.display = "none";
     if (markert == par1) { //hvis du trykker på den samme igjen (deselect)
         rammeSwitch(par1);
         markert = undefined;
@@ -120,6 +131,8 @@ function buttonSwitch(tekst) { //Deaktiverer knappene hvis "av" er sendt med som
         document.getElementById("knapp2").disabled = false;
     }
 }
+
+
 
 
 
