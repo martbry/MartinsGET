@@ -22,7 +22,6 @@ function createBar(number, barNo) {
     let height = number * 10;
     let y = 60 - height;
     let color = calcColor(1, 10, barNo);
-    //let stolpenummer = number + 1;
     return `<rect width="${width}" height="${height}"
                             x="${x}" y="${y}" fill="${color}" id="${barNo}" onclick="marker(this);"></rect>`;
 }
@@ -45,7 +44,7 @@ function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
         valgtstolpe.innerHTML = "<i>ingen</i>"
         buttonSwitch("av");
     }
-    
+
 
     if (inputtall < 1 || inputtall > 10) {
         console.log("Not today");
@@ -57,17 +56,23 @@ function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
 }
 
 function fjernStolpe() {
-    //markert.remove();
     svgTag.removeChild(markert);
     markert = undefined;
     valgtstolpe.innerHTML = "<i>ingen</i>"
     buttonSwitch("av");
     for (i = 0; i < document.getElementById("chart").childNodes.length; i++) {
         document.getElementById("chart").childNodes[i].id = i + 1;
-        document.getElementById("chart").childNodes[i].setAttribute("x", i*10);
+        document.getElementById("chart").childNodes[i].setAttribute("x", i * 10);
         //markert.setAttribute("height", "30");
 
     }
+}
+
+function endreStolpe() {
+    var inputtall = document.getElementById("input").value;
+    markert.setAttribute("height", inputtall * 10);
+    markert.setAttribute("y", 60 - (inputtall * 10));
+
 }
 
 function marker(par1) {
