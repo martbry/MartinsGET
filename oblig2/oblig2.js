@@ -39,6 +39,14 @@ function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
     var inputtall = document.getElementById("input").value;
     var antallstolper = parseInt(document.getElementById("chart").childNodes.length) + 1;
 
+    if (markert != undefined) {
+        rammeSwitch(markert);
+        markert = undefined;
+        valgtstolpe.innerHTML = "<i>ingen</i>"
+        buttonSwitch("av");
+    }
+    
+
     if (inputtall < 1 || inputtall > 10) {
         console.log("Not today");
         return;
@@ -48,8 +56,21 @@ function leggTilStolpe() { //Legger til stolpe med høyde fra inputen
 
 }
 
-function marker(par1) {
+function fjernStolpe() {
+    //markert.remove();
+    svgTag.removeChild(markert);
+    markert = undefined;
+    valgtstolpe.innerHTML = "<i>ingen</i>"
+    buttonSwitch("av");
+    for (i = 0; i < document.getElementById("chart").childNodes.length; i++) {
+        document.getElementById("chart").childNodes[i].id = i + 1;
+        document.getElementById("chart").childNodes[i].setAttribute("x", i*10);
+        //markert.setAttribute("height", "30");
 
+    }
+}
+
+function marker(par1) {
     if (markert == par1) { //hvis du trykker på den samme igjen (deselect)
         rammeSwitch(par1);
         markert = undefined;
