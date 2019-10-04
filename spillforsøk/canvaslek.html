@@ -28,14 +28,15 @@
             grid-area: menu;
         }
 
-        canvas {
+        #myCanvas {
+            box-sizing: border-box;
             background-color: white;
             /*margin: 2px;*/
             /*outline: 1px;*/
             outline: solid;
             outline-color: black;
-            /*height: 100%;
-            width: 100%;*/
+            /*height: 100%;*/
+            width: 90%;
             grid-area: canvas;
         }
 
@@ -66,26 +67,22 @@
             //ctx.canvas.width = bredde;
             //ctx.canvas.height = hoyde;
             
-            //document.getElementById("myCanvas").width = bredde;
-            //document.getElementById("myCanvas").height = hoyde;
+            document.getElementById("myCanvas").width = bredde;
+            document.getElementById("myCanvas").height = hoyde;
             console.log("bredde: " + document.documentElement.clientWidth);
             console.log((document.documentElement.clientWidth / 10) * 9);
             console.log("høyde: " + document.documentElement.clientHeight);
             console.log((document.documentElement.clientHeight / 12) * 10);
-            endre();
         }
 
-        window.addEventListener("resize", storrelse);
+        //window.addEventListener("resize", endre);
 
-        function endre() {
-            canvas.width = bredde;
-            canvas.height = hoyde;
-        }
-
-
-
-        //canvas.onclick = console.log()
-        //canvas.onclick = console.log(event.clientX);
+        //function endre() {
+        //    console.log(bredde);
+        //    console.log(hoyde);
+        //    canvas.width = bredde;
+        //    canvas.height = hoyde;
+        //}
 
         function museposisjon(event) {
             var rect = canvas.getBoundingClientRect();
