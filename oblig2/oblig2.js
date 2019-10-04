@@ -20,7 +20,7 @@ function createBar(number, barNo) {
     const spacing = 2;
     let x = (barNo - 1) * (width + spacing);
     let height = number * 10;
-    let y = 60 - height;
+    let y = 80 - height;
     let color = calcColor(1, 10, barNo);
     return `<rect width="${width}" height="${height}"
                             x="${x}" y="${y}" fill="${color}" id="${barNo}" onclick="marker(this);"></rect>`;
@@ -81,7 +81,7 @@ function endreStolpe() {
     document.getElementById("feilmelding").style.display = "none";
 
     markert.setAttribute("height", inputtall * 10);
-    markert.setAttribute("y", 60 - (inputtall * 10));
+    markert.setAttribute("y", 80 - (inputtall * 10));
 
 }
 
@@ -98,7 +98,7 @@ function marker(par1) {
         rammeSwitch(markert);
         rammeSwitch(par1);
         markert = par1;
-        valgtstolpe.innerHTML = par1.id;
+        valgtstolpe.innerHTML = par1.id + "<br/>H&oslashyde: " + (parseInt(par1.getAttribute("height") / 10));
         buttonSwitch();
         return;
     }
@@ -106,7 +106,7 @@ function marker(par1) {
 
     markert = par1;
     rammeSwitch(par1);
-    valgtstolpe.innerHTML = par1.id;
+    valgtstolpe.innerHTML = par1.id + "<br/>H&oslashyde: " + (parseInt(par1.getAttribute("height")/10));
     buttonSwitch();
 }
 
