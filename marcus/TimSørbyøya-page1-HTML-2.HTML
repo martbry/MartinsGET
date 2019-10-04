@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlms="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title>Sørbyøya hestesenter</title>
+
+    <link rel="stylesheet" type="text/css" href="">
+
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        div.page {
+            height: 100vh;
+            display: grid;
+            grid-template-areas: 'header' 'menu' 'mainContent' 'footer';
+            grid-template-rows: 5fr 49px 25fr 1fr;
+        }
+
+        div.header {
+            text-align: center;
+            grid-area: header;
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
+
+        div.menu {
+            grid-area: menu;
+            background-color: rgb(50, 50, 50);
+        }
+
+        div.mainContent {
+            grid-area: mainContent;
+            background-color: rgb(30, 30, 30);
+            color: rgb(0, 0, 0);
+        }
+
+        div.footer {
+            grid-area: footer;
+            background-color: rgb(50, 50, 50);
+            color: white;
+        }
+
+        .a1 {
+            font-size: 90px;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+        }
+
+        .box2 {
+            text-align: center;
+            background-color: rgb(50, 50, 50);
+            float: left;
+            width: 20%;
+            padding: 6px 0 6px 0;
+        }
+
+        .dropbtn {
+            background-color: rgb(50, 50, 50);
+            color: white;
+            width: 100%;
+            padding: 10px;
+            margin: 0;
+            font-size: 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            background-color: rgb(50, 50, 50);
+            width: 19.83%;
+        }
+
+        .dropdown-content {
+            font-size: 25px;
+            display: none;
+            position: absolute;
+            background-color: rgb(60, 60, 60);
+            min-width: 100%;
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: rgb(255, 255, 255);
+                padding: 15px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: rgb(30, 30, 30)
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: rgb(60, 60, 60);
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="page">
+
+        <div class="header">
+            <h1>
+                <a class="a1" href="TimSørbyøya-mainpage-HTML-2.HTML">Sørbyøya Hestesenter</a>
+            </h1>
+        </div>
+
+        <div class="menu">
+
+            <div class="dropdown">
+                <button class="dropbtn" style="background-color: rgb(30, 30, 30)">Rideskole</button>
+                <div class="dropdown-content">
+                    <a href="TimSørbyøya-page1-HTML-2.HTML" style="background-color: rgb(30, 30, 30)">Våre Hester/Ponier og Instruktører</a>
+                    <a href="TimSørbyøya-page2-HTML-2.HTML">Vil Du Begyne På Rideskolen Vår</a>
+                    <a href="TimSørbyøya-page3-HTML-2.HTML">Trinn Og Klasser</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Oppstalører</button>
+                <div class="dropdown-content">
+                    <a href="#">Våre oppstalører/hester</a>
+                    <a href="#">Vil du ha oppstalørpass?</a>
+                    <a href="#">Helgeforing</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">SFO På Stallen</button>
+                <div class="dropdown-content">
+                    <a href="#">Vil Du Ha SFO-plass</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Kaffeteria</button>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Kontkt Oss</button>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainContent"></div>
+
+        <div class="footer">
+            <box class="box2">box</box>
+            <box class="box2">box</box>
+            <box class="box2">box</box>
+            <box class="box2">box</box>
+            <box class="box2">box</box>
+        </div>
+
+    </div>
+</body>
+</html>
