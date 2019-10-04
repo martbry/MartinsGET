@@ -65,8 +65,6 @@ function fjernStolpe() {
     for (i = 0; i < document.getElementById("chart").childNodes.length; i++) {
         document.getElementById("chart").childNodes[i].id = i + 1;
         document.getElementById("chart").childNodes[i].setAttribute("x", i * 10);
-        //markert.setAttribute("height", "30");
-
     }
 }
 
@@ -94,7 +92,8 @@ function marker(par1) {
         buttonSwitch("av");
         return;
 
-    } else if (markert != undefined) { //den første du trykker på
+    } else if (markert != undefined) { //Når det ikke er første markering av stolpe, og det heller ikke er den samme som sist:
+        console.log("wut");
         rammeSwitch(markert);
         rammeSwitch(par1);
         markert = par1;
@@ -102,7 +101,7 @@ function marker(par1) {
         buttonSwitch();
         return;
     }
-    //Når det ikke er første markering av stolpe, og det heller ikke er den samme som sist:
+    //den første du trykker på
 
     markert = par1;
     rammeSwitch(par1);
@@ -131,23 +130,3 @@ function buttonSwitch(tekst) { //Deaktiverer knappene hvis "av" er sendt med som
         document.getElementById("knapp2").disabled = false;
     }
 }
-
-
-
-
-
-
-
-
-//TODO
-//fjern();
-//Fjern må endre IDene i en loop og endre plasseringene
-
-
-//console.log(markert.getBBox().height);
-
-
-//fungerende høydeendring:
-//console.log(markert.getAttribute("height"));
-//markert.setAttribute("height", "30");
-//markert.setAttribute("y", (60 - parseInt(markert.getAttribute("height"))));
