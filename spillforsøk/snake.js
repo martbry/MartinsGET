@@ -4,11 +4,11 @@ var canv = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var slange = [50, 500, 50, 50]
 var piltast = "hoyre";
+var nesteretning = "hoyre";
 
 var stopp =
     setInterval(function tegn() {
         update();
-        console.log(slange[0]);
         ctx.clearRect(0, 0, canv.width, canv.height);
         ctx.strokeRect(50, 50, 700, 500);
         ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
@@ -18,23 +18,58 @@ var stopp =
 
 function update() {
     if (utenfor()) {
-        console.log("stopp");
         gameOver();
     } else {
+        console.log(lovligRetning());
+        if (lovligRetning()) {
+            piltast = nesteretning;
+        }
         retning(piltast);
     }
 }
 
 function endrePiltast(trykket) {
     if (trykket.keyCode == 37) {
-        piltast = "venstre";
+        nesteretning = "venstre";
     } else if (trykket.keyCode == 38) {
-        piltast = "opp";
+        nesteretning = "opp";
     } else if (trykket.keyCode == 39) {
-        piltast = "hoyre";
+        nesteretning = "hoyre";
     } else if (trykket.keyCode == 40) {
-        piltast = "ned";
+        nesteretning = "ned";
     }
+}
+
+function lovligRetning() {
+    if (nesteretning == "venstre") {
+        if (piltast == "hoyre") {
+            return false;
+        }
+        piltast = "venstre";
+    }
+
+    if (nesteretning == "opp") {
+        if (piltast == "ned") {
+            return false;
+        }
+        piltast = "opp";
+    }
+
+    if (nesteretning == "hoyre") {
+        if (piltast == "venstre") {
+            return false;
+        }
+        piltast = "hoyre";
+    }
+
+    if (nesteretning == "ned") {
+        if (piltast == "opp") {
+            return false;
+        }
+    }
+
+    return true;
+
 }
 
 function utenfor() {
@@ -65,7 +100,7 @@ function gameOver() {
 }
 
 
-    document.addEventListener("keydown", endrePiltast);
+document.addEventListener("keydown", endrePiltast);
 
 //tegn();
 //start();
