@@ -6,6 +6,7 @@ var slange = [50, 500, 50, 50]
 var piltast = "hoyre";
 
 var stopp =
+    setInterval(function tegn() {
         ctx.clearRect(0, 0, canv.width, canv.height);
         ctx.strokeRect(50, 50, 700, 500);
         ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
