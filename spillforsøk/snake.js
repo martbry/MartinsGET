@@ -7,37 +7,21 @@ var piltast = "hoyre";
 
 var stopp =
     setInterval(function tegn() {
-        update(piltast);
+        update();
         console.log(slange[0]);
         ctx.clearRect(0, 0, canv.width, canv.height);
         ctx.strokeRect(50, 50, 700, 500);
         ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
-        
+
     }, 200);
 
-//function tegn() {
-//    console.log("yy");
-//    ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
-//    update();
-//}
 
-function update(retning) {
-    //TODO:
-    //Gjør alle ifene først: er den utenfor: du er død
-
-    //Så ta eventuelle oppdateringer dersom man fortsatt er i live.
-    if (retning == "hoyre" && slange[0] < canv.width - 50) {
-        slange[0] += 50;
-        return;
-    } else if (retning == "venstre" && slange[0] >= 50) {
-        slange[0] -= 50;
-    } else if (retning == "ned" && slange[1] < canvas.height - 50) {
-        slange[1] += 50;
-    } else if (retning == "opp" && slange[1] >= 50) {
-        slange[1] -= 50;
+function update() {
+    if (utenfor()) {
+        console.log("stopp");
+        gameOver();
     } else {
-        console.log("hallo");
-        clearInterval(stopp);
+        retning(piltast);
     }
 }
 
@@ -53,7 +37,35 @@ function endrePiltast(trykket) {
     }
 }
 
-document.addEventListener("keydown", endrePiltast);
+function utenfor() {
+    if (slange[0] > canv.width - 100 || slange[0] < 50 || slange[1] > canvas.height - 100 || slange[1] < 50) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function retning(vei) {
+    if (vei == "hoyre") {
+        slange[0] += 50;
+        return;
+    } else if (vei == "venstre") {
+        slange[0] -= 50;
+    } else if (vei == "ned") {
+        slange[1] += 50;
+    } else if (vei == "opp") {
+        slange[1] -= 50;
+    }
+}
+
+function gameOver() {
+    canv.style.borderColor = "red";
+    canv.style.borderWidth = "thick";
+    clearInterval(stopp);
+}
+
+
+    document.addEventListener("keydown", endrePiltast);
 
 //tegn();
 //start();
