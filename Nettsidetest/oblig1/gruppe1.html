@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Gruppe 1 – Martins oblig</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body onload="nyttInnhold()">
+    <div class="page">
+
+        <!-- STARTEN PÅ MENY -->
+        <!--Hovedmeny er baren helt på toppen av siden. Den inneholder en liste med listeelementer (som igjen inneholder lenker)-->
+
+        <nav id="hovedmeny">
+            <ul>
+                <li id="firstli"><a id="forside" class="menylink" href="index.html" onclick="sessionStorage.setItem('startinnhold', 'velkommen')">Forside</a></li>
+                <li><a id="test1" class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'startit')">Start IT</a></li>
+                <li><a id="test2" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'gruppe1')">Gruppe 1</a></li> <!--onclick="nyttInnhold('gruppe1')"-->
+                <li><a id="test3" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'martin')">Om meg</a></li>
+                <li><a id="test4" class="menylink" href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <!--Undermenyene er bygd opp på akkurat samme måte og har skjult by default. De har id u1–u5 (undermeny1 til undermeny5)-->
+
+        <nav id="u1" class="undermeny" onmouseleave="skjul(this)">
+            <ul class="u1">
+                <li class="firstliu"><a class="menylink" href="#">t11</a></li>
+                <li><a class="menylink" href="#">t12</a></li>
+                <li><a class="menylink" href="#">t13</a></li>
+                <li><a class="menylink" href="#">t14</a></li>
+                <li><a class="menylink" href="#">t15</a></li>
+            </ul>
+        </nav>
+
+        <nav id="u2" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="slidepuzzlestartit.html">Slidepuzzle</a></li>
+                <!--<li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon1')">Leksjon 1</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon2')">Leksjon 2</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon3')">Leksjon 3</a></li>-->
+            </ul>
+        </nav>
+
+        <nav id="u3" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'albin')">Albin M. Hansen</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'lena')">Lena T. Gran</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'marcus')">Marcus B. Henriksen</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'joakim')">Joakim N. Schrøder</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'martin')">Martin Brygmann</a></li>
+            </ul>
+        </nav>
+
+        <nav id="u4" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="#">t41</a></li>
+                <li><a class="menylink" href="#">t42</a></li>
+                <li><a class="menylink" href="#">t43</a></li>
+                <li><a class="menylink" href="#">t44</a></li>
+                <li><a class="menylink" href="#">t45</a></li>
+            </ul>
+        </nav>
+
+        <nav id="u5" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="#">t51</a></li>
+                <li><a class="menylink" href="#">t52</a></li>
+                <li><a class="menylink" href="#">t53</a></li>
+                <li><a class="menylink" href="#">t54</a></li>
+                <li><a class="menylink" href="#">t55</a></li>
+            </ul>
+        </nav>
+
+        <!-- SLUTTEN PÅ MENY -->
+
+        <div class="sidemeny sidemenygruppe1">
+            <ul>
+                <li class="firstli"><a class="menylink" href="#" onclick="nyttInnhold('gruppe1')">Gruppe 1</a></li>
+                <li><a class="menylink" href="#" onclick="nyttInnhold('albin')">Albin Mikal Hansen</a></li>
+                <li><a class="menylink" href="#" onclick="nyttInnhold('lena')">Lena Therese Gran</a></li>
+                <li><a class="menylink" href="#" onclick="nyttInnhold('marcus')">Marcus Belgau Henriksen</a></li>
+                <li><a class="menylink" href="#" onclick="nyttInnhold('joakim')">Joakim Nikolai Schrøder</a></li>
+                <li class="lastli"><a class="menylink" href="#" onclick="nyttInnhold('martin')">Martin Brygmann</a></li>
+            </ul>
+        </div>
+
+        <div id="hovedinnhold" class="hovedinnhold">
+            <h1>Gruppe 1</h1>
+            <p>
+                The union of Sabia. Built upon the bountiful nature, darker times and leadership of its past, this union is now among the most blessed countries in its corner of the world.
+                Their food production, industry and housing are among its current greatest strengths. Unfortunately they lack a little in infrastructure and literacy.
+
+                Sabia is a democratic union. There are fairly strong opposing groups against the current leadership and they slowly gain more and more public interest.
+                However, the current greatest threat to the nation is a failed harvest, but the current leadership is unable to solve this issue.
+
+                The people of Sabia are jolly. They live wonderful lives and while infrastructure might be lacking, their food production helps relief most of their issues.
+                Religion holds no importance at all in their lives and, if anything, has made them more creative. The people of Sabia aren't spiritual at all either and they rely more on the world around them and each other.
+            </p>
+        </div>
+
+        <div id="sideinnhold" class="sideinnhold">
+
+        </div>
+
+        <div style="display: none" id="gruppe1">
+            <h1>Gruppe 1</h1>
+            <p>
+                The union of Sabia. Built upon the bountiful nature, darker times and leadership of its past, this union is now among the most blessed countries in its corner of the world.
+                Their food production, industry and housing are among its current greatest strengths. Unfortunately they lack a little in infrastructure and literacy.
+
+                Sabia is a democratic union. There are fairly strong opposing groups against the current leadership and they slowly gain more and more public interest.
+                However, the current greatest threat to the nation is a failed harvest, but the current leadership is unable to solve this issue.
+
+                The people of Sabia are jolly. They live wonderful lives and while infrastructure might be lacking, their food production helps relief most of their issues.
+                Religion holds no importance at all in their lives and, if anything, has made them more creative. The people of Sabia aren't spiritual at all either and they rely more on the world around them and each other.
+            </p>
+        </div>
+
+        <div style="display: none" id="albin">
+            <h1>Albin Mikal Hansen</h1>
+            <p>
+                Light green, well groomed hair hangs over a fresh, anguished face. Bright brown eyes, set rooted within their sockets, watch fondly over the ancestors they've disassociated with for so long.
+                A moustache alluringly compliments his cheekbones and leaves a compelling memory of his upbringing.
+
+                This is the face of Ninleyn Dawnfury, a true romancer among night elves. He stands big among others, despite his heavy frame.
+
+                There's something enticing about him, perhaps it's a feeling of delight or perhaps it's simply his persistence. But nonetheless, people tend to ask him about his latest victory, while treating him to a good meal when he's around.
+            </p>
+        </div>
+
+        <div style="display: none" id="lena">
+            <h1>Lena Therese Gran</h1>
+            <p>
+                Blonde, dreadlocks awkwardly hangs over a long, gloomy face. Dancing gray eyes, set charmingly within their sockets, watch rapidly over the people they've felt disconnected from for so long.
+                Fire has left a mark stretching from the bottom of the left cheekbone , running towards the left side of her lips and ending on her left cheekbone and leaves a bittersweet memory of her fortunate past.
+
+                The is the face of Juliet Davey, a true utopian among humans. She stands tall among others, despite her tough frame.
+
+                There's something different about her, perhaps it's her kindness or perhaps it's simply her persistence. But nonetheless, people tend to hit it off with her, while learning as much about her as possible.
+            </p>
+        </div>
+
+        <div style="display: none" id="marcus">
+            <h1>Marcus Belgau Henriksen</h1>
+            <p>
+                Blonde, oily hair awkwardly hangs over a furrowed, radiant face. Shuttered brown eyes, set high within their sockets, watch cheerfully over the spirits they've grieved with for so long.
+                A birthmark reaching from the bottom of the right cheekbone , running towards his upper lip and ending on his right cheek leaves a grievous memory of lost honor.
+
+                This is the face of Brock Barnett, a true pioneer among humans. He stands tall among others, despite his skinny frame.
+
+                There's something ambiguous about him, perhaps it's a feeling of shame or perhaps it's simply his goodwill. But nonetheless, people tend to socialize with him, while wishing they were more like him.
+            </p>
+        </div>
+
+        <div style="display: none" id="joakim">
+            <h1>Joakim Nikolai Schrøder</h1>
+            <p>
+                Silver, sleek hair tight in a ponytail reveals a bony, tense face. Bulging brown eyes, set a-symmetrically within their sockets, watch impatiently over the town they've have been seperated from for so long.
+                A beard graciously compliments his hair and leaves a compelling memory of his luck in battles.
+
+                This is the face of Glinoflonk Steamspanner, a true prodigy among gnomes. He stands small among others, despite his subtle frame.
+
+                There's something curious about him, perhaps it's his fortunate past or perhaps it's simply his unusual looks. But nonetheless, people tend to ask him to tell stories, while awkwardly avoid talking about his past.
+            </p>
+        </div>
+
+        <div style="display: none" id="martin">
+            <h1>Martin Brygmann</h1>
+            <p>
+                Golden, long hair hangs over a sculpted, gloomy face. Expressive aquamarine eyes, set rooted within their sockets, watch faithfully over the haven they've stood guard for for so long.
+                A sword left a mark stretching from the left side of the forehead , running across the nose and ending on his forehead leaves a tormenting burden of deceased love.
+
+                This is the face of Almon Moonfall, a true pioneer among night elves. He stands tall above others, despite his big frame.
+
+                There's something bizarre about him, perhaps it's his friendly demeanor or perhaps it's simply his tenderness. But nonetheless, people tend to be curious about him, while befriending his friends to get closer to him.
+            </p>
+        </div>
+
+
+        <div class="footer">
+            <p>Besøksadresse: Martin Brygmann, Hjemmevei 42, 0666, Hjemme.</p>
+            <p>Postadresse: Martin Brygmann, PB 4, 0672, Borte</p>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript" src="oblig1.js"></script>
+
+
+
+</body>
+</html>

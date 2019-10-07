@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <div>
+        <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>
+    </div>
+    <p>Valgt stolpe: <span id="valgt"><i>ingen</i></span></p>
+    <p id="feilmelding" style="display: none; color: red;">Ugyldig input. Gyldig input er en verdi > 0 og < 11</p>
+    Verdi: <input type="number" id="input" min="1" max="10" /><button onclick="leggTilStolpe()">Legg til stolpe</button>
+    <button disabled id="knapp1" onclick="endreStolpe()">Endre valgt stolpe</button><br />
+    <button disabled id="knapp2" onclick="fjernStolpe()">Fjerne valgt stolpe</button>
+
+
+    <script type="text/javascript" src="oblig2.js"></script>
+
+</body>
+</html>

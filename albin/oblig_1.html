@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Albins webside</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        nav{
+            display:flex;
+            justify-content:space-around;
+            align-items:center;
+            min-height:8vh;
+            background-color:coral;
+            font-family:Calibri;
+        }
+        .logo{
+            color:brown;
+            text-transform:uppercase;
+            letter-spacing:5px;
+            font-size:23px;
+        }
+        .nav-links{
+            display:flex;
+            justify-content:space-around;
+            width: 30%;
+            
+        }
+        .nav-links a{
+            
+        }
+        .nav-links li{
+            
+            list-style:none;
+            color:brown;
+            text-decoration:none;
+            letter-spacing:3px;
+            font-weight:bold;
+            font-size:16px;
+        }
+        .burger div{
+            width:25px;
+            height:3px;
+            background-color:black;
+            margin:5px;
+            display:none;
+            cursor:pointer;
+            
+        }
+        @media screen and (max-width:768px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .nav-links {
+                position: absolute;
+                    right: 0px;
+                    height: 92vh;
+                    top: 8vh;
+                    background-color: coral;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    transform: translateX(100%);
+                    transition:transform 0.5s ease-in;
+                    
+            }
+
+            .nav-links li{
+                opacity: 0;
+            }
+
+            .burger div{
+                display: block;
+                
+            }
+        }
+
+        @media screen and (max-width:1024px) {
+            .nav-links {
+                display: flex;
+                justify-content: space-around;
+                width: 60%;
+            }
+        }
+        .nav-active{
+            transform:translateX(0);
+        }
+        @keyframes navLinkFade{
+            from{
+                opacity:0;
+                transform:translateX(50px)
+            }
+            to{
+                opacity:1;
+                transform:translateX(0px);
+            }
+        }
+        .toggle .l1{
+            transform:rotate(-45deg) translate(-6px,5px)
+        }
+        .toggle .l2{
+            opacity:0;
+        }
+        .toggle .l3{
+            transform:rotate(45deg) translate(-6px,-5px);
+        }
+
+        
+        
+
+    </style>
+</head>
+<body>
+    <nav >
+        <div class="logo">    
+            <h4>my website</h4>
+        </div>
+        <ul class="nav-links">
+            <li style="cursor:pointer;">
+                <a href="#"></a>Home
+            </li>
+            <li style="cursor:pointer;">
+                <a href="#"></a>About
+            </li>
+            <li style="cursor:pointer;">
+                <a href="#"></a>Work
+            </li>
+            <li style="cursor:pointer;">
+                <a href="https://albha123.github.io/oblig12/project.html"></a>Projects
+            </li>
+        </ul>
+        <div class="burger">
+            <div class="l1"></div>
+            <div class="l2"></div>
+            <div class="l3"></div>
+        </div>
+    </nav>
+    <script>
+        const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+        burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = ''
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.7}s`;
+                }
+
+            });
+            burger.classList.toggle('toggle');
+        });       
+        }
+        navSlide();
+    </script>
+</body>
+</html>

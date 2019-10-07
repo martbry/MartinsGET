@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Start IT - Slidepuzzle - Martins oblig</title>
+    <!--<link href="StyleSheet1.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="stylesheet.css" />
+    <style>
+
+
+
+        p.feilmelding {
+            color: red;
+        }
+
+        div.trekkteller {
+            clear: left;
+        }
+
+        div.flis {
+            color: blue;
+            background: lightblue;
+            padding: 18px;
+            margin: 10px;
+            border: solid green 7px;
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
+
+        div.førstPåLinje {
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+
+        <!-- STARTEN PÅ MENY -->
+        <!--Hovedmeny er baren helt på toppen av siden. Den inneholder en liste med listeelementer (som igjen inneholder lenker)-->
+
+        <nav id="hovedmeny">
+            <ul>
+                <li id="firstli"><a id="forside" class="menylink" href="index.html" onclick="sessionStorage.setItem('startinnhold', 'velkommen')">Forside</a></li>
+                <li><a id="test1" class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'startit')">Start IT</a></li>
+                <li><a id="test2" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'gruppe1')">Gruppe 1</a></li> <!--onclick="nyttInnhold('gruppe1')"-->
+                <li><a id="test3" class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'martin')">Om meg</a></li>
+                <li><a id="test4" class="menylink" href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <!--Undermenyene er bygd opp på akkurat samme måte og har skjult by default. De har id u1–u5 (undermeny1 til undermeny5)-->
+
+        <nav id="u1" class="undermeny" onmouseleave="skjul(this)">
+            <ul class="u1">
+                <li class="firstliu"><a class="menylink" href="#">t11</a></li>
+                <li><a class="menylink" href="#">t12</a></li>
+                <li><a class="menylink" href="#">t13</a></li>
+                <li><a class="menylink" href="#">t14</a></li>
+                <li><a class="menylink" href="#">t15</a></li>
+            </ul>
+        </nav>
+
+        <nav id="u2" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="slidepuzzlestartit.html">Slidepuzzle</a></li>
+                <!--<li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon1')">Leksjon 1</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon2')">Leksjon 2</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon3')">Leksjon 3</a></li>-->
+            </ul>
+        </nav>
+
+        <nav id="u3" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'albin')">Albin M. Hansen</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'lena')">Lena T. Gran</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'marcus')">Marcus B. Henriksen</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'joakim')">Joakim N. Schrøder</a></li>
+                <li><a class="menylink" href="gruppe1.html" onclick="sessionStorage.setItem('startinnhold', 'martin')">Martin Brygmann</a></li>
+            </ul>
+        </nav>
+
+        <nav id="u4" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="#">t41</a></li>
+                <li><a class="menylink" href="#">t42</a></li>
+                <li><a class="menylink" href="#">t43</a></li>
+                <li><a class="menylink" href="#">t44</a></li>
+                <li><a class="menylink" href="#">t45</a></li>
+            </ul>
+        </nav>
+
+        <nav id="u5" class="undermeny" onmouseleave="skjul(this)">
+            <ul>
+                <li class="firstliu"><a class="menylink" href="#">t51</a></li>
+                <li><a class="menylink" href="#">t52</a></li>
+                <li><a class="menylink" href="#">t53</a></li>
+                <li><a class="menylink" href="#">t54</a></li>
+                <li><a class="menylink" href="#">t55</a></li>
+            </ul>
+        </nav>
+
+        <!-- SLUTTEN PÅ MENY -->
+        <!--<li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon1')">Leksjon 1</a></li>-->
+        <div class="sidemeny sidemenygruppe1">
+            <ul>
+                <li class="firstli"><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'startit')">Start IT</a></li>
+                <li><a class="menylink" href="slidepuzzlestartit.html">Slidepuzzle</a></li>
+                <!--<li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon1')">Leksjon 1</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon2')">Leksjon 2</a></li>
+                <li><a class="menylink" href="startit.html" onclick="sessionStorage.setItem('startinnhold', 'leksjon3')">Leksjon 3</a></li>-->
+                <!--<li><a class="menylink" href="#">Joakim Nikolai Schrøder</a></li>
+                <li class="lastli"><a class="menylink" href="#">Martin Brygmann</a></li>-->
+            </ul>
+        </div>
+
+        <div class="hovedinnhold">
+
+            <div id="00" class="slide flis" onclick="klikk(this, '01', '10');"></div>
+            <div id="01" class="slide flis" onclick="klikk(this, '00', '02', '11');"></div>
+            <div id="02" class="slide flis" onclick="klikk(this, '01', '12');"></div>
+
+            <div id="10" class="slide flis førstPåLinje" onclick="klikk(this, '00', '11', '20');"></div>
+            <div id="11" class="slide flis" onclick="klikk(this, '01', '10', '12', '21');"></div>
+            <div id="12" class="slide flis" onclick="klikk(this, '02', '11', '22');"></div>
+
+            <div id="20" class="slide flis førstPåLinje" onclick="klikk(this, '10', '21');"></div>
+            <div id="21" class="slide flis" onclick="klikk(this, '11', '20', '22');"></div>
+            <div id="22" class="slide flis" onclick="klikk(this, '12', '21');"></div>
+
+            <div class="slide trekkteller">  Antall trekk: </div>
+            <div class="slide" id="tellervar"></div>
+            <p id="ulovligtrekk" class="slide feilmelding"></p>
+            <h2 class="slide" id="vunnet"></h2>
+
+            <br /><br /><br /><br />
+            <p>Dette enkle slidepuzzlespillet laget jeg ifbm. opptaksprøven til skolen. Koden er ikke endret fra slik jeg leverte oppgaven.</p>
+            <br />
+            <p>Kildekode på det hele står til høyre.</p>
+            <p><span style="color: red;">Merk: </span>det er bare Javascripten som står på denne siden, da den ligger i en ekstern fil. For HTML og CSS: se utviklerkonsollen (F12 i Chrome).</p>
+        </div>
+
+        <div class="sideinnhold" id="sideinnhold"></div>
+
+
+
+        <div class="footer">
+            <p>Besøksadresse: Martin Brygmann, Hjemmevei 42, 0666, Hjemme.</p>
+            <p>Postadresse: Martin Brygmann, PB 4, 0672, Borte</p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        pushKode();
+
+
+
+        //function pushKode(){
+        //    var enheter = document.getElementsByClassName("slide");
+        //    var tekst;
+        //    for (i = 0; i < enheter.length; i++) {
+        //        console.log(enheter[i]);
+        //        tekst += enheter[i] + "<br />";
+        //    }
+        //    document.getElementById("sideinnhold").innerText = tekst;
+        //    console.log(tekst);
+        //}
+
+        function pushKode() {
+            document.getElementById("sideinnhold").innerText =
+                `Kildekode (Javascript):
+
+                    var teller = 0;
+                    var starttall = [];
+                    var nummer;
+
+                    document.getElementById("tellervar").innerHTML = teller;
+
+                    function start() {
+
+                            for (var rad = 0; rad < 3; rad++) {
+                                for (var kol = 0; kol < 3; kol++) {
+                                    if (rad == 1 && kol == 1) {
+                                        continue;
+                                    }
+                                    var success = false;
+                                    while (success == false) {
+                                        success = nyttTall(rad, kol);
+                                    }
+                                }
+                            }
+                    }
+
+                    function nyttTall(rad, kol) {
+                            nummer = Math.floor(Math.random() * 8) + 1;
+                            if (starttall.includes(nummer)) {
+                                return false;
+                            } else {
+                                starttall.push(nummer);
+                                document.getElementById("" + rad + kol).innerHTML = nummer;
+                                return true;
+                            }
+                    }
+
+
+                    function klikk(knapp, arg1, arg2, arg3, arg4) {
+                            document.getElementById("ulovligtrekk").innerHTML = '';
+                            if (document.getElementById(arg1).innerHTML == '') {
+                                document.getElementById(arg1).innerHTML = knapp.innerHTML;
+                                knapp.innerHTML = '';
+                                teller++;
+                            }
+
+                            else if (document.getElementById(arg2).innerHTML == '') {
+                                document.getElementById(arg2).innerHTML = knapp.innerHTML;
+                                knapp.innerHTML = '';
+                                teller++;
+                            }
+
+                            else if (document.getElementById(arg3) != null && document.getElementById(arg3).innerHTML == '') {
+                                document.getElementById(arg3).innerHTML = knapp.innerHTML;
+                                knapp.innerHTML = '';
+                                teller++;
+                            }
+
+                            else if (document.getElementById(arg4) != null && document.getElementById(arg4).innerHTML == '') {
+                                document.getElementById(arg4).innerHTML = knapp.innerHTML;
+                                knapp.innerHTML = '';
+                                teller++;
+                            }
+
+                            else {
+                                document.getElementById("ulovligtrekk").innerHTML = 'Ulovlig trekk';
+                            }
+                            document.getElementById("tellervar").innerHTML = teller;
+                            sjekkOmVunnet();
+                    }
+
+                    if (sjekkOmVunnet == true) {
+
+                    }
+
+
+
+                    function sjekkOmVunnet() {
+                            if (document.getElementById('00').innerHTML == 1 && document.getElementById('01').innerHTML == 2 && document.getElementById('02').innerHTML == 3
+                                && document.getElementById('10').innerHTML == 4 && document.getElementById('11').innerHTML == 5 && document.getElementById('12').innerHTML == 6
+                                && document.getElementById('20').innerHTML == 7 && document.getElementById('21').innerHTML == 8) {
+                                document.getElementById('vunnet').innerHTML = 'Gratulerer! Du klarte det på ' + teller + ' trekk!';
+                            }
+                    }
+
+                    start();
+                        `
+        }
+
+
+
+    </script>
+    <script type="text/javascript" src="slidepuzzletest.js"></script>
+    <script type="text/javascript" src="oblig1.js"></script>
+
+
+
+</body>
+</html>

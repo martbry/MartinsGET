@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlms="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>code-testing</title>
+
+    <link rel="stylesheet" type="text/css" href="">
+
+    <style>
+        .tall {
+            font-size: 100px;
+        }
+
+        .o {
+            font-size: 100px;
+        }
+
+        .div1 {
+            color: white;
+            background-color: black;
+        }
+
+        .bla1 {
+            border-left: 10px solid rgb(100, 100, 100);
+            background-color: rgb(200, 200, 200);
+        }
+
+        .bla2 {
+            border-left: 10px solid rgb(100, 100, 100);
+            background-color: rgb(200, 200, 200);
+        }
+
+        .stilA {
+            background-color: rgb(76, 43, 226);
+        }
+
+        .stilB {
+            background-color: rgb(226, 43, 43);
+        }
+
+        .stilC {
+            background-color: rgb(43, 226, 43);
+        }
+
+        .stilD {
+            background-color: rgb(226, 43, 89);
+        }
+
+        .stilE {
+            background-color: rgb(226, 125, 43);
+        }
+
+        .stilF {
+            border-left: 10px solid rgb(0, 0, 0);
+        }
+
+        .stilG {
+            border-left: 10px solid rgb(0, 0, 0);
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <h1>Hvilke type stjerne er solen</h1>
+
+
+    <h2 id="a1" onclick="doSometing1(this)">m3k</h2>
+    <h2 id="a2" onclick="doSometing1(this)">o2f</h2>
+    <h2 id="a3" onclick="doSometing3(this)">g2v</h2>
+    <h2 id="a4" onclick="doSometing1(this)">s4k</h2>
+
+    <h2 id="a1" onclick="doSometing2(this)">m3k</h2>
+    <h2 id="a2" onclick="doSometing2(this)">o2f</h2>
+    <h2 id="a3" onclick="doSometing3(this)">g2v</h2>
+    <h2 id="a4" onclick="doSometing2(this)">s4k</h2>
+
+    <table>
+        <tr>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+        </tr>
+        <tr>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+        </tr>
+        <tr>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+        </tr>
+        <tr>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+        </tr>
+        <tr>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+        </tr>
+        <tr>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+            <td class="o" onclick="doSometing(this)">o</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>
+                <button1 onclick="tell1()" class="tall">[_1_</button1>
+            </td>
+            <td>
+                <button2 onclick="tell2()" class="tall">_2__</button2>
+            </td>
+            <td>
+                <button3 onclick="tell3()" class="tall">3_]</button3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button4 onclick="tell4()" class="tall">[_4_</button4>
+            </td>
+            <td>
+                <button5 onclick="tell5()" class="tall">_5__</button5>
+            </td>
+            <td>
+                <button6 onclick="tell6()" class="tall">6_]</button6>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button7 onclick="tell7()" class="tall">[_7_</button7>
+            </td>
+            <td>
+                <button8 onclick="tell8()" class="tall">_8__</button8>
+            </td>
+            <td>
+                <button9 onclick="tell9()" class="tall">9_]</button9>
+            </td>
+
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button0 onclick="tell0()" class="tall">[_0_]</button0>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div id="info">kode</div>
+
+    <button onclick="alertClick()">AlertClick</button>
+
+    <input id="sizeSlider" type="range" min="10" max="1000" step="1" oninput="showDiv()" />
+
+    <input id="borderRadiusSlider" type="range" min="0" max="600" step="1" oninput="showDiv()" />
+
+    <input id="borderWidthSlider" type="range" min="0" max="100" step="1" oninput="showDiv()" />
+
+    <br />
+    <input id="textInput" type="text" oninput="showDiv()" value="endre teksten!" />
+
+    <select id="colorChooser" onchange="showDiv()">
+        <option selected value="black">black color</option>
+        <option value="gray">gray color</option>
+        <option value="white">white color</option>
+        <option value="red">Red color</option>
+        <option value="green">Green color</option>
+        <option value="blue">blue color</option>
+        <option value="pink">pink color</option>
+        <option value="orange">orange color</option>
+        <option value="yellow">yellow color</option>
+        <option value="purple">purple color</option>
+        <option value="brown">Brown color</option>
+    </select>
+
+    <select id="borderChooser" onchange="showDiv()">
+        <option value="dotted">dotted</option>
+        <option value="dashed">dashed</option>
+        <option selected value="solid">solid</option>
+        <option value="double">double</option>
+        <option value="none">none</option>
+    </select>
+
+    <select id="borderColorChooser" onchange="showDiv()">
+        <option selected value="black">black border</option>
+        <option value="gray">gray border</option>
+        <option value="white">white border</option>
+        <option value="red">Red border</option>
+        <option value="green">Green border</option>
+        <option value="blue">blue border</option>
+        <option value="pink">pink border</option>
+        <option value="orange">orange border</option>
+        <option value="yellow">yellow border</option>
+        <option value="purple">purple border</option>
+        <option value="brown">Brown border</option>
+    </select>
+
+
+    <div id="resultat1" class='grafic'></div>
+    <div id="resultatHtml1" style="font-family: monospace"></div>
+
+    <p>Ferdighet 7 - Sette variabel til resultat av et regnestykke. </p>
+    <input id="width2" type="range" min="10" max="1000" step="1" oninput="calculate2()" />
+    <input id="height2" type="range" min="10" max="1000" step="1" oninput="calculate2()" />
+
+    <div id="resultat2" class="div1">
+        <div id="resultatHTML2"></div>
+    </div>
+
+
+    <div id="resultat3" style="background-color: rgb(3, 0, 153)">
+        <div id="resultatHTML3"></div>
+    </div>
+
+    <input id="textA" type="checkbox" onchange="toggleStyle()" />
+    <input id="textB" type="checkbox" onchange="toggleStyle()" />
+
+    <div class="bla1" id="blaA">BlaA</div>
+    <div class="bla2" id="blaB">BlaB</div>
+
+    <input id="chkA" type="checkbox" onchange="toggleStyle()" />
+    <input id="chkB" type="checkbox" onchange="toggleStyle()" />
+    <input id="chkC" type="checkbox" onchange="toggleStyle()" />
+    <input id="chkD" type="checkbox" onchange="toggleStyle()" />
+    <input id="chkE" type="checkbox" onchange="toggleStyle()" />
+
+    <p>Ferdighet 9a - Valgsetninger Sammenligne to tall: ==, !=, &lt;, &lt;=, >, >=</p>
+    <input id="widthA9" type="range" min="10" max="1000" step="1" oninput="calculate9()" />
+    <input id="heightA9" type="range" min="10" max="1000" step="1" oninput="calculate9()" />
+
+    <input id="widthB9" type="range" min="10" max="1000" step="1" oninput="calculate9()" />
+    <input id="heightB9" type="range" min="10" max="1000" step="1" oninput="calculate9()" />
+
+
+    <div id="textA9" style="background-color: rgb(0, 0, 255)"></div>
+    <div id="textB9" style="background-color: rgb(255, 0, 0)"></div>
+
+    <div id="textHTMLA9"></div>
+    <div id="textHTMLB9"></div>
+    <div id="textHTMLC9"></div>
+
+    <script>
+// ferdighet 2 ---------------------------------------------------------------------------------
+// feil svar
+function doSometing1(feilSvar) {
+     feilSvar.innerHTML = 'feil 1';
+    }
+// feil svar
+function doSometing2(feilSvar) {
+     feilSvar.innerHTML = 'feil 2';
+    }
+// riktig svar
+    function doSometing3(feilSvar) {
+     feilSvar.innerHTML = 'rikstg 3';
+    }
+//ferdighet 3 --------------------------------------------------------------------------------
+function doSometing(x) {
+        x.innerHTML = 'x';
+    }
+//ferdighet 4 --------------------------------------------------------------------------------
+var tall ='';
+function tell1(){
+    tall += '1';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell2(){
+    tall += '2';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell3(){
+    tall += '3';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell4(){
+    tall += '4';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell5(){
+    tall += '5';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell6(){
+    tall += '6';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell7(){
+    tall += '7';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell8(){
+    tall += '8';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell9(){
+    tall += '9';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+function tell0(){
+    tall += '0';
+    document.getElementById('info').innerHTML =
+    'kode ' + tall;
+    }
+//ferdighet 5 ----------------------------------------------------------------------------------
+alert('alert');
+alert('alert');
+alert('alert');
+function alertClick(){
+    alert('alert');
+}
+//ferdighet 6 ----------------------------------------------------------------------------------
+        var resultat1Div = document.getElementById('resultat1');
+        var resultatHtml1Div = document.getElementById('resultatHtml1');
+        var sizeSlider = document.getElementById('sizeSlider');
+        var textInput = document.getElementById('textInput');
+        var colorChooser = document.getElementById('colorChooser');
+        var borderChooser = document.getElementById('borderChooser');
+        var borderRadiusSlider = document.getElementById('borderRadiusSlider');
+        var borderWidthSlider = document.getElementById('borderWidthSlider');
+        var borderChooser = document.getElementById('borderChooser');
+        var borderColorChooser = document.getElementById('borderColorChooser');
+
+        showDiv();
+        function showDiv() {
+            resultat1Div.innerHTML = '<div style="'
+                + 'background-color: ' + colorChooser.value + ';'
+                + 'width: ' + sizeSlider.value + 'px;'
+                + 'height: ' + sizeSlider.value + 'px;'
+                + 'border-color: ' + borderChooser.value +';'
+                + 'border-radius: ' + borderRadiusSlider.value +'px;'
+                + 'border-width: ' + borderWidthSlider.value + 'px;'
+                + 'border-style: ' + borderChooser.value + ';'
+                + 'border-color: ' + borderColorChooser.value + ';'
+                + '">' + textInput.value + '</div>';
+            resultatHtml1Div.innerText = resultat1Div.innerHTML;
+        }
+//ferdighet 7 ---------------------------------------------------------------------------------
+        var resultat2Div = document.getElementById('resultat2');
+        var resultatHTML2Div = document.getElementById('resultatHTML2');
+        var widthInput = document.getElementById('width2');
+        var heightInput = document.getElementById('height2');
+
+        calculate2();
+        function calculate2() {
+            var width = parseInt(widthInput.value);
+            var height = parseInt(heightInput.value);
+            var omkrets = (width + height) * 2;
+            var areal = width * height;
+            resultatHTML2Div.innerHTML = '<div>' +
+               'omkrets= ' + '(' + width + '+' + height + ')' + '*2= ' + omkrets + '<br/>' +
+               'areal= ' + width + '*' + height + '= ' + areal +
+               '</div>';
+               document.getElementById('resultat2').style.width = width + 'px';
+               document.getElementById('resultat2').style.height = height + 'px';
+        }
+// ferdighet 7a ---------------------------------------------------------------------------------------
+        var resultat3Div = document.getElementById('resultat3');
+        var resultatHTML3Div = document.getElementById('resultatHTML3');
+
+        calculate3()
+        function calculate3() {
+            var width = 100 + Math.round(Math.random() * 1000);
+            var height = 100 + Math.round(Math.random() * 1000);
+            resultatHTML3Div.innerHTML = '<div>' +
+            'width= ' + width + '<br/>' +
+            'height= ' + height +
+            '</div>';
+            document.getElementById('resultat3').style.width = width + 'px';
+            document.getElementById('resultat3').style.height = height + 'px';
+        }
+// ferdighet 8 -----------------------------------------------------------------------------------------
+function toggleStyle() {
+var isCheckedTA = document.getElementById('textA').checked;
+var isCheckedTB = document.getElementById('textB').checked;
+var isCheckedCA = document.getElementById('chkA').checked;
+var isCheckedCB = document.getElementById('chkB').checked;
+var isCheckedCC = document.getElementById('chkC').checked;
+var isCheckedCD = document.getElementById('chkD').checked;
+var isCheckedCE = document.getElementById('chkE').checked;
+document.getElementById('blaA').classList.toggle('stilF', isCheckedTA);
+document.getElementById('blaB').classList.toggle('stilG', isCheckedTB);
+document.getElementById('blaA').classList.toggle('stilA', isCheckedCA && isCheckedTA);
+document.getElementById('blaA').classList.toggle('stilB', isCheckedCB && isCheckedTA);
+document.getElementById('blaA').classList.toggle('stilC', isCheckedCC && isCheckedTA);
+document.getElementById('blaA').classList.toggle('stilD', isCheckedCD && isCheckedTA);
+document.getElementById('blaA').classList.toggle('stilE', isCheckedCE && isCheckedTA);
+document.getElementById('blaB').classList.toggle('stilA', isCheckedCA && isCheckedTB);
+document.getElementById('blaB').classList.toggle('stilB', isCheckedCB && isCheckedTB);
+document.getElementById('blaB').classList.toggle('stilC', isCheckedCC && isCheckedTB);
+document.getElementById('blaB').classList.toggle('stilD', isCheckedCD && isCheckedTB);
+document.getElementById('blaB').classList.toggle('stilE', isCheckedCE && isCheckedTB);
+}
+// ferdighet 9a -----------------------------------------------------------------------------------------------------------------------------
+calculate9();
+        function calculate9() {
+            var textADiv9 = document.getElementById('textA9');
+        var textBDiv = document.getElementById('textB9');
+        var textHTMLADiv9= document.getElementById('textHTMLA9');
+        var textHTMLBDiv9= document.getElementById('textHTMLB9');
+        var textHTMLCDiv9= document.getElementById('textHTMLC9');
+        var widthAInput9 = document.getElementById('widthA9');
+        var heightAInput9 = document.getElementById('heightA9');
+        var widthBInput9 = document.getElementById('widthB9');
+        var heightBInput9 = document.getElementById('heightB9');
+            var widthA9 = parseInt(widthAInput9.value);
+            var heightA9 = parseInt(heightAInput9.value);
+            var widthB9 = parseInt(widthBInput9.value);
+            var heightB9 = parseInt(heightBInput9.value);
+            var textAVal9 = widthA9 + heightA9;
+            var textBVal9 = widthB9 + heightB9;
+            var omkretsA9 = (widthA9 + heightA9) * 2;
+            var arealA9 = widthA9 * heightA9;
+            var omkretsB9 = (widthB9 + heightB9) * 2;
+            var arealB9 = widthB9 * heightB9;
+            textHTMLADiv9.innerHTML = '<div>' +
+               'omkrets= ' + '(' + widthA9 + '+' + heightA9 + ')' + '*2= ' + omkretsA9 + '<br/>' +
+               'areal= ' + widthA9 + '*' + heightA9 + '= ' + arealA9 +
+               '</div>';
+               document.getElementById('textA9').style.width = widthA9 + 'px';
+               document.getElementById('textA9').style.height = heightA9 + 'px';
+            textHTMLBDiv9.innerHTML = '<div>' +
+               'omkrets= ' + '(' + widthB9 + '+' + heightB9 + ')' + '*2= ' + omkretsB9 + '<br/>' +
+               'areal= ' + widthB9 + '*' + heightB9 + '= ' + arealB9 +
+               '</div>';
+               document.getElementById('textB9').style.width = widthB9 + 'px';
+               document.getElementById('textB9').style.height = heightB9 + 'px';
+            textHTMLCDiv9.innerHTML = '';
+               if (textAVal9 >= textBVal9) {
+                textHTMLCDiv9.innerHTML += '<br/>>= ' + textAVal9 + ' er større enn eller lik ' + textBVal9;
+            } else {
+                textHTMLCDiv9.innerHTML += '<br/>>= <del> ' + textAVal9 + ' er større enn eller lik ' + textBVal9 + '</del>';
+            }
+        }
+    </script>
+
+</body>
+
+</html> 

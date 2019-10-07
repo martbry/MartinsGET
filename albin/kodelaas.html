@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <button onclick="ButtonWasClicked(this);">1</button>
+    <button onclick="ButtonWasClicked(this);">2</button>
+    <button onclick="ButtonWasClicked(this);">3</button>
+    <br />
+    <button onclick="ButtonWasClicked(this);">4</button>
+    <button onclick="ButtonWasClicked(this);">5</button>
+    <button onclick="ButtonWasClicked(this);">6</button>
+    <br />
+    <button onclick="ButtonWasClicked(this);">7</button>
+    <button onclick="ButtonWasClicked(this);">8</button>
+    <button onclick="ButtonWasClicked(this);">9</button>
+    <br />
+    <button onclick="sjekkPassord();">OK</button>
+    <h2></h2>
+    
+
+    <script>
+        var correctCombination = 3812;
+        var buttonClickProgress = "";
+
+
+        
+        function ButtonWasClicked(buttonNmb) {
+            buttonClickProgress += buttonNmb.innerHTML;
+
+            console.log(buttonClickProgress);
+
+        }
+
+        function sjekkPassord() {
+            if (buttonClickProgress == correctCombination) {
+                console.log("RIKTIG!");
+                sweet();
+            } else {
+                console.log("FEIL!");
+                buttonClickProgress = "";
+            }
+        }
+
+        function sweet() {
+            alert("Aaaaaw yeeah!");
+        }
+
+    </script>
+</body>
+</html>

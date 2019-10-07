@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Sliding puzzle</title>
+	<!--<link href="StyleSheet1.css" rel="stylesheet">-->
+	<style>
+
+
+	
+		p.feilmelding {
+			color: red;
+		}
+		
+		div.trekkteller {
+			clear: left;
+		}
+	
+		div.flis {
+			color: blue;
+			background: lightblue;
+			padding: 18px;
+			margin: 10px;
+			border: solid green 7px;
+			width: 30px;
+			height: 30px;
+			float: left;
+		}
+		
+		div.førstPåLinje {
+			clear: left;
+		}
+		
+		
+	</style>
+</head>
+<body>
+    
+    <div id="00" class="flis" onclick="klikk(this, '01', '10');"></div>
+    <div id="01" class="flis" onclick="klikk(this, '00', '02', '11');"></div>
+    <div id="02" class="flis" onclick="klikk(this, '01', '12');"></div>
+
+    <div id="10" class="flis førstPåLinje" onclick="klikk(this, '00', '11', '20');"></div>
+    <div id="11" class="flis" onclick="klikk(this, '01', '10', '12', '21');"></div>
+    <div id="12" class="flis" onclick="klikk(this, '02', '11', '22');"></div>
+
+    <div id="20" class="flis førstPåLinje" onclick="klikk(this, '10', '21');"></div>
+    <div id="21" class="flis" onclick="klikk(this, '11', '20', '22');"></div>
+    <div id="22" class="flis" onclick="klikk(this, '12', '21');"></div>
+
+
+    <div class="trekkteller">  Antall trekk: </div>
+    <div id="tellervar"></div>
+
+    <p id="ulovligtrekk" class="feilmelding"></p>
+
+    <h2 id="vunnet"></h2>
+
+
+    <script type="text/javascript" src="slidepuzzletest.js"></script>
+
+    
+</body>
+</html>

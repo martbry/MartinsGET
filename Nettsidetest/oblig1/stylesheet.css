@@ -1,0 +1,399 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: lightblue;
+}
+
+
+/*-------------HOVEDMENY START-------------*/
+
+#hovedmeny {
+    box-sizing: border-box;
+    grid-area: mainmenu;
+    /*width: 100%;*/
+    /*height: 100px;*/
+    background-color: darkslategray;
+    display: block;
+    border-bottom: solid;
+    /*border-collapse: collapse;*/
+    border-bottom-width: 3px;
+    border-bottom-color: black;
+}
+
+ul {
+}
+
+#hovedmeny ul li {
+    display: inline-block;
+    float: left;
+    list-style: none;
+    line-height: 97px;
+    /*width: 100px;*/
+    /*text-align: center;*/
+}
+
+    #hovedmeny ul li#firstli {
+        margin-left: 200px;
+    }
+
+    #hovedmeny ul li a {
+        /*overflow: hidden;*/
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        font-size: 20px;
+        width: 100px;
+        font-weight: 700;
+        font-family: Arial;
+        color: lightblue;
+        padding: 0 20px;
+    }
+
+
+        /*#hovedmeny ul li:hover {
+        background-color: cadetblue;
+        border-bottom: solid transparent;
+        border-bottom-width: 3px;    
+    }*/
+
+        #hovedmeny ul li a:hover {
+            color: black !important;
+            background-color: cadetblue !important;
+            /*border-bottom: solid;
+        border-bottom-width: 3px;*/
+        }
+
+
+
+
+/*-------------HOVEDMENY SLUTT-------------*/
+
+
+/*-------------UNDERMENYER START-------------*/
+
+nav.undermeny {
+    width: 140px;
+    display: none;
+    background-color: rgb(76, 127, 127);
+    position: fixed;
+    top: 97px;
+    /*border-bottom: solid transparent;
+    border-bottom-width: 3px;*/
+}
+
+
+    nav.undermeny ul li {
+        list-style: none;
+        display: block;
+        line-height: 45px;
+        /*border-bottom: solid transparent;
+        border-bottom-width: 3px;*/
+    }
+
+
+
+
+        nav.undermeny ul li .menylink {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 500;
+            color: black;
+            height: 45px;
+            /*margin: 50px;*/
+        }
+
+        nav.undermeny ul li:hover {
+            background-color: cadetblue;
+        }
+
+        nav.undermeny ul li .menylink:hover {
+            color: black;
+        }
+
+.undermeny#u1 {
+    margin: 200px;
+    /*background-color: darkseagreen;*/
+}
+
+.undermeny#u2 {
+    margin: 0 0 0 calc(200px + 1*140px);
+    /*background-color: darkseagreen;*/
+}
+
+.undermeny#u3 {
+    margin: 0 0 0 calc(200px + 2*140px);
+    /*background-color: darkseagreen;*/
+}
+
+    .undermeny#u3 .menylink {
+        font-size: 16px;
+    }
+
+.undermeny#u4 {
+    margin: 0 0 0 calc(200px + 3*140px);
+    /*background-color: darkseagreen;*/
+}
+
+.undermeny#u5 {
+    margin: 0 0 0 calc(200px + 4*140px);
+    /*background-color: darkseagreen;*/
+}
+
+.undermeny ul .firstliu {
+    border-top: solid;
+    border-top-width: 3px;
+}
+
+/*-------------UNDERMENYER SLUTT-------------*/
+
+div.hovedinnhold {
+    grid-area: maincontent;
+    margin: 70px 100px 70px 70px;
+    /*background-color: darkslateblue;*/
+    /*width: 50%;*/
+}
+
+
+    div.sideinnhold {
+    display: none;
+    grid-area: sidecontent;
+    /*width: 100%;
+    height: 100%;*/
+    display: block;
+    padding: 20px;
+}
+
+    div .sidemeny {
+    grid-area: sidebar;
+    background-color: steelblue;
+}
+
+h1 {
+    margin: 0 0 30px 0;
+}
+
+div.footer {
+    grid-area: footer;
+    border-top: solid;
+    border-top-width: 3px;
+    border-color: black;
+    color: lightblue;
+    background-color: darkslategray;
+}
+
+div.page {
+    box-sizing: border-box;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    /*max-width: 100%;
+    max-height: 100%;*/
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: 100px 1fr 50px;
+    grid-template-areas: 'mainmenu mainmenu mainmenu' 'sidebar maincontent sidecontent' 'footer footer footer';
+    /*grid-template-areas: 'mainmenu mainmenu mainmenu' 'sidebar maincontent maincontent' 'footer footer footer';*/
+}
+
+div.sidemeny {
+    border-right-style: solid;
+}
+
+/*-------------SIDEMENY GRUPPE 1 START-------------*/
+
+div.sidemenygruppe1 ul {
+    box-sizing: border-box;
+    /*height: calc((100vh - 165px) / 6);*/
+}
+
+    div.sidemenygruppe1 ul li {
+        display: block;
+        /*float: left;*/
+        list-style: none;
+        /*margin: 20px 0 20px 20px; <--------------------------*/
+        height: calc((100vh - 165px) / 6);
+        /*height: calc((100vh - 190px) / 6);*/
+        line-height: calc((100vh - 165px) / 6);
+        border-bottom-style: solid;
+        /*border-right-style: solid;*/
+        border-color: black;
+        border-width: 3px;
+        /*text-align: center;*/
+    }
+
+
+        /*div.sidemenygruppe1 ul li#firstli {
+    margin-left: calc(100vw/7);
+}*/
+
+        div.sidemenygruppe1 ul li a {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            /*font-size: 18px;*/
+            /*font-size*/
+            /*width: calc(vw/8);*/
+            font-weight: 700;
+            font-family: Arial;
+            color: lightblue;
+            /*padding: 0 20px;*/
+        }
+
+
+        div.sidemenygruppe1 ul li.lastli {
+            border-bottom-style: none;
+        }
+
+        div.sidemenygruppe1 ul li:hover {
+            background-color: cadetblue;
+            color: black;
+        }
+
+        div.sidemenygruppe1 ul li a:hover {
+            color: black;
+        }
+
+/*-------------SIDEMENY GRUPPE 1 SLUTT-------------*/
+
+@media only screen and (max-width: 1200px) {
+
+    div.page {
+        /*grid-template-areas: 'mainmenu mainmenu' 'sidebar maincontent' 'footer footer';*/
+        grid-template-columns: 200px 1fr;
+        /*grid-template-rows: 100px 1fr 50px;*/
+        /*grid-template-columns: 140px 1fr;*/
+        grid-template-rows: 100px 1fr 50px;
+    }
+
+    
+
+    nav.hovedinnhold{
+        grid-area: maincontent/sidecontent;
+        /*margin-left: 80px;*/
+    }
+
+    div.sideinnhold {
+        /*width: 0;
+        height: 0;*/
+        display: none;
+    }
+}
+
+
+/*På 900px bredde er det ikke lenger plass til alle menyene på toppen med den marginen de har nå*/
+
+@media only screen and (max-width: 900px) {
+
+    div.hovedinnhold {
+        width: 70%;
+    }
+
+    #hovedmeny ul li#firstli {
+        margin-left: 0px;
+    }
+
+    nav.undermeny {
+        /*background-color: blue;*/
+    }
+
+    /*.undermeny#u1 {
+            margin: 0;
+        }*/
+
+    .undermeny#u2 {
+        margin: 0 0 0 calc(1*140px);
+    }
+
+    .undermeny#u3 {
+        margin: 0 0 0 calc(2*140px);
+    }
+
+
+
+    .undermeny#u4 {
+        margin: 0 0 0 calc(3*140px);
+    }
+
+    .undermeny#u5 {
+        margin: 0 0 0 calc(4*140px);
+    }
+}
+
+/*På 700px bredde må vi sette hovedmenyen til venstre*/
+
+
+
+@media only screen and (max-width: 700px) {
+
+
+    div.page {
+        grid-template-columns: 140px 1fr;
+        /*grid-template-rows: 100px 1fr 50px;*/
+        grid-template-areas: 'mainmenu maincontent' 'mainmenu maincontent' 'footer footer';
+    }
+
+    #hovedmeny {
+        /*grid-area: sidebar;*/
+        /*width: 100px;*/
+        display: block;
+        border: none;
+    }
+
+    div.sidemeny {
+        display: none;
+    }
+
+    div.hovedinnhold {
+        margin: 20px 0 0 40px;
+        padding: 0;
+        /*width: 70%;*/
+    }
+
+
+    nav.undermeny ul .firstliu {
+        border: none;
+    }
+
+    nav.undermeny ul li {
+        line-height: calc((5 * 97px) / 5);
+    }
+
+        nav.undermeny ul li .menylink {
+            height: calc((5 * 97px) / 5);
+        }
+
+    nav.undermeny[id^=u] {
+        top: 0;
+        height: calc(5 * 97px);
+    }
+
+    nav.undermeny#u2 {
+        margin: 0 0 0 140px;
+        border: none;
+    }
+
+    nav.undermeny#u3 {
+        margin: 0 0 0 140px;
+        border: none;
+    }
+
+    nav.undermeny#u4 {
+        margin: 0 0 0 140px;
+        border: none;
+    }
+
+    nav.undermeny#u5 {
+        margin: 0 0 0 140px;
+        border: none;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    div.sidemeny {
+        display: none;
+    }
+}
