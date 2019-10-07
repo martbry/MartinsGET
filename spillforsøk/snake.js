@@ -2,16 +2,17 @@
 
 var canv = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var slange = [50, 500, 50, 50]
+var slange = [[50, 500, 50, 50]];
 var piltast = "hoyre";
 var nesteretning = "hoyre";
 
 var stopp =
     setInterval(function tegn() {
+        //console.log(slange[0][0]);
         update();
         ctx.clearRect(0, 0, canv.width, canv.height);
         ctx.strokeRect(50, 50, 700, 500);
-        ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
+        ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
 
     }, 200);
 
@@ -69,11 +70,10 @@ function lovligRetning() {
     }
 
     return true;
-
 }
 
 function utenfor() {
-    if (slange[0] > canv.width - 100 || slange[0] < 50 || slange[1] > canvas.height - 100 || slange[1] < 50) {
+    if (slange[0][0] > canv.width - 100 || slange[0][0] < 50 || slange[0][1] > canvas.height - 100 || slange[0][1] < 50) {
         return true;
     } else {
         return false;
@@ -82,14 +82,14 @@ function utenfor() {
 
 function retning(vei) {
     if (vei == "hoyre") {
-        slange[0] += 50;
+        slange[0][0] += 50;
         return;
     } else if (vei == "venstre") {
-        slange[0] -= 50;
+        slange[0][0] -= 50;
     } else if (vei == "ned") {
-        slange[1] += 50;
+        slange[0][1] += 50;
     } else if (vei == "opp") {
-        slange[1] -= 50;
+        slange[0][1] -= 50;
     }
 }
 
