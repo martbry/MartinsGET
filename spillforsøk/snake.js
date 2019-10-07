@@ -1,27 +1,32 @@
 // JavaScript source code
 
 var canv = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var ctx = canv.getContext("2d");
 var slange = [[50, 500, 50, 50]];
 var piltast = "hoyre";
 var nesteretning = "hoyre";
+var intervalltid = 200;
+var ferdig = false;
+var timeAlive = 0;
 
 var stopp =
     setInterval(function tegn() {
-        //console.log(slange[0][0]);
         update();
         ctx.clearRect(0, 0, canv.width, canv.height);
         ctx.strokeRect(50, 50, 700, 500);
         ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
-
-    }, 200);
+        if (ferdig == true) {
+            gameOver();
+        }
+    }, intervalltid);
 
 
 function update() {
+    timeAlive += 1;
     if (utenfor()) {
-        gameOver();
+        //gameOver();
+        ferdig = true;
     } else {
-        console.log(lovligRetning());
         if (lovligRetning()) {
             piltast = nesteretning;
         }
@@ -94,9 +99,17 @@ function retning(vei) {
 }
 
 function gameOver() {
+    clearInterval(stopp);
+    ctx.font = "60px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText("Game over!", 200, 300);
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Circles lived: " + timeAlive, 200, 400);
     canv.style.borderColor = "red";
     canv.style.borderWidth = "thick";
-    clearInterval(stopp);
+
+    
 }
 
 
