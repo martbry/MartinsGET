@@ -7,10 +7,12 @@ var piltast = "hoyre";
 
 var stopp =
     setInterval(function tegn() {
+        update(piltast);
+        console.log(slange[0]);
         ctx.clearRect(0, 0, canv.width, canv.height);
         ctx.strokeRect(50, 50, 700, 500);
         ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
-        update(piltast);
+        
     }, 200);
 
 //function tegn() {
@@ -20,6 +22,10 @@ var stopp =
 //}
 
 function update(retning) {
+    //TODO:
+    //Gjør alle ifene først: er den utenfor: du er død
+
+    //Så ta eventuelle oppdateringer dersom man fortsatt er i live.
     if (retning == "hoyre" && slange[0] < canv.width - 50) {
         slange[0] += 50;
         return;
