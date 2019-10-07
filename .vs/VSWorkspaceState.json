@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Nettsidetest",
     "\\Quiz",
-    "\\Slidepuzzle"
+    "\\Slidepuzzle",
+    "\\spillforsøk"
   ],
-  "SelectedNode": "\\Slidepuzzle\\slidepuzzletest.js",
+  "SelectedNode": "\\spillforsøk\\snake.js",
   "PreviewInSolutionExplorer": false
 }
