@@ -11,6 +11,7 @@ var nesteretning = "hoyre";
 var intervalltid = 200;
 var ferdig = false;
 var timeAlive = 0;
+var eple = [];
 
 var stopp =
     setInterval(function tegn() {
@@ -18,7 +19,6 @@ var stopp =
         ctx.clearRect(0, 0, canv.width, canv.height);
         tegnSlange();
         tegnBrettramme();
-        //ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
         if (ferdig == true) {
             gameOver();
         }
@@ -34,8 +34,6 @@ function update() {
             piltast = nesteretning;
         }
         oppdaterSlangeVarSist();
-        //console.log(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
-        //console.log(slange);
         retning(piltast);
     }
 }
@@ -86,13 +84,8 @@ function lovligRetning() {
 }
 
 function oppdaterSlangeVarSist() {
-    console.log("denne blir pushet: " + slange[0]);
     var slangekopi = JSON.stringify(slange[0]);
     slangevarsist.push(JSON.parse(slangekopi));
-    document.getElementById("1").innerHTML = lengde;
-    //document.getElementById("2").innerHTML = slangevarsist[slangevarsist.length - 1];
-    //console.log(slangevarsist + " lengde: " + slangevarsist.length);
-    //console.log("forstinyliste: " + slangevarsist[0] + " sistinyliste: " + slangevarsist[slangevarsist.length - 1]);
 }
 
 function utenfor() {
@@ -118,8 +111,16 @@ function retning(vei) {
 
 function tegnSlange() {
     var sisteindeks = slangevarsist.length - 1;
+    console.log("eple: " + eple);
+    ctx.fillStyle = "red";
+    ctx.fillRect(eple[0], eple[1], eple[2], eple[3]);
+
     ctx.fillStyle = "black";
     ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+    if (slange[0][0] == eple[0]-10 && slange[0][1] == eple[1]-10) {
+        lengde += 1;
+        genererMat();
+    }
 
     ctx.fillStyle = "grey";
     if (lengde > 1) {
@@ -136,6 +137,13 @@ function tegnBrettramme() {
     ctx.strokeRect(50, 50, 700, 500);
 }
 
+function genererMat() {
+    var breddeplassering = Math.round(Math.floor((Math.random() * 650) + 75)/50)*50;
+    var hoydeplassering = Math.round(Math.floor((Math.random() * 450) + 75) / 50)* 50;
+
+    eple = [breddeplassering+10, hoydeplassering+10, 30, 30];
+}
+
 function gameOver() {
     clearInterval(stopp);
     ctx.font = "60px Arial";
@@ -146,14 +154,12 @@ function gameOver() {
     ctx.fillText("Game over!", 200, 300);
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Cycles lived: " + timeAlive, 200, 400);
+    ctx.fillText("Du spiste " + (lengde-1) + " epler!" , 200, 400);
     canv.style.borderColor = "red";
     canv.style.borderWidth = "thick";
-    
 }
+
+genererMat();
 
 
 document.addEventListener("keydown", endrePiltast);
-
-//tegn();
-//start();
