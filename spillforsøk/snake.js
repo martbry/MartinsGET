@@ -49,6 +49,8 @@ function endrePiltast(trykket) {
         nesteretning = "hoyre";
     } else if (trykket.keyCode == 40) {
         nesteretning = "ned";
+    } else if (trykket.keyCode == 32) {
+        lengde++;
     }
 }
 
@@ -85,10 +87,11 @@ function lovligRetning() {
 
 function oppdaterSlangeVarSist() {
     console.log("denne blir pushet: " + slange[0]);
-    slangevarsist.push(slange[0]);
-    document.getElementById("1").innerHTML = slangevarsist[0];
-    document.getElementById("2").innerHTML = slangevarsist[slangevarsist.length - 1];
-    console.log("Denne ble pushet inn i: " + slangevarsist + " lengde: " + slangevarsist.length);
+    var slangekopi = JSON.stringify(slange[0]);
+    slangevarsist.push(JSON.parse(slangekopi));
+    document.getElementById("1").innerHTML = lengde;
+    //document.getElementById("2").innerHTML = slangevarsist[slangevarsist.length - 1];
+    //console.log(slangevarsist + " lengde: " + slangevarsist.length);
     //console.log("forstinyliste: " + slangevarsist[0] + " sistinyliste: " + slangevarsist[slangevarsist.length - 1]);
 }
 
@@ -114,8 +117,16 @@ function retning(vei) {
 }
 
 function tegnSlange() {
-    for (i = 0; i < lengde; i++) {
-        ctx.strokeRect(slange[i][0], slange[i][1], slange[i][2], slange[i][3]);
+    var sisteindeks = slangevarsist.length - 1;
+    ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+    
+    if (lengde > 1) {
+        for (i = 0; i < lengde-1; i++) {
+            ctx.strokeRect(slangevarsist[sisteindeks - i][0], slangevarsist[sisteindeks - i][1], slangestorrelse, slangestorrelse);
+            if (slange[0][0] == slangevarsist[sisteindeks - i][0] && slange[0][1] == slangevarsist[sisteindeks - i][1]) {
+                ferdig = true;
+            }
+        }
     }
 }
 
