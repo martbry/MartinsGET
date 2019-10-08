@@ -84,14 +84,12 @@ function lovligRetning() {
 }
 
 function oppdaterSlangeVarSist() {
-    console.log(slange[0]);
-    //slangevarsist.unshift(slange[0]);
-    slangevarsist[slangevarsist.length] = slange[0];
-    console.log("varhersist: " + slangevarsist + " lengde: " + slangevarsist.length);
-    console.log("forst: " + slangevarsist[0] + " sist: " + slangevarsist[slangevarsist.length - 1]);
+    console.log("denne blir pushet: " + slange[0]);
+    slangevarsist.push(slange[0]);
     document.getElementById("1").innerHTML = slangevarsist[0];
     document.getElementById("2").innerHTML = slangevarsist[slangevarsist.length - 1];
-    //console.log(slange);
+    console.log("Denne ble pushet inn i: " + slangevarsist + " lengde: " + slangevarsist.length);
+    //console.log("forstinyliste: " + slangevarsist[0] + " sistinyliste: " + slangevarsist[slangevarsist.length - 1]);
 }
 
 function utenfor() {
