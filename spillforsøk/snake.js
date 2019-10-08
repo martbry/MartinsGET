@@ -2,7 +2,10 @@
 
 var canv = document.getElementById("canvas");
 var ctx = canv.getContext("2d");
-var slange = [[50, 500, 50, 50]];
+var slangestorrelse = 50;
+var lengde = 1;
+var slange = [[50, 500, slangestorrelse, slangestorrelse]];
+var slangevarsist = [];
 var piltast = "hoyre";
 var nesteretning = "hoyre";
 var intervalltid = 200;
@@ -13,8 +16,9 @@ var stopp =
     setInterval(function tegn() {
         update();
         ctx.clearRect(0, 0, canv.width, canv.height);
-        ctx.strokeRect(50, 50, 700, 500);
-        ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+        tegnSlange();
+        tegnBrettramme();
+        //ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
         if (ferdig == true) {
             gameOver();
         }
@@ -24,12 +28,14 @@ var stopp =
 function update() {
     timeAlive += 1;
     if (utenfor()) {
-        //gameOver();
         ferdig = true;
     } else {
         if (lovligRetning()) {
             piltast = nesteretning;
         }
+        oppdaterSlangeVarSist();
+        //console.log(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+        //console.log(slange);
         retning(piltast);
     }
 }
@@ -77,6 +83,17 @@ function lovligRetning() {
     return true;
 }
 
+function oppdaterSlangeVarSist() {
+    console.log(slange[0]);
+    //slangevarsist.unshift(slange[0]);
+    slangevarsist[slangevarsist.length] = slange[0];
+    console.log("varhersist: " + slangevarsist + " lengde: " + slangevarsist.length);
+    console.log("forst: " + slangevarsist[0] + " sist: " + slangevarsist[slangevarsist.length - 1]);
+    document.getElementById("1").innerHTML = slangevarsist[0];
+    document.getElementById("2").innerHTML = slangevarsist[slangevarsist.length - 1];
+    //console.log(slange);
+}
+
 function utenfor() {
     if (slange[0][0] > canv.width - 100 || slange[0][0] < 50 || slange[0][1] > canvas.height - 100 || slange[0][1] < 50) {
         return true;
@@ -98,6 +115,16 @@ function retning(vei) {
     }
 }
 
+function tegnSlange() {
+    for (i = 0; i < lengde; i++) {
+        ctx.strokeRect(slange[i][0], slange[i][1], slange[i][2], slange[i][3]);
+    }
+}
+
+function tegnBrettramme() {
+    ctx.strokeRect(50, 50, 700, 500);
+}
+
 function gameOver() {
     clearInterval(stopp);
     ctx.font = "60px Arial";
@@ -105,11 +132,9 @@ function gameOver() {
     ctx.fillText("Game over!", 200, 300);
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Circles lived: " + timeAlive, 200, 400);
+    ctx.fillText("Cycles lived: " + timeAlive, 200, 400);
     canv.style.borderColor = "red";
     canv.style.borderWidth = "thick";
-
-    
 }
 
 
