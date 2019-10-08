@@ -118,10 +118,12 @@ function retning(vei) {
 
 function tegnSlange() {
     var sisteindeks = slangevarsist.length - 1;
-    ctx.strokeRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
-    
+    ctx.fillStyle = "black";
+    ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+
+    ctx.fillStyle = "grey";
     if (lengde > 1) {
-        for (i = 0; i < lengde-1; i++) {
+        for (i = 0; i < lengde - 1; i++) {
             ctx.strokeRect(slangevarsist[sisteindeks - i][0], slangevarsist[sisteindeks - i][1], slangestorrelse, slangestorrelse);
             if (slange[0][0] == slangevarsist[sisteindeks - i][0] && slange[0][1] == slangevarsist[sisteindeks - i][1]) {
                 ferdig = true;
@@ -138,12 +140,16 @@ function gameOver() {
     clearInterval(stopp);
     ctx.font = "60px Arial";
     ctx.fillStyle = "red";
+
+    ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+
     ctx.fillText("Game over!", 200, 300);
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
     ctx.fillText("Cycles lived: " + timeAlive, 200, 400);
     canv.style.borderColor = "red";
     canv.style.borderWidth = "thick";
+    
 }
 
 
