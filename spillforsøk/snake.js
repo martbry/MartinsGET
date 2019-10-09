@@ -13,26 +13,49 @@ var piltast = "hoyre";
 var nesteretning = "hoyre";
 var intervalltid = 150;
 var ferdig = false;
+var spillstartet = false;
 var timeAlive = 0;
 var eple = [];
+var startknapp = document.getElementById("start");
+//var poeng = document.getElementById("poeng").innerHTML;
 
 
+function reset() {
+    slangestorrelse = 50;
+    lengde = 1;
+    slange = [[50, 500, slangestorrelse, slangestorrelse]];
+    slangevarsist = [];
+    piltast = "hoyre";
+    nesteretning = "hoyre";
+    intervalltid = 150;
+    ferdig = false;
+    spillstartet = false;
+    timeAlive = 0;
+    eple = [];
+}
 
-var stopp =
-
-    setInterval(function tegn() {
+//var stopp =
+function begin() {
+    startknapp.disabled = true;
+    reset();
+    genererMat();
+    spillstartet = true;
+    var stopp = setInterval(function tegn() {
         update();
         ctx.clearRect(0, 0, canv.width, canv.height);
         tegnSlange();
         tegnBrettramme();
         if (ferdig == true) {
+            clearInterval(stopp);
             gameOver();
         }
     }, intervalltid);
+}
+
+    
 
 
 function update() {
-    timeAlive += 1;
     if (utenfor()) {
         ferdig = true;
     } else {
@@ -89,7 +112,8 @@ function lovligRetning() {
 
 function oppdaterSlangeVarSist() {
     var slangekopi = JSON.stringify(slange[0]);
-    slangevarsist.push(JSON.parse(slangekopi));
+    slangevarsist.unshift(JSON.parse(slangekopi));
+    slangevarsist.length = lengde;
 }
 
 function utenfor() {
@@ -114,7 +138,6 @@ function retning(vei) {
 }
 
 function tegnSlange() {
-    var sisteindeks = slangevarsist.length - 1;
     ctx.fillStyle = "red";
     ctx.fillRect(eple[0], eple[1], eple[2], eple[3]);
 
@@ -131,8 +154,8 @@ function tegnSlange() {
     ctx.fillStyle = "grey";
     if (lengde > 1) {
         for (i = 0; i < lengde - 1; i++) {
-            ctx.strokeRect(slangevarsist[sisteindeks - i][0], slangevarsist[sisteindeks - i][1], slangestorrelse, slangestorrelse);
-            if (slange[0][0] == slangevarsist[sisteindeks - i][0] && slange[0][1] == slangevarsist[sisteindeks - i][1]) {
+            ctx.strokeRect(slangevarsist[i][0], slangevarsist[i][1], slangestorrelse, slangestorrelse);
+            if (slange[0][0] == slangevarsist[i][0] && slange[0][1] == slangevarsist[i][1]) {
                 ferdig = true;
             }
         }
@@ -144,14 +167,13 @@ function tegnBrettramme() {
 }
 
 function genererMat() {
-    var sisteindeks = slangevarsist.length - 1;
     var breddeplassering = Math.round(Math.floor((Math.random() * 650) + 75)/50)*50;
     var hoydeplassering = Math.round(Math.floor((Math.random() * 450) + 75) / 50)* 50;
 
 
     if (lengde > 1) {
         for (i = 0; i < lengde - 1; i++) {
-            if ((breddeplassering == slangevarsist[sisteindeks - i][0] && hoydeplassering == slangevarsist[sisteindeks - i][1]) || (breddeplassering == slange[0][0] && hoydeplassering == slange[0][1])) {
+            if ((breddeplassering == slangevarsist[i][0] && hoydeplassering == slangevarsist[i][1]) || (breddeplassering == slange[0][0] && hoydeplassering == slange[0][1])) {
                 genererMat();
                 return;
             }
@@ -162,7 +184,7 @@ function genererMat() {
 }
 
 function gameOver() {
-    clearInterval(stopp);
+    spillstartet = false;
     ctx.font = "60px Arial";
     ctx.fillStyle = "red";
 
@@ -174,10 +196,11 @@ function gameOver() {
     ctx.fillText("Du spiste " + (lengde-1) + " epler!" , 200, 400);
     canv.style.borderColor = "red";
     canv.style.borderWidth = "thick";
+    startknapp.disabled = false;
 }
 
 function vunnet() {
-    clearInterval(stopp);
+    spillstartet = false;
     ctx.font = "60px Arial";
     ctx.fillStyle = "green";
     ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
@@ -186,9 +209,19 @@ function vunnet() {
     ctx.font = "20px Arial";
     ctx.fillText("Du spiste " + (lengde - 1) + " epler!", 200, 400);
     canv.style.borderColor = "green";
+    startknapp.disabled = false;
 
 }
 
-genererMat();
+function enterForStart(knappTrykt) {
+    if (spillstartet == true) {
+        return;
+    }
+    if (knappTrykt.keyCode == 13 || knappTrykt.keyCode == 32) {
+        begin();
+    }
+}
 
+//console.log(document.getElementById("start"));
+document.addEventListener("keydown", enterForStart);
 document.addEventListener("keydown", endrePiltast);
