@@ -5,17 +5,17 @@
 
 var canv = document.getElementById("canvas");
 var ctx = canv.getContext("2d");
-var slangestorrelse = 50;
-var lengde = 1;
-var slange = [[50, 500, slangestorrelse, slangestorrelse]];
-var slangevarsist = [];
-var piltast = "hoyre";
-var nesteretning = "hoyre";
-var intervalltid = 150;
-var ferdig = false;
-var spillstartet = false;
-var timeAlive = 0;
-var eple = [];
+var slangestorrelse;
+var lengde;
+var slange;
+var slangevarsist;
+var piltast;
+var nesteretning;
+var intervalltid;
+var ferdig;
+var spillstartet;
+var timeAlive;
+var eple;
 var startknapp = document.getElementById("start");
 //var poeng = document.getElementById("poeng").innerHTML;
 
