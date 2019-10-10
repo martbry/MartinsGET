@@ -237,26 +237,56 @@ function rightCTRLStart(knappTrykt) {
 }
 
 function skrivPoeng() {
+
+    var topp10 = {};
+    var topp10sortert = [];
     //localStorage.clear();
     document.getElementById("input").style.display = "none";
     document.getElementById("bekreft").style.display = "none";
-    if (localStorage.getItem("highscore") == undefined && arguments.length == 1) {
+
+    //første gang man spiller:
+    if (localStorage.getItem("highscore0") == undefined && arguments.length == 1) {
         return;
     }
 
-
-    if (localStorage.getItem("highscore") == undefined) {
-        localStorage.setItem("highscore", (navninput.value + ": " + (lengde - 1)));
+    //spilt før:
+    for (i = 0; i < 10; i++) {
+        if (localStorage.getItem("highscore" + i) != undefined) {
+            let scoreSplit = localStorage.getItem("highscore" + i).split(" ");
+            topp10[scoreSplit[0]] = parseInt(scoreSplit[1]);
+        } else {
+            localStorage.setItem("highscore" + i, (navninput.value + ": " + (lengde - 1)));
+            let scoreSplit = localStorage.getItem("highscore" + i).split(" ");
+            topp10[scoreSplit[0]] = parseInt(scoreSplit[1]);
+            break;
+        }
     }
 
-    var score = localStorage.getItem("highscore").split(" ");
+
+
+    //var list = { "you": 100, "me": 75, "foo": 116, "bar": 15 };
+    var keysSorted = Object.keys(topp10).sort(function (a, b) { return topp10[a] - topp10[b] }).map(key => topp10[key]);
+    console.log(keysSorted);
+    console.log(keysSorted[0]);
+
+    //for (i = 0; i < topp10score.length; i++) {
+    //    if (topp10score[i] >= topp10sortert[0]) {
+    //        topp10sortert.unshift(topp10navn[0] + ": " + topp10sortert[i]);
+    //    } else if ((topp10score[i] >= topp10sortert[1])) {}
+    //}
+
+    if (localStorage.getItem("highscore0") == undefined) {
+        localStorage.setItem("highscore0", (navninput.value + ": " + (lengde - 1)));
+    }
+
+    var score = localStorage.getItem("highscore0").split(" ");
 
     if ((lengde - 1) > parseInt(score[1])) {
-        localStorage.setItem("highscore", navninput.value + ": " + (lengde - 1));
+        localStorage.setItem("highscore0", navninput.value + ": " + (lengde - 1));
     }
 
 
-    document.getElementById("hoyestepoengsum").innerHTML = localStorage.getItem("highscore");
+    document.getElementById("hoyestepoengsum").innerHTML = localStorage.getItem("highscore0");
 }
 
 
