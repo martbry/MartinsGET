@@ -38,6 +38,8 @@ function reset() {
     eple = [];
     navninput.style.display = "none";
     bekreftknapp.style.display = "none";
+    canv.style.borderColor = "black";
+    canv.style.borderWidth = "initial";
 }
 
 //var stopp =
