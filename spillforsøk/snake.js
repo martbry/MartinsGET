@@ -2,6 +2,7 @@
 
 //TODO: Øke hastigheten?
 //Mulighet for å "gå gjennom" vegger?
+//High score må bli topp 10
 
 var canv = document.getElementById("canvas");
 var ctx = canv.getContext("2d");
