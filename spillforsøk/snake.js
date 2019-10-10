@@ -5,8 +5,12 @@
 
 var canv = document.getElementById("canvas");
 var ctx = canv.getContext("2d");
+var startknapp = document.getElementById("start");
+var poengliste = document.getElementById("poengliste");
+var navninput = document.getElementById("input");
+var bekreftknapp = document.getElementById("bekreft");
 var slangestorrelse;
-var lengde;
+var lengde = 1;
 var slange;
 var slangevarsist;
 var piltast;
@@ -16,7 +20,7 @@ var ferdig;
 var spillstartet;
 var timeAlive;
 var eple;
-var startknapp = document.getElementById("start");
+
 //var poeng = document.getElementById("poeng").innerHTML;
 
 
@@ -32,6 +36,8 @@ function reset() {
     spillstartet = false;
     timeAlive = 0;
     eple = [];
+    navninput.style.display = "none";
+    bekreftknapp.style.display = "none";
 }
 
 //var stopp =
@@ -52,7 +58,7 @@ function begin() {
     }, intervalltid);
 }
 
-    
+
 
 
 function update() {
@@ -143,7 +149,7 @@ function tegnSlange() {
 
     ctx.fillStyle = "black";
     ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
-    if (slange[0][0] == eple[0]-10 && slange[0][1] == eple[1]-10) {
+    if (slange[0][0] == eple[0] - 10 && slange[0][1] == eple[1] - 10) {
         lengde += 1;
         if (lengde == 140) {
             vunnet();
@@ -167,8 +173,8 @@ function tegnBrettramme() {
 }
 
 function genererMat() {
-    var breddeplassering = Math.round(Math.floor((Math.random() * 650) + 75)/50)*50;
-    var hoydeplassering = Math.round(Math.floor((Math.random() * 450) + 75) / 50)* 50;
+    var breddeplassering = Math.round(Math.floor((Math.random() * 650) + 75) / 50) * 50;
+    var hoydeplassering = Math.round(Math.floor((Math.random() * 450) + 75) / 50) * 50;
 
 
     if (lengde > 1) {
@@ -184,6 +190,8 @@ function genererMat() {
 }
 
 function gameOver() {
+    navninput.style.display = "initial";
+    bekreftknapp.style.display = "initial";
     spillstartet = false;
     ctx.font = "60px Arial";
     ctx.fillStyle = "red";
@@ -193,13 +201,15 @@ function gameOver() {
     ctx.fillText("Game over!", 200, 300);
     ctx.font = "20px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("Du spiste " + (lengde-1) + " epler!" , 200, 400);
+    ctx.fillText("Du spiste " + (lengde - 1) + " epler!", 200, 400);
     canv.style.borderColor = "red";
     canv.style.borderWidth = "thick";
     startknapp.disabled = false;
 }
 
 function vunnet() {
+    navninput.style.display = "initial";
+    bekreftknapp.style.display = "initial";
     spillstartet = false;
     ctx.font = "60px Arial";
     ctx.fillStyle = "green";
@@ -213,15 +223,40 @@ function vunnet() {
 
 }
 
-function enterForStart(knappTrykt) {
+function rightCTRLStart(knappTrykt) {
     if (spillstartet == true) {
         return;
     }
-    if (knappTrykt.keyCode == 13 || knappTrykt.keyCode == 32) {
+    if (knappTrykt.keyCode == 17 && knappTrykt.location == 2) {
         begin();
     }
 }
 
+function skrivPoeng() {
+    //localStorage.clear();
+    document.getElementById("input").style.display = "none";
+    document.getElementById("bekreft").style.display = "none";
+    if (localStorage.getItem("highscore") == undefined && arguments.length == 1) {
+        return;
+    }
+
+
+    if (localStorage.getItem("highscore") == undefined) {
+        localStorage.setItem("highscore", (navninput.value + ": " + (lengde - 1)));
+    }
+
+    var score = localStorage.getItem("highscore").split(" ");
+
+    if ((lengde - 1) > parseInt(score[1])) {
+        localStorage.setItem("highscore", navninput.value + ": " + (lengde - 1));
+    }
+
+
+    document.getElementById("hoyestepoengsum").innerHTML = localStorage.getItem("highscore");
+}
+
+
+
 //console.log(document.getElementById("start"));
-document.addEventListener("keydown", enterForStart);
+document.addEventListener("keydown", rightCTRLStart);
 document.addEventListener("keydown", endrePiltast);

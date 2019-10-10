@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <title>Martins snake</title>
     <style>
+
+
         div.page {
             height: 85vh;
             display: grid;
@@ -20,12 +22,12 @@
             grid-area: canvas;
         }
 
-        #poengliste {
+        #hoyre {
 
             margin: 0 0 0 50px;
             display: inline-block;
             height: 500px;
-            width: 500px;
+            width: 250px;
             grid-area: poengliste;
         }
 
@@ -35,18 +37,26 @@
         }
     </style>
 </head>
-<body>
+<body onload="skrivPoeng('onload')">
 
     <div class="page">
         <canvas id="canvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+        <input id="input" type="text" style="position:absolute;left:100px;top:100px;width:200px; display:none;" value="Skriv inn navnet ditt her" onkeypress="return (event.charCode > 64 &&
+        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8"/>
+        <button id="bekreft" style="position:absolute;left:100px;top:130px;width:100px;display:none;" onclick="skrivPoeng()">Bekreft</button>
+        <p>
+            Kontroller: <br>
+            **Rigth CTRL to start** <br>
+            **Styr med piltastene**
+        </p>
 
-        <div id="poengliste"></div>
+        <div id="hoyre"><h2>Highscore:<br /></h2><p id="hoyestepoengsum"></p></div>
 
         <div id="diverse">
             <!--<p id="poeng">0</p>-->
             <button id="start" style="display: block" onclick="begin()">Start</button>
         </div>
-        
+
     </div>
 
 
