@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body onload="endreAlt('onload')">
+    <!--<p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
+    <input type="text" onchange="testOnChange()" oninput="testOnInput()" />
+    <h3 onmouseover="testOnMouseOver()" onmouseout="testOnMouseOut()">Test test test</h3>
+    <h2 id="info"></h2>-->
+
+    <p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
+    <input type="text" onchange="endreAlt('1')" oninput="endreAlt('2')" />
+    <h3 onmouseover="endreAlt('3')" onmouseout="endreAlt('4')">Test test test</h3>
+    <h2 id="info"></h2>
+
+    <script>
+
+        function endreAlt(info1) {
+            document.getElementById("info").innerHTML += "<li>" + info1 + "</li>";
+        }
+
+
+    </script>
+</body>
+</html>

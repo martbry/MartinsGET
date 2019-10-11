@@ -1,59 +1,296 @@
 // JavaScript source code
 
+//TODO: Øke hastigheten?
+//Mulighet for å "gå gjennom" vegger?
+//High score må bli topp 10
+
 var canv = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var slange = [50, 500, 50, 50]
-var piltast = "hoyre";
+var ctx = canv.getContext("2d");
+var startknapp = document.getElementById("start");
+var poengliste = document.getElementById("poengliste");
+var navninput = document.getElementById("input");
+var bekreftknapp = document.getElementById("bekreft");
+var slangestorrelse;
+var lengde = 1;
+var slange;
+var slangevarsist;
+var piltast;
+var nesteretning;
+var intervalltid;
+var ferdig;
+var spillstartet;
+var timeAlive;
+var eple;
 
-var stopp =
-    setInterval(function tegn() {
-        update(piltast);
-        console.log(slange[0]);
+//var poeng = document.getElementById("poeng").innerHTML;
+
+
+function reset() {
+    slangestorrelse = 50;
+    lengde = 1;
+    slange = [[50, 500, slangestorrelse, slangestorrelse]];
+    slangevarsist = [];
+    piltast = "hoyre";
+    nesteretning = "hoyre";
+    intervalltid = 150;
+    ferdig = false;
+    spillstartet = false;
+    timeAlive = 0;
+    eple = [];
+    navninput.style.display = "none";
+    bekreftknapp.style.display = "none";
+    canv.style.borderColor = "black";
+    canv.style.borderWidth = "initial";
+
+}
+
+//var stopp =
+function begin() {
+    startknapp.disabled = true;
+    reset();
+    genererMat();
+    spillstartet = true;
+    var stopp = setInterval(function tegn() {
+        update();
         ctx.clearRect(0, 0, canv.width, canv.height);
-        ctx.strokeRect(50, 50, 700, 500);
-        ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
-        
-    }, 200);
+        tegnSlange();
+        tegnBrettramme();
+        if (ferdig == true) {
+            clearInterval(stopp);
+            gameOver();
+        }
+    }, intervalltid);
+}
 
-//function tegn() {
-//    console.log("yy");
-//    ctx.strokeRect(slange[0], slange[1], slange[2], slange[3]);
-//    update();
-//}
 
-function update(retning) {
-    //TODO:
-    //Gjør alle ifene først: er den utenfor: du er død
 
-    //Så ta eventuelle oppdateringer dersom man fortsatt er i live.
-    if (retning == "hoyre" && slange[0] < canv.width - 50) {
-        slange[0] += 50;
-        return;
-    } else if (retning == "venstre" && slange[0] >= 50) {
-        slange[0] -= 50;
-    } else if (retning == "ned" && slange[1] < canvas.height - 50) {
-        slange[1] += 50;
-    } else if (retning == "opp" && slange[1] >= 50) {
-        slange[1] -= 50;
+
+function update() {
+    if (utenfor()) {
+        ferdig = true;
     } else {
-        console.log("hallo");
-        clearInterval(stopp);
+        if (lovligRetning()) {
+            piltast = nesteretning;
+        }
+        oppdaterSlangeVarSist();
+        retning(piltast);
     }
 }
 
 function endrePiltast(trykket) {
     if (trykket.keyCode == 37) {
-        piltast = "venstre";
+        nesteretning = "venstre";
     } else if (trykket.keyCode == 38) {
-        piltast = "opp";
+        nesteretning = "opp";
     } else if (trykket.keyCode == 39) {
-        piltast = "hoyre";
+        nesteretning = "hoyre";
     } else if (trykket.keyCode == 40) {
-        piltast = "ned";
+        nesteretning = "ned";
     }
 }
 
-document.addEventListener("keydown", endrePiltast);
+function lovligRetning() {
+    if (nesteretning == "venstre") {
+        if (piltast == "hoyre") {
+            return false;
+        }
+        piltast = "venstre";
+    }
 
-//tegn();
-//start();
+    if (nesteretning == "opp") {
+        if (piltast == "ned") {
+            return false;
+        }
+        piltast = "opp";
+    }
+
+    if (nesteretning == "hoyre") {
+        if (piltast == "venstre") {
+            return false;
+        }
+        piltast = "hoyre";
+    }
+
+    if (nesteretning == "ned") {
+        if (piltast == "opp") {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function oppdaterSlangeVarSist() {
+    var slangekopi = JSON.stringify(slange[0]);
+    slangevarsist.unshift(JSON.parse(slangekopi));
+    slangevarsist.length = lengde;
+}
+
+function utenfor() {
+    if (slange[0][0] > canv.width - 100 || slange[0][0] < 50 || slange[0][1] > canvas.height - 100 || slange[0][1] < 50) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function retning(vei) {
+    if (vei == "hoyre") {
+        slange[0][0] += 50;
+        return;
+    } else if (vei == "venstre") {
+        slange[0][0] -= 50;
+    } else if (vei == "ned") {
+        slange[0][1] += 50;
+    } else if (vei == "opp") {
+        slange[0][1] -= 50;
+    }
+}
+
+function tegnSlange() {
+    ctx.fillStyle = "red";
+    ctx.fillRect(eple[0], eple[1], eple[2], eple[3]);
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+    if (slange[0][0] == eple[0] - 10 && slange[0][1] == eple[1] - 10) {
+        lengde += 1;
+        if (lengde == 140) {
+            vunnet();
+        }
+        genererMat();
+    }
+
+    ctx.fillStyle = "grey";
+    if (lengde > 1) {
+        for (i = 0; i < lengde - 1; i++) {
+            ctx.strokeRect(slangevarsist[i][0], slangevarsist[i][1], slangestorrelse, slangestorrelse);
+            if (slange[0][0] == slangevarsist[i][0] && slange[0][1] == slangevarsist[i][1]) {
+                ferdig = true;
+            }
+        }
+    }
+}
+
+function tegnBrettramme() {
+    ctx.strokeRect(50, 50, 700, 500);
+}
+
+function genererMat() {
+    var breddeplassering = Math.round(Math.floor((Math.random() * 650) + 75) / 50) * 50;
+    var hoydeplassering = Math.round(Math.floor((Math.random() * 450) + 75) / 50) * 50;
+
+
+    if (lengde > 1) {
+        for (i = 0; i < lengde - 1; i++) {
+            if ((breddeplassering == slangevarsist[i][0] && hoydeplassering == slangevarsist[i][1]) || (breddeplassering == slange[0][0] && hoydeplassering == slange[0][1])) {
+                genererMat();
+                return;
+            }
+        }
+    }
+
+    eple = [breddeplassering + 10, hoydeplassering + 10, 30, 30];
+}
+
+function gameOver() {
+    navninput.style.display = "initial";
+    bekreftknapp.style.display = "initial";
+    spillstartet = false;
+    ctx.font = "60px Arial";
+    ctx.fillStyle = "red";
+
+    ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+
+    ctx.fillText("Game over!", 200, 300);
+    ctx.font = "20px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("Du spiste " + (lengde - 1) + " epler!", 200, 400);
+    canv.style.borderColor = "red";
+    canv.style.borderWidth = "thick";
+    startknapp.disabled = false;
+}
+
+function vunnet() {
+    navninput.style.display = "initial";
+    bekreftknapp.style.display = "initial";
+    spillstartet = false;
+    ctx.font = "60px Arial";
+    ctx.fillStyle = "green";
+    ctx.fillRect(slange[0][0], slange[0][1], slange[0][2], slange[0][3]);
+
+    ctx.fillText("Du vant!", 200, 300);
+    ctx.font = "20px Arial";
+    ctx.fillText("Du spiste " + (lengde - 1) + " epler!", 200, 400);
+    canv.style.borderColor = "green";
+    startknapp.disabled = false;
+
+}
+
+function rightCTRLStart(knappTrykt) {
+    if (spillstartet == true) {
+        return;
+    }
+    if (knappTrykt.keyCode == 17 && knappTrykt.location == 2) {
+        begin();
+    }
+}
+
+function skrivPoeng() {
+
+    var topp10 = {};
+    var topp10sortert = [];
+    //localStorage.clear();
+    document.getElementById("input").style.display = "none";
+    document.getElementById("bekreft").style.display = "none";
+
+    //første gang man spiller:
+    if (localStorage.getItem("highscore0") == undefined && arguments.length == 1) {
+        return;
+    }
+
+    //spilt før:
+    for (i = 0; i < 10; i++) {
+        if (localStorage.getItem("highscore" + i) != undefined) {
+            let scoreSplit = localStorage.getItem("highscore" + i).split(" ");
+            topp10[scoreSplit[0]] = parseInt(scoreSplit[1]);
+        } else {
+            localStorage.setItem("highscore" + i, (navninput.value + ": " + (lengde - 1)));
+            let scoreSplit = localStorage.getItem("highscore" + i).split(" ");
+            topp10[scoreSplit[0]] = parseInt(scoreSplit[1]);
+            break;
+        }
+    }
+
+
+
+    //var list = { "you": 100, "me": 75, "foo": 116, "bar": 15 };
+    var keysSorted = Object.keys(topp10).sort(function (a, b) { return topp10[a] - topp10[b] }).map(key => topp10[key]);
+    console.log(keysSorted);
+    console.log(keysSorted[0]);
+
+    //for (i = 0; i < topp10score.length; i++) {
+    //    if (topp10score[i] >= topp10sortert[0]) {
+    //        topp10sortert.unshift(topp10navn[0] + ": " + topp10sortert[i]);
+    //    } else if ((topp10score[i] >= topp10sortert[1])) {}
+    //}
+
+    if (localStorage.getItem("highscore0") == undefined) {
+        localStorage.setItem("highscore0", (navninput.value + ": " + (lengde - 1)));
+    }
+
+    var score = localStorage.getItem("highscore0").split(" ");
+
+    if ((lengde - 1) > parseInt(score[1])) {
+        localStorage.setItem("highscore0", navninput.value + ": " + (lengde - 1));
+    }
+
+
+    document.getElementById("hoyestepoengsum").innerHTML = localStorage.getItem("highscore0");
+}
+
+
+
+//console.log(document.getElementById("start"));
+document.addEventListener("keydown", rightCTRLStart);
+document.addEventListener("keydown", endrePiltast);

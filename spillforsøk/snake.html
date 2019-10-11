@@ -3,11 +3,62 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+    <title>Martins snake</title>
+    <style>
 
-    <canvas id="canvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+
+        div.page {
+            height: 85vh;
+            display: grid;
+            grid-template-columns:6fr 4fr;
+            grid-template-rows: 610px 1fr;
+            grid-template-areas:
+                'canvas poengliste'
+                'ting ting';
+        }
+
+        #canvas{
+            
+            grid-area: canvas;
+        }
+
+        #hoyre {
+
+            margin: 0 0 0 50px;
+            display: inline-block;
+            height: 500px;
+            width: 250px;
+            grid-area: poengliste;
+        }
+
+        #diverse{
+
+            grid-area: ting;
+        }
+    </style>
+</head>
+<body onload="skrivPoeng('onload')">
+
+    <div class="page">
+        <canvas id="canvas" width="800" height="600" style="border: 1px solid black;"></canvas>
+        <input id="input" type="text" style="position:absolute;left:100px;top:100px;width:200px; display:none;" value="Skriv inn navnet ditt her" onkeypress="return (event.charCode > 64 &&
+        event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8"/>
+        <button id="bekreft" style="position:absolute;left:100px;top:130px;width:100px;display:none;" onclick="skrivPoeng()">Bekreft</button>
+        <p>
+            Kontroller: <br>
+            **Rigth CTRL to start** <br>
+            **Styr med piltastene**
+        </p>
+
+        <div id="hoyre"><h2>Highscore:<br /></h2><p id="hoyestepoengsum"></p></div>
+
+        <div id="diverse">
+            <!--<p id="poeng">0</p>-->
+            <button id="start" style="display: block" onclick="begin()">Start</button>
+        </div>
+
+    </div>
+
 
 
     <script type="text/javascript" src="snake.js"></script>
