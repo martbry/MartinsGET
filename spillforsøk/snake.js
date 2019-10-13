@@ -237,10 +237,10 @@ function rightCTRLStart(knappTrykt) {
 }
 
 function skrivPoeng() {
-
-    var topp10 = {};
-    var topp10sortert = [];
     //localStorage.clear();
+    var topp10 = [];
+    var teller = 0;
+
     document.getElementById("input").style.display = "none";
     document.getElementById("bekreft").style.display = "none";
 
@@ -252,43 +252,50 @@ function skrivPoeng() {
     //spilt før:
     for (i = 0; i < 10; i++) {
         if (localStorage.getItem("highscore" + i) != undefined) {
-            let scoreSplit = localStorage.getItem("highscore" + i).split(" ");
-            topp10[scoreSplit[0]] = parseInt(scoreSplit[1]);
-        } else {
-            localStorage.setItem("highscore" + i, (navninput.value + ": " + (lengde - 1)));
-            let scoreSplit = localStorage.getItem("highscore" + i).split(" ");
-            topp10[scoreSplit[0]] = parseInt(scoreSplit[1]);
-            break;
+
+            
+            try {
+                let score = JSON.parse(localStorage.getItem("highscore" + i));
+                var obj = { "navn": score.navn, "poeng": parseInt(score.poeng) };
+            } catch{
+                break;
+            }
+            
+            //var objkopi = JSON.stringify(obj);
+            //topp10.push(JSON.parse(objkopi));
+            topp10.push(obj);
+            teller++;
+            //console.log(topp10[i].navn + " " + topp10[i].poeng);
         }
     }
 
-
-
-    //var list = { "you": 100, "me": 75, "foo": 116, "bar": 15 };
-    var keysSorted = Object.keys(topp10).sort(function (a, b) { return topp10[a] - topp10[b] }).map(key => topp10[key]);
-    console.log(keysSorted);
-    console.log(keysSorted[0]);
-
-    //for (i = 0; i < topp10score.length; i++) {
-    //    if (topp10score[i] >= topp10sortert[0]) {
-    //        topp10sortert.unshift(topp10navn[0] + ": " + topp10sortert[i]);
-    //    } else if ((topp10score[i] >= topp10sortert[1])) {}
-    //}
-
-    if (localStorage.getItem("highscore0") == undefined) {
-        localStorage.setItem("highscore0", (navninput.value + ": " + (lengde - 1)));
+    if (lengde - 1 > 0) {
+        var dennerunda = { "navn": navninput.value, "poeng": (lengde - 1) };
+        topp10.push(dennerunda);
     }
+    
 
-    var score = localStorage.getItem("highscore0").split(" ");
+    topp10.sort((a, b) => {
+        if (a.poeng > b.poeng) {
+            return -1;
+        } else {
+            return 1;
+        }
+    })
 
-    if ((lengde - 1) > parseInt(score[1])) {
-        localStorage.setItem("highscore0", navninput.value + ": " + (lengde - 1));
+    if (topp10.length > 10) {
+        topp10.length = 10;
     }
+    
 
+    document.getElementById("hoyestepoengsum").innerHTML = "";
 
-    document.getElementById("hoyestepoengsum").innerHTML = localStorage.getItem("highscore0");
+    for (i = 0; i < topp10.length; i++) {
+        
+        localStorage.setItem("highscore" + i, JSON.stringify(topp10[i]));
+        document.getElementById("hoyestepoengsum").innerHTML += topp10[i].navn + ": " + topp10[i].poeng + "</br>";
+    }
 }
-
 
 
 //console.log(document.getElementById("start"));
