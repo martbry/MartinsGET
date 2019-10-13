@@ -253,8 +253,9 @@ function skrivPoeng() {
     for (i = 0; i < 10; i++) {
         if (localStorage.getItem("highscore" + i) != undefined) {
 
-            let score = JSON.parse(localStorage.getItem("highscore" + i));
+            
             try {
+                let score = JSON.parse(localStorage.getItem("highscore" + i));
                 var obj = { "navn": score.navn, "poeng": parseInt(score.poeng) };
             } catch{
                 break;
