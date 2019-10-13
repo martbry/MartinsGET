@@ -286,9 +286,7 @@ function skrivPoeng() {
         localStorage.setItem("highscore" + i, JSON.stringify(topp10[i]));
         document.getElementById("hoyestepoengsum").innerHTML += topp10[i].navn + ": " + topp10[i].poeng + "</br>";
     }
-
 }
-
 
 
 //console.log(document.getElementById("start"));
