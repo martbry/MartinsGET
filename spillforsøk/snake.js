@@ -252,12 +252,7 @@ function skrivPoeng() {
     //spilt før:
     for (i = 0; i < 10; i++) {
         if (localStorage.getItem("highscore" + i) != undefined) {
-            console.log("dette skjer");
-            //var test = localStorage.getItem("highscore0");
-            //var bruk = JSON.parse(test);
-            //document.getElementById("hoyestepoengsum").innerHTML = bruk.navn;
-            //*navn.value*, *poeng*
-            
+
             let score = JSON.parse(localStorage.getItem("highscore" + i));
             var obj = { "navn": score.navn, "poeng": parseInt(score.poeng) };
             //var objkopi = JSON.stringify(obj);
@@ -267,8 +262,12 @@ function skrivPoeng() {
             //console.log(topp10[i].navn + " " + topp10[i].poeng);
         }
     }
-    var dennerunda = { "navn": navninput.value, "poeng": (lengde - 1) };
-    topp10.push(dennerunda);
+
+    if (lengde - 1 > 0) {
+        var dennerunda = { "navn": navninput.value, "poeng": (lengde - 1) };
+        topp10.push(dennerunda);
+    }
+    
 
     topp10.sort((a, b) => {
         if (a.poeng > b.poeng) {
@@ -277,6 +276,8 @@ function skrivPoeng() {
             return 1;
         }
     })
+
+    topp10.length = 10;
 
     document.getElementById("hoyestepoengsum").innerHTML = "";
 
