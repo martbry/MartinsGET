@@ -277,7 +277,10 @@ function skrivPoeng() {
         }
     })
 
-    topp10.length = 10;
+    if (topp10.length > 10) {
+        topp10.length = 10;
+    }
+    
 
     document.getElementById("hoyestepoengsum").innerHTML = "";
 
