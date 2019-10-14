@@ -238,8 +238,8 @@ function rightCTRLStart(knappTrykt) {
 
 function skrivPoeng() {
     //localStorage.clear();
+    let highscoreliste = "";
     var topp10 = [];
-    var teller = 0;
 
     document.getElementById("input").style.display = "none";
     document.getElementById("bekreft").style.display = "none";
@@ -260,12 +260,7 @@ function skrivPoeng() {
             } catch{
                 break;
             }
-            
-            //var objkopi = JSON.stringify(obj);
-            //topp10.push(JSON.parse(objkopi));
             topp10.push(obj);
-            teller++;
-            //console.log(topp10[i].navn + " " + topp10[i].poeng);
         }
     }
 
@@ -290,11 +285,22 @@ function skrivPoeng() {
 
     document.getElementById("hoyestepoengsum").innerHTML = "";
 
+    highscoreliste = "";
+
     for (i = 0; i < topp10.length; i++) {
-        
         localStorage.setItem("highscore" + i, JSON.stringify(topp10[i]));
-        document.getElementById("hoyestepoengsum").innerHTML += topp10[i].navn + ": " + topp10[i].poeng + "</br>";
+
+        if (i == 0) {
+            highscoreliste += "<ol><li>" + topp10[i].navn + ": " + topp10[i].poeng + "</li> </br>";
+            continue;
+        } else if (i == (topp10.length - 1)) {
+            highscoreliste += "<li>" + topp10[i].navn + ": " + topp10[i].poeng + "</li></ol> </br>";
+            continue;
+        } else {
+            highscoreliste += "<li>" + topp10[i].navn + ": " + topp10[i].poeng + "</li> </br>";
+        }
     }
+    document.getElementById("hoyestepoengsum").innerHTML = highscoreliste;
 }
 
 
