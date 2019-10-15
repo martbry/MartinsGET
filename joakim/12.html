@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <!--<div id="info">test</div>-->
+    <script>
+
+        taInnverdier();
+        tilfeldigSkrift();
+
+
+        function tilfeldigSkrift() {
+            var liste = taInnverdier();
+            var divHtml = '<div>' + liste + '</div>';
+            document.write(divHtml);
+        }
+
+        function taInnverdier() {
+            var liste = sjekkOgReturner();
+            return liste;
+
+        }
+
+        function sjekkOgReturner() {
+            var tekst = '';
+   
+            for (teller = 0; teller <= 4; teller++) {
+                if (teller == 0 || teller == 2 || teller == 4) {
+                    tekst += randomKonsonant();
+                }
+                if (teller == 1 || teller == 3) {
+                    tekst += randomVokal();
+                }
+            }
+            return tekst;
+        }
+
+
+        function randomVokal() {
+            var tall = tilfeldigTall(0, 25);
+
+            while (tall != 0 && tall != 4 && tall != 8 && tall != 14 && tall != 20 && tall != 24) {
+                tall = tilfeldigTall(0, 25);
+            }
+
+            return String.fromCharCode(tall + 'a'.charCodeAt(0));
+        }
+
+
+        function randomKonsonant() {
+            var tall = tilfeldigTall(0, 25);
+
+            while (tall == 0 || tall == 4 || tall == 8 || tall == 14 || tall == 20 || tall == 24) {
+                tall = tilfeldigTall(0, 25);
+            }
+
+            return String.fromCharCode(tall + 'a'.charCodeAt(0));
+
+        }
+
+
+        function tilfeldigTall(minimum, maksimum) {
+            return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>
