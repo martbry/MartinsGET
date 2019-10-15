@@ -6,10 +6,10 @@ Valgt stolpe: <i> <span id="markerttekst">ingen</span> </i>
 <br />
 Verdi:
 <input id="tallinput" type="number" min="1" max="10" />
-<button onclick="leggTil()">Legg til stolpe</button>
-<button id="endreknapp" disabled onclick="sjekkinput('endre')">Endre valgt stolpe</button>
+<button onclick="sjekkInput('leggtil')">Legg til stolpe</button>
+<button id="endreknapp" disabled onclick="sjekkInput('endre')">Endre valgt stolpe</button>
 <br />
-<button id="fjerneknapp" onclick="sjekkinput('fjern')">Fjerne valgt stolpe</button>
+<button id="fjerneknapp" onclick="fjernStolpe()">Fjerne valgt stolpe</button>
 
 <script>
     //Model:
@@ -88,13 +88,13 @@ Verdi:
         marker(skalmarkeresigjen);
     }
 
-    function fjernstolpe(markert) {
-        numbers.splice(markert, 1);
+    function fjernStolpe() {
+        numbers.splice(markertindeks, 1);
         fjernmarkering();
         showChart();
     }
 
-    function buttonSwitch(tekst) { //Deaktiverer knappene hvis "av" er sendt med som argument. Aktiverer ellers.
+    function buttonSwitch(tekst) {
         if (tekst == "av") {
             endreknapp.disabled = true;
             fjerneknapp.disabled = true;
@@ -104,14 +104,15 @@ Verdi:
         }
     }
 
-    function sjekkinput(funksjon) {
+    function sjekkInput(funksjon) {
+        console.log(input.value);
         if (input.value > 10 || input.value < 1) {
-            //*comit feilmelding*
+            alert("Input må være > 0 og < 10");
             return;
         } else {
             switch (funksjon) {
                 case "endre": endreStolpe(markertindeks); break;
-                case "fjern": fjernstolpe(markertindeks); break;
+                case "leggtil": leggTil(); break;
             }
         }
     }
