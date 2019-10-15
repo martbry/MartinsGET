@@ -55,11 +55,11 @@ Verdi:
 
     function marker(stolpeindeks) {
         if (markertindeks == stolpeindeks) {
-            fjernmarkering();
+            fjernMarkering();
             return;
         } else {
             if (markertindeks != undefined) {
-                fjernmarkering();
+                fjernMarkering();
             }
             markertindeks = stolpeindeks;
             markerttekst.innerHTML = parseInt(stolpeindeks) + 1;
@@ -69,11 +69,12 @@ Verdi:
     }
 
     function leggTil() {
+        fjernMarkering();
         numbers.push(input.value);
         showChart();
     }
 
-    function fjernmarkering() {
+    function fjernMarkering() {
         svgTag.childNodes[markertindeks].style.stroke = "none";
         markerttekst.innerHTML = "ingen";
         markertindeks = undefined;
@@ -84,13 +85,13 @@ Verdi:
         let skalmarkeresigjen = markert;
         numbers[markertindeks] = input.value;
         showChart();
-        fjernmarkering();
+        fjernMarkering();
         marker(skalmarkeresigjen);
     }
 
     function fjernStolpe() {
         numbers.splice(markertindeks, 1);
-        fjernmarkering();
+        fjernMarkering();
         showChart();
     }
 
@@ -116,11 +117,6 @@ Verdi:
             }
         }
     }
-
-
-
-
-
 
 
 </script>
