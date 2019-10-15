@@ -1,0 +1,125 @@
+﻿<!--View:-->
+<div>
+    <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>
+</div>
+Valgt stolpe: <i> <span id="markerttekst">ingen</span> </i>
+<br />
+Verdi:
+<input id="tallinput" type="number" min="1" max="10" />
+<button onclick="leggTil()">Legg til stolpe</button>
+<button id="endreknapp" disabled onclick="sjekkinput('endre')">Endre valgt stolpe</button>
+<br />
+<button id="fjerneknapp" onclick="sjekkinput('fjern')">Fjerne valgt stolpe</button>
+
+<script>
+    //Model:
+    let numbers = [7, 3, 1, 5, 8];
+    let svgTag = document.getElementById('chart');
+    let input = document.getElementById('tallinput');
+    let markerttekst = document.getElementById('markerttekst');
+    let endreknapp = document.getElementById("endreknapp");
+    let fjerneknapp = document.getElementById("fjerneknapp");
+    let markertindeks;
+
+    showChart();
+
+
+    //view:
+    function showChart() {
+        let svgInnerHtml = '';
+        for (let i = 0; i < numbers.length; i++) {
+            svgInnerHtml += createBar(numbers[i], i + 1);
+        }
+        svgTag.innerHTML = svgInnerHtml;
+    }
+
+    function createBar(number, barNo) {
+        const width = 8;
+        const spacing = 2;
+        let x = (barNo - 1) * (width + spacing);
+        let height = number * 10;
+        let y = 80 - height;
+        let color = calcColor(1, 10, barNo);
+        return `<rect onclick="marker(this.id)" width="${width}" height="${height}"
+                            x="${x}" y="${y}" fill="${color}" id="${barNo - 1}"></rect>`;
+    }
+
+    function calcColor(min, max, val) {
+        var minHue = 240, maxHue = 0;
+        var curPercent = (val - min) / (max - min);
+        var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+        return colString;
+    }
+
+    //controller:
+
+    function marker(stolpeindeks) {
+        if (markertindeks == stolpeindeks) {
+            fjernmarkering();
+            return;
+        } else {
+            if (markertindeks != undefined) {
+                fjernmarkering();
+            }
+            markertindeks = stolpeindeks;
+            markerttekst.innerHTML = parseInt(stolpeindeks) + 1;
+            svgTag.childNodes[stolpeindeks].style.stroke = "black";
+            buttonSwitch();
+        }
+    }
+
+    function leggTil() {
+        numbers.push(input.value);
+        showChart();
+    }
+
+    function fjernmarkering() {
+        svgTag.childNodes[markertindeks].style.stroke = "none";
+        markerttekst.innerHTML = "ingen";
+        markertindeks = undefined;
+        buttonSwitch("av");
+    }
+
+    function endreStolpe(markert) {
+        let skalmarkeresigjen = markert;
+        numbers[markertindeks] = input.value;
+        showChart();
+        fjernmarkering();
+        marker(skalmarkeresigjen);
+    }
+
+    function fjernstolpe(markert) {
+        numbers.splice(markert, 1);
+        fjernmarkering();
+        showChart();
+    }
+
+    function buttonSwitch(tekst) { //Deaktiverer knappene hvis "av" er sendt med som argument. Aktiverer ellers.
+        if (tekst == "av") {
+            endreknapp.disabled = true;
+            fjerneknapp.disabled = true;
+        } else {
+            endreknapp.disabled = false;
+            fjerneknapp.disabled = false;
+        }
+    }
+
+    function sjekkinput(funksjon) {
+        if (input.value > 10 || input.value < 1) {
+            //*comit feilmelding*
+            return;
+        } else {
+            switch (funksjon) {
+                case "endre": endreStolpe(markertindeks); break;
+                case "fjern": fjernstolpe(markertindeks); break;
+            }
+        }
+    }
+
+
+
+
+
+
+
+</script>
