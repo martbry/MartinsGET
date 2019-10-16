@@ -69,7 +69,10 @@ Verdi:
     }
 
     function leggTil() {
-        fjernMarkering();
+        if (markertindeks != undefined) {
+            fjernMarkering();
+        }
+        
         numbers.push(input.value);
         showChart();
     }
