@@ -81,6 +81,19 @@ Verdi:
         buttonSwitch("av");
     }
 
+    function sjekkInput(funksjon) {
+        console.log(input.value);
+        if (input.value > 10 || input.value < 1) {
+            alert("Input må være > 0 og < 10");
+            return;
+        } else {
+            switch (funksjon) {
+                case "endre": endreStolpe(markertindeks); break;
+                case "leggtil": leggTil(); break;
+            }
+        }
+    }
+
     function endreStolpe(markert) {
         let skalmarkeresigjen = markert;
         numbers[markertindeks] = input.value;
@@ -105,18 +118,7 @@ Verdi:
         }
     }
 
-    function sjekkInput(funksjon) {
-        console.log(input.value);
-        if (input.value > 10 || input.value < 1) {
-            alert("Input må være > 0 og < 10");
-            return;
-        } else {
-            switch (funksjon) {
-                case "endre": endreStolpe(markertindeks); break;
-                case "leggtil": leggTil(); break;
-            }
-        }
-    }
+    
 
 
 </script>
