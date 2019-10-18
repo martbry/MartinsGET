@@ -51,13 +51,10 @@ Verdi:
         let y = 80 - height;
         let color = calcColor(1, 10, barNo);
 
-        if (markertindeks == barNo - 1) {
-            return `<rect onclick="marker(${barNo - 1})" width="${width}" height="${height}"
-                            x="${x}" y="${y}" fill="${color}" style="stroke: black"></rect>`;
-        }
+        let style = markertindeks != barNo - 1 ? "" : 'stroke: black';
 
         return `<rect onclick="marker(this.id)" width="${width}" height="${height}"
-                            x="${x}" y="${y}" fill="${color}" id="${barNo - 1}"></rect>`;
+                            x="${x}" y="${y}" fill="${color}" id="${barNo - 1}" style="${style}"></rect>`;
     }
 
     function calcColor(min, max, val) {
