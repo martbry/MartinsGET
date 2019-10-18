@@ -1,0 +1,112 @@
+﻿<!--View:-->
+<div>
+    <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>
+</div>
+Valgt stolpe: <i> <span id="markerttekst">ingen</span> </i>
+<br />
+Verdi:
+<input id="tallinput" type="number" min="1" max="10" />
+<button onclick="sjekkInput('leggtil')">Legg til stolpe</button>
+<button id="endreknapp" disabled onclick="sjekkInput('endre')">Endre valgt stolpe</button>
+<br />
+<button id="fjerneknapp" onclick="fjernStolpe()">Fjerne valgt stolpe</button>
+
+<script>
+    //Model:
+    let numbers = [7, 3, 1, 5, 8];
+    let svgTag = document.getElementById('chart');
+    let input = document.getElementById('tallinput');
+    let markerttekst = document.getElementById('markerttekst');
+    let endreknapp = document.getElementById("endreknapp");
+    let fjerneknapp = document.getElementById("fjerneknapp");
+    let markertindeks;
+
+    showChart();
+
+
+    //view:
+    function showChart() {
+        let svgInnerHtml = '';
+        for (let i = 0; i < numbers.length; i++) {
+            svgInnerHtml += createBar(numbers[i], i + 1);
+        }
+        svgTag.innerHTML = svgInnerHtml;
+
+        markerttekst.innerHTML = (parseInt(markertindeks) + 1) || "ingen";
+
+        if (markertindeks != null) {
+            endreknapp.disabled = false;
+            fjerneknapp.disabled = false;
+        } else {
+            endreknapp.disabled = true;
+            fjerneknapp.disabled = true;
+        }
+    }
+
+    function createBar(number, barNo) {
+        const width = 8;
+        const spacing = 2;
+        let x = (barNo - 1) * (width + spacing);
+        let height = number * 10;
+        let y = 80 - height;
+        let color = calcColor(1, 10, barNo);
+
+        if (markertindeks == barNo - 1) {
+            return `<rect onclick="marker(${barNo - 1})" width="${width}" height="${height}"
+                            x="${x}" y="${y}" fill="${color}" style="stroke: black"></rect>`;
+        }
+
+        return `<rect onclick="marker(this.id)" width="${width}" height="${height}"
+                            x="${x}" y="${y}" fill="${color}" id="${barNo - 1}"></rect>`;
+    }
+
+    function calcColor(min, max, val) {
+        var minHue = 240, maxHue = 0;
+        var curPercent = (val - min) / (max - min);
+        var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+        return colString;
+    }
+
+    //controller:
+
+    function marker(stolpeindeks) {
+        if (stolpeindeks == markertindeks) {
+            markertindeks = null;
+        } else {
+            markertindeks = stolpeindeks;
+        }
+        showChart();
+    }
+
+    function sjekkInput(funksjon) {
+        if (input.value > 10 || input.value < 1) {
+            alert("Input må være > 0 og < 10");
+            return;
+        } else {
+            switch (funksjon) {
+                case "endre": endreStolpe(markertindeks); break;
+                case "leggtil": leggTil(); break;
+            }
+        }
+    }
+
+    function endreStolpe() {
+        numbers[markertindeks] = input.value;
+        showChart();
+    }
+
+    function leggTil() {
+        if (markertindeks != undefined) {
+            markertindeks = null;
+        }
+        numbers.push(input.value);
+        showChart();
+    }
+
+    function fjernStolpe() {
+        numbers.splice(markertindeks, 1);
+        showChart();
+    }
+
+
+</script>
