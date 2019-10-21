@@ -5,6 +5,21 @@
     <meta charset="utf-8" />
     <title>Picross</title>
     <style>
+
+        #rutenett .rammetopp {
+            height: 40px;
+            width: 40px;
+            border: solid;
+            background-color: lightslategrey;
+        }
+
+        #rutenett .rammevenstre {
+            height: 40px;
+            width: 40px;
+            border: solid;
+            background-color: lightslategrey;
+        }
+
         #rutenett .ruter {
             height: 40px;
             width: 40px;
@@ -43,16 +58,25 @@
 
         function lagLevel(storrelse) {
             var table = document.getElementById("rutenett");
-            for (var i = 0; i < storrelse; i++) {
+            for (var i = 0; i < storrelse + 1; i++) {
                 var row = document.createElement("tr");
-                for (var j = 0; j < storrelse; j++) {
+                for (var j = 0; j < storrelse + 1; j++) {
                     var col = document.createElement("td");
-                    col.classList.add("ruter");
-                    col.id = "" + i + j;
+                    if (i == 0 & j == 0) {
+                        col.classList.add("hjorne");
+                    }
+                    if (i == 0) {
+                        col.classList.add("rammetopp");
+                        row.appendChild(col);
+                    } else if(j == 0){
+                        col.classList.add("rammevenstre");
+                    } else {
+                        col.classList.add("ruter")
+                        col.addEventListener("click", skraver);
+                    }
+
+                    col.id = "" + (i-1) + (j-1);
                     col.farget = "false";
-                    col.addEventListener("click", skraver);
-                    //col.onclick = console.log("ja");
-                    //col.innerHTML = (i * 10) + j + 1; // assigning value to the cell
                     row.appendChild(col);
                 }
                 table.appendChild(row);
