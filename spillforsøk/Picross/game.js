@@ -40,7 +40,7 @@ class Game {
     kolonneHint() {
         //console.log(this.losning);
         let kolonnetall = [];
-        let streak = 0;
+        let streak = 1;
 
         let sist = null;
 
@@ -48,7 +48,7 @@ class Game {
 
         for (let kolonne = 0; kolonne < this.storrelse; kolonne++) {
             tall = [];
-            streak = 0;
+            streak = 1;
             sist = null;
             for (let rute = 0; rute < this.losning.length; rute++) {
                 if (this.losning[rute].charAt(1) == kolonne) {
@@ -64,29 +64,32 @@ class Game {
             }
 
             for (let hint = 0; hint < tall.length; hint++) {
-                //console.log('65');
-                if (hint == sist + 1) {
-                    //console.log('67');
+                console.log('tallhint ', tall[hint]);
+                if (sist != null && tall[hint] == parseInt(sist) + 1) {
                     streak++;
-                    sist = hint;
+                    sist = tall[hint];
                     if (hint == tall.length - 1) {
                         kolonnetall.push(streak);
                     }
-                } else if (hint != sist + 1) {
-                    //console.log('71');
-                    if (sist != null) {
-                        //console.log('73');
-                        kolonnetall.push(sist);
-                        sist = null;
+                } else if (sist == null || tall[hint] != parseInt(sist) + 1) {
+                    if (hint == tall.length - 1) {
+                        kolonnetall.push(1);
+                        if (sist != null) {
+                            kolonnetall.push(1);
+                        }
                         continue;
                     }
-                    sist = hint;
+                    if (sist != null) {
+                        streak != 1 ? kolonnetall.push(streak) : kolonnetall.push(1);
+                        streak = 1
+                        sist = tall[hint];
+                        continue;
+                    }
+                    sist = tall[hint];
                 } else {
-                    //console.log('80');
-                    if (streak != 0) {
-                        //console.log('82');
+                    if (streak != 1) {
                         kolonnetall.push(streak);
-                        streak = 0;
+                        streak = 1;
                     }
                 }
             }
