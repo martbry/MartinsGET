@@ -27,6 +27,7 @@
             background-color: white;
         }
     </style>
+    <script src="game.js"></script>
 </head>
 <body>
 
@@ -34,8 +35,8 @@
 
     <br />
     <br />
-    <button onclick="levelSet(level1, 10)">level1</button>
-    <button onclick="levelSet(level2, 10)">level2</button>
+    <button onclick="nyLevel('Level 1', 10, level1)">level1</button>
+    <button onclick="nyLevel('level 2', 10, level2)">level2</button>
 
 
     <table id="rutenett" style="margin: 100px 0 0 100px;"></table>
@@ -44,45 +45,22 @@
 
 
     <script>
+
+        let spill;
+        let tabell = document.getElementById("rutenett");
+
         let losning = [];
         let spillerslosning = [];
 
         let level1 = ["00", "10", "20", "30", "40", "50", "60", "70", "80", "90"];
-        let level2 = ["00", "07", "08", "11", "16", "17", "22", "25", "26", "33", "34", "35", "43", "44", "52", "53", "55", "61", "62", "66", "69", "70", "71", "77", "78", "79", "80", "87", "88", "89", "96", "97", "98", "99"];
+        let level2 = ["00", "11", "14", "16", "21", "26", "32", "34", "36", "38", "42", "48", "52", "54", "58", "66", "76", "79", "99"];
 
 
-        //let rutenett = new Array(storrelse);
-
-        //for (i = 0; i < rutenett.length; i++) {
-        //    rutenett[i] = new Array(storrelse);
-        //}
-
-
-        function lagLevel(storrelse) {
-            var table = document.getElementById("rutenett");
-            for (var i = 0; i < storrelse + 1; i++) {
-                var row = document.createElement("tr");
-                for (var j = 0; j < storrelse + 1; j++) {
-                    var col = document.createElement("td");
-                    if (i == 0 & j == 0) {
-                        col.classList.add("hjorne");
-                    }
-                    if (i == 0) {
-                        col.classList.add("rammetopp");
-                        row.appendChild(col);
-                    } else if (j == 0) {
-                        col.classList.add("rammevenstre");
-                    } else {
-                        col.classList.add("ruter")
-                        col.addEventListener("click", skraver);
-                    }
-
-                    col.id = "" + (i - 1) + (j - 1);
-                    col.farget = "false";
-                    row.appendChild(col);
-                }
-                table.appendChild(row);
-            }
+        function nyLevel(navn, storrelse, losning) {
+            nullstill();
+            spill = new Game(navn, storrelse, losning);
+            spill.lagLevel(rutenett);
+            spill.kolonneHint();
         }
 
 
@@ -98,33 +76,33 @@
                 }
             }
 
-            if (sjekkLosning()) {
+            if (spill.sjekkLosning()) {
                 console.log("hurra!");
             }
 
             console.log(spillerslosning);
         }
 
-        function sjekkLosning() {
-            spillerslosning.sort();
+        //function sjekkLosning() {
+        //    spillerslosning.sort();
 
-            if (spillerslosning.length != losning.length) {
-                return false;
-            }
-            for (i = 0; i < spillerslosning.length; i++) {
-                if (spillerslosning[i] != losning[i]) {
-                    return false;
-                }
-            }
-            return true;
-        }
+        //    if (spillerslosning.length != losning.length) {
+        //        return false;
+        //    }
+        //    for (i = 0; i < spillerslosning.length; i++) {
+        //        if (spillerslosning[i] != losning[i]) {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
 
-        function levelSet(level, storrelse) {
-            nullstill();
-            losning = level;
-            console.log(losning);
-            lagLevel(storrelse);
-        }
+        //function levelSet(level, storrelse) {
+        //    nullstill();
+        //    losning = level;
+        //    console.log(losning);
+        //    lagLevel(storrelse);
+        //}
 
         function nullstill() {
             document.getElementById("rutenett").innerHTML = "";
