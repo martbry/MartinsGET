@@ -7,6 +7,10 @@ class Game {
         this.losning = losning;
 
         this.kolonnehint = [];
+        this.radhint = [];
+
+        losning.sort();
+        this.losning.sort();
     }
 
     lagLevel(table) {
@@ -26,6 +30,7 @@ class Game {
                 } else {
                     col.classList.add("ruter")
                     col.addEventListener("click", skraver);
+                    col.addEventListener("contextmenu", utelukk);
                 }
 
                 col.id = "" + (i - 1) + (j - 1);
@@ -34,12 +39,14 @@ class Game {
             }
             table.appendChild(row);
         }
+        this.kolonneHint();
+        this.radHint();
     }
 
 
     kolonneHint() {
-        //console.log(this.losning);
         let kolonnetall = [];
+        let tempkolonne = [];
         let streak = 1;
 
         let sist = null;
@@ -56,31 +63,40 @@ class Game {
                 }
             }
 
-            console.log('TALL: ',kolonne, ' ', tall);
+            //console.log('TALL: ',kolonne, ' ', tall);
 
             if (tall.length == 0) {
-                kolonnetall.push(0);
+                kolonnetall.push([0]);
                 continue;
             }
 
+            tall.sort();
             for (let hint = 0; hint < tall.length; hint++) {
-                console.log('tallhint ', tall[hint]);
                 if (sist != null && tall[hint] == parseInt(sist) + 1) {
                     streak++;
                     sist = tall[hint];
                     if (hint == tall.length - 1) {
-                        kolonnetall.push(streak);
+                        tempkolonne.push(streak);
+                        kolonnetall[kolonne] = tempkolonne;
+                        tempkolonne = [];
                     }
                 } else if (sist == null || tall[hint] != parseInt(sist) + 1) {
+                    if (streak != 1) {
+                        tempkolonne.push(streak);
+                        streak = 1;
+                        sist = null;
+                    }
                     if (hint == tall.length - 1) {
-                        kolonnetall.push(1);
+                        tempkolonne.push(1);
                         if (sist != null) {
-                            kolonnetall.push(1);
+                            tempkolonne.push(1);
                         }
+                        kolonnetall[kolonne] = tempkolonne;
+                        tempkolonne = [];
                         continue;
                     }
                     if (sist != null) {
-                        streak != 1 ? kolonnetall.push(streak) : kolonnetall.push(1);
+                        streak != 1 ? tempkolonne.push(streak) : tempkolonne.push(1);
                         streak = 1
                         sist = tall[hint];
                         continue;
@@ -88,20 +104,107 @@ class Game {
                     sist = tall[hint];
                 } else {
                     if (streak != 1) {
-                        kolonnetall.push(streak);
+                        tempkolonne.push(streak);
                         streak = 1;
                     }
                 }
             }
         }
+        this.kolonnehint = kolonnetall;
+        this.skrivKolonneHint();
+    }
 
-        //console.log(tall);
-        console.log(kolonnetall);
+
+    skrivKolonneHint() {
+        for (let i = 0; i < this.storrelse; i++) {
+            for (let x = 0; x < this.kolonnehint[i].length; x++) {
+                document.getElementById('-1' + i).innerHTML += this.kolonnehint[i][x] + '<br />';
+            }
+        }
+    }
+
+
+    radHint() {
+        let radtall = [];
+        let temprad= [];
+        let streak = 1;
+
+        let sist = null;
+
+        let tall = [];
+
+        for (let rad = 0; rad < this.storrelse; rad++) {
+            tall = [];
+            streak = 1;
+            sist = null;
+            for (let rute = 0; rute < this.losning.length; rute++) {
+                if (this.losning[rute].charAt(0) == rad) {
+                    tall.push(this.losning[rute].charAt(1));
+                }
+            }
+
+            //console.log('TALL: ',kolonne, ' ', tall);
+
+            if (tall.length == 0) {
+                radtall.push([0]);
+                continue;
+            }
+
+            for (let hint = 0; hint < tall.length; hint++) {
+                if (sist != null && tall[hint] == parseInt(sist) + 1) {
+                    streak++;
+                    sist = tall[hint];
+                    if (hint == tall.length - 1) {
+                        temprad.push(streak);
+                        radtall[rad] = temprad;
+                        temprad = [];
+                    }
+                } else if (sist == null || tall[hint] != parseInt(sist) + 1) {
+                    if (streak != 1) {
+                            temprad.push(streak);
+                            streak = 1;
+                            sist = null;
+                        }
+                    if (hint == tall.length - 1) {
+                        temprad.push(1);
+                        if (sist != null) {
+                            temprad.push(1);
+                        }
+                        radtall[rad] = temprad;
+                        temprad = [];
+                        continue;
+                    }
+                    if (sist != null) {
+                        streak != 1 ? temprad.push(streak) : temprad.push(1);
+                        streak = 1
+                        sist = tall[hint];
+                        continue;
+                    }
+                    sist = tall[hint];
+                } else {
+                    if (streak != 1) {
+                        temprad.push(streak);
+                        streak = 1;
+                    }
+                }
+            }
+        }
+        this.radhint = radtall;
+        this.skrivRadHint();
+    }
+
+    skrivRadHint() {
+        for (let i = 0; i < this.storrelse; i++) {
+            for (let x = 0; x < this.radhint[i].length; x++) {
+                document.getElementById(i + '-1').innerHTML += this.radhint[i][x] + ' ';
+            }
+        }
     }
 
 
     sjekkLosning() {
         spillerslosning.sort();
+        this.losning.sort();
 
         if (spillerslosning.length != this.losning.length) {
             return false;
