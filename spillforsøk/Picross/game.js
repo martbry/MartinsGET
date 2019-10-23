@@ -221,14 +221,14 @@ class Game {
     skrivRadHint() {
         for (let i = 0; i < this.storrelse; i++) {
             for (let x = 0; x < this.radhint[i].length; x++) {
-                document.getElementById(i + this.koordinatskille + '-1').innerHTML += `<span onclick="graaHint(this)"> ${this.radhint[i][x]} </span>  `;
+                document.getElementById(i + this.koordinatskille + '-1').innerHTML += `<span onclick="graaHint(this)">  ${this.radhint[i][x]}  </span>`;
             }
         }
     }
 
 
     sjekkLosning() {
-        spillerslosning[1] = spillerslosning[1].map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
+        spillerslosning = spillerslosning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
             .map(a => a.split('.').map(n => +n - 100000).join('.'));
 
         this.losning = this.losning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
