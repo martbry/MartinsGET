@@ -1,31 +1,39 @@
 // JavaScript source code
 
 class Game {
-    constructor(navn, storrelse, losning) {
+    constructor(navn, storrelselosning) {
+        //console.log(storrelselosning[1]);
         this.navn = navn;
-        this.storrelse = storrelse;
-        this.losning = losning;
+        this.storrelse = storrelselosning[0];
+        this.losning = storrelselosning[1];
 
         this.kolonnehint = [];
         this.radhint = [];
 
-        losning.sort();
-        this.losning.sort();
+        //losning.sort();
+
+        this.koordinatskille = ".";
+
+        this.losning = this.losning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
+            .map(a => a.split('.').map(n => +n - 100000).join('.'));
     }
 
     lagLevel(table) {
         var table = document.getElementById("rutenett");
-        for (var i = 0; i < this.storrelse + 1; i++) {
+        for (var rad = 0; rad < this.storrelse + 1; rad++) {
             var row = document.createElement("tr");
-            for (var j = 0; j < this.storrelse + 1; j++) {
+            for (var kolonne = 0; kolonne < this.storrelse + 1; kolonne++) {
                 var col = document.createElement("td");
-                if (i == 0 & j == 0) {
-                    col.classList.add("hjorne");
+                if (rad % 5 == 0) {
+                    col.classList.add("borderbot");
                 }
-                if (i == 0) {
+                if (kolonne % 5 == 0) {
+                    col.classList.add("borderright");
+                }
+                if (rad == 0) {
                     col.classList.add("rammetopp");
                     row.appendChild(col);
-                } else if (j == 0) {
+                } else if (kolonne == 0) {
                     col.classList.add("rammevenstre");
                 } else {
                     col.classList.add("ruter")
@@ -33,14 +41,18 @@ class Game {
                     col.addEventListener("contextmenu", utelukk);
                 }
 
-                col.id = "" + (i - 1) + (j - 1);
+                col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
                 col.farget = "false";
                 row.appendChild(col);
             }
             table.appendChild(row);
         }
-        this.kolonneHint();
-        this.radHint();
+
+        if (this.losning.length >= 1) {
+            this.kolonneHint();
+            this.radHint();
+        }
+
     }
 
 
@@ -57,20 +69,25 @@ class Game {
             tall = [];
             streak = 1;
             sist = null;
+
             for (let rute = 0; rute < this.losning.length; rute++) {
-                if (this.losning[rute].charAt(1) == kolonne) {
-                    tall.push(this.losning[rute].charAt(0));
+
+                let koordinat = this.losning[rute];
+                let index = koordinat.indexOf(this.koordinatskille);
+                let partone = koordinat.slice(0, index);
+                let parttwo = koordinat.slice(index + 1, koordinat.length);
+
+                if (parttwo == kolonne) {
+                    tall.push(partone);
                 }
             }
-
-            //console.log('TALL: ',kolonne, ' ', tall);
 
             if (tall.length == 0) {
                 kolonnetall.push([0]);
                 continue;
             }
 
-            tall.sort();
+            //tall.sort();
             for (let hint = 0; hint < tall.length; hint++) {
                 if (sist != null && tall[hint] == parseInt(sist) + 1) {
                     streak++;
@@ -110,6 +127,7 @@ class Game {
                 }
             }
         }
+
         this.kolonnehint = kolonnetall;
         this.skrivKolonneHint();
     }
@@ -118,7 +136,7 @@ class Game {
     skrivKolonneHint() {
         for (let i = 0; i < this.storrelse; i++) {
             for (let x = 0; x < this.kolonnehint[i].length; x++) {
-                document.getElementById('-1' + i).innerHTML += this.kolonnehint[i][x] + '<br />';
+                document.getElementById('-1' + this.koordinatskille + i).innerHTML += `<span onclick="graaHint(this)"> ${this.kolonnehint[i][x]} </span><br />`;
             }
         }
     }
@@ -126,7 +144,7 @@ class Game {
 
     radHint() {
         let radtall = [];
-        let temprad= [];
+        let temprad = [];
         let streak = 1;
 
         let sist = null;
@@ -138,8 +156,15 @@ class Game {
             streak = 1;
             sist = null;
             for (let rute = 0; rute < this.losning.length; rute++) {
-                if (this.losning[rute].charAt(0) == rad) {
-                    tall.push(this.losning[rute].charAt(1));
+                let koordinat = this.losning[rute];
+                //console.log('cord', koordinat);
+                let index = koordinat.indexOf(this.koordinatskille);
+                let partone = koordinat.slice(0, index);
+                //console.log(partone);
+                let parttwo = koordinat.slice(index + 1, koordinat.length);
+                //console.log(parttwo);
+                if (partone == rad) {
+                    tall.push(parttwo);
                 }
             }
 
@@ -161,10 +186,10 @@ class Game {
                     }
                 } else if (sist == null || tall[hint] != parseInt(sist) + 1) {
                     if (streak != 1) {
-                            temprad.push(streak);
-                            streak = 1;
-                            sist = null;
-                        }
+                        temprad.push(streak);
+                        streak = 1;
+                        sist = null;
+                    }
                     if (hint == tall.length - 1) {
                         temprad.push(1);
                         if (sist != null) {
@@ -196,15 +221,21 @@ class Game {
     skrivRadHint() {
         for (let i = 0; i < this.storrelse; i++) {
             for (let x = 0; x < this.radhint[i].length; x++) {
-                document.getElementById(i + '-1').innerHTML += this.radhint[i][x] + ' ';
+                document.getElementById(i + this.koordinatskille + '-1').innerHTML += `<span onclick="graaHint(this)"> ${this.radhint[i][x]} </span>  `;
             }
         }
     }
 
 
     sjekkLosning() {
-        spillerslosning.sort();
-        this.losning.sort();
+        spillerslosning[1] = spillerslosning[1].map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
+            .map(a => a.split('.').map(n => +n - 100000).join('.'));
+
+        this.losning = this.losning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
+            .map(a => a.split('.').map(n => +n - 100000).join('.'));
+        //spillerslosning.sort();
+        //this.losning.sort();
+
 
         if (spillerslosning.length != this.losning.length) {
             return false;

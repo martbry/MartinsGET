@@ -6,40 +6,81 @@
     <title>Picross</title>
     <style>
 
-        #rutenett .rammetopp {
-            height: 40px;
-            width: 40px;
-            border: solid;
-            background-color: lightslategrey;
+        /*table, tr, th, td{
+            border-collapse: collapse;
+        }*/
+
+        #rutenett {
+            margin-left: 20px;
+            border-collapse: collapse;
         }
 
-        #rutenett .rammevenstre {
-            height: 40px;
-            width: 40px;
-            border: solid;
-            background-color: lightslategrey;
-        }
+            #rutenett .rammetopp {
+                border: solid;
+                font-size: 20px;
+                background-color: lightslategrey;
+                -webkit-user-select: none;
+            }
 
-        #rutenett .ruter {
-            height: 40px;
-            width: 40px;
-            border: solid;
-            background-color: white;
+            #rutenett .rammevenstre {
+                border: solid;
+                font-size: 20px;
+                background-color: lightslategrey;
+                -webkit-user-select: none;
+            }
+
+            #rutenett .borderbot {
+                border-bottom-width: medium !important;
+            }
+
+            #rutenett .borderright {
+                border-right-width: medium !important;
+            }
+
+            #rutenett .ruter {
+                height: 40px;
+                width: 40px;
+                border: solid;
+                border-width: thin;
+                border-color: darkslategray;
+                background-color: white;
+                /*color:*/
+            }
+
+        div.levels {
+            display: inline-block;
+            margin: 0 0 20px 0;
         }
     </style>
     <script src="game.js"></script>
 </head>
 <body>
 
-    //Picross. 2D Matrix
-
-    <br />
-    <br />
-    <button onclick="nyLevel('Level 1', 10, level1)">level1</button>
-    <button onclick="nyLevel('level 2', 10, level2)">level2</button>
 
 
-    <table id="rutenett" style="margin: 100px 0 0 100px;"></table>
+    <div class="levels">
+        <span>5*5-puzzles<br /></span>
+        <button onclick="nyLevel('Level 1', level15)">level1</button>
+        <button onclick="nyLevel('level 2', level25)">level2</button>
+        <button onclick="nyLevel('level 3', level35)">level3</button>
+        <button onclick="nyLevel('level 4', level45)">level4</button>
+    </div>
+
+    <div class="levels">
+        <span>10*10-puzzles<br /></span>
+        <button onclick="nyLevel('Level 1', level110)">level1</button>
+        <button onclick="nyLevel('level 2', level210)">level2</button>
+    </div>
+
+    <div class="levels">
+        <span>15*15-puzzles<br /></span>
+        <button onclick="nyLevel('Level 1', level115)">level1</button>
+        <button onclick="nyLevel('level 2', level210)">level2</button>
+    </div>
+
+
+
+    <table id="rutenett"></table>
 
 
 
@@ -56,13 +97,30 @@
         let losning = [];
         let spillerslosning = [];
 
-        let level1 = ["02", "03", "04", "05", "06", "11", "12", "13", "14", "15", "16", "17", "23", "24", "26", "28", "33", "34", "36", "38", "46", "51", "52", "53", "54", "55", "56", "60", "61", "62", "64", "65", "69", "70", "71", "72", "73", "74", "75", "77", "79", "80", "81", "82", "83", "87", "88", "92", "93", "97"];
-        let level2 = ["04", "05", "13", "14", "15", "22", "23", "24", "25", "30", "31", "32", "36", "37", "40", "41", "42", "46", "47", "48", "49", "50", "51", "55", "56", "58", "59", "60", "61", "62", "63", "64", "65", "66", "70", "71", "72", "74", "75", "76", "79", "80", "81", "82", "84", "85", "86", "90", "94", "95"];
+        //puzzles:
 
 
-        function nyLevel(navn, storrelse, losning) {
+        let level15 = [5, ["0.0", "0.2", "0.4", "1.0", "1.1", "1.4", "2.1", "3.0", "3.1", "3.2", "4.1", "4.2", "4.3", "4.4"]];
+        let level25 = [5, ["0.0", "0.1", "0.2", "1.0", "1.2", "1.3", "1.4", "2.4", "3.2", "3.3", "3.4", "4.0", "4.1"]];
+        let level35 = [5, ["0.2", "0.3", "0.4", "1.1", "1.3", "1.4", "2.2", "2.4", "3.2", "4.0", "4.2", "4.3", "4.4"]];
+        let level45 = [5, ["0.1", "0.2", "0.3", "1.1", "1.3", "1.4", "2.3", "3.0", "3.1", "3.3", "3.4", "4.0", "4.1"]];
+
+        let level110 = [10, ["0.2", "0.3", "0.4", "0.5", "0.6", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.3", "2.4", "2.6", "2.8", "3.3", "3.4", "3.6", "3.8", "4.6", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "6.0", "6.1", "6.2", "6.4", "6.5", "6.9", "7.0", "7.1", "7.2", "7.3", "7.4", "7.5", "7.7", "7.9", "8.0", "8.1", "8.2", "8.3", "8.7", "8.8", "9.2", "9.3", "9.7"]];
+        let level210 = [10, ["0.4", "0.5", "1.3", "1.4", "1.5", "2.2", "2.3", "2.4", "2.5", "3.0", "3.1", "3.2", "3.6", "3.7", "4.0", "4.1", "4.2", "4.6", "4.7", "4.8", "4.9", "5.0", "5.1", "5.5", "5.6", "5.8", "5.9", "6.0", "6.1", "6.2", "6.3", "6.4", "6.5", "6.6", "7.0", "7.1", "7.2", "7.4", "7.5", "7.6", "7.9", "8.0", "8.1", "8.2", "8.4", "8.5", "8.6", "9.0", "9.4", "9.5"]];
+
+        let level115 = [15, ["0.0","0.1","0.13","0.2","0.3","0.4","0.5","0.6","1.0","1.1","1.12","1.13","1.14","1.2","1.3","1.4","1.5","10.14","10.3","10.4","10.6","10.7","10.8","11.1","11.13","11.14","11.2","11.3","11.5","11.6","11.7","11.8","12.0","12.1","12.12","12.13","12.14","12.2","12.4","12.5","12.8","13.0","13.1","13.11","13.12","13.13","13.14","13.2","13.3","13.4","14.1","14.10","14.11","14.12","14.13","14.14","14.2","14.3","2.0","2.1","2.11","2.12","2.14","2.2","2.3","2.4","3.0","3.1","3.10","3.11","3.14","3.2","3.3","4.0","4.1","4.10","4.14","4.2","4.9","5.0","5.1","5.13","5.14","5.8","5.9","6.0","6.12","6.13","6.7","6.8","7.11","7.12","7.3","7.4","7.6","7.7","8.10","8.11","8.3","8.4","8.5","8.6","9.10","9.4","9.5","9.6","9.7","9.8","9.9"]];
+
+
+        let test = [];
+        for (i = 0; i < level115[1].length; i++) {
+            test.push(level115[1][i].replace(",", "."));
+        }
+        console.log(test);
+
+
+        function nyLevel(navn, storrelselosning) {
             nullstill();
-            spill = new Game(navn, storrelse, losning);
+            spill = new Game(navn, storrelselosning);
             spill.lagLevel(rutenett);
         }
 
@@ -70,6 +128,7 @@
         function skraver(rute) {
             rute.target.style.backgroundColor == "black" ? rute.target.style.backgroundColor = "white" : rute.target.style.backgroundColor = "black";
             rute.target.style.backgroundColor == "black" ? rute.target.farget = true : rute.target.farget = false;
+            //rute.target.style.backgroundColor == "black" ? rute.target.style.borderColor = "white" : rute.target.style.borderColor = "black";
             if (rute.target.farget == true) {
                 spillerslosning.push(rute.target.id);
             } else {
@@ -79,6 +138,8 @@
                 }
             }
 
+            //spillerslosning.sort();
+            console.log(rute.target.classList);
             console.log(spillerslosning);
 
             if (spill.sjekkLosning()) {
@@ -89,9 +150,9 @@
         function utelukk(rute) {
             rute.target.style.backgroundColor == "grey" ? rute.target.style.backgroundColor = "white" : rute.target.style.backgroundColor = "grey";
             rute.target.farget = false;
-                let index = spillerslosning.indexOf(rute.target.id);
-                if (index > -1) {
-                    spillerslosning.splice(index, 1);
+            let index = spillerslosning.indexOf(rute.target.id);
+            if (index > -1) {
+                spillerslosning.splice(index, 1);
             }
             console.log(spillerslosning);
 
@@ -109,6 +170,10 @@
         function nullstill() {
             document.getElementById("rutenett").innerHTML = "";
             spillerslosning = [];
+        }
+
+        function graaHint(tall) {
+            tall.style.color == "darkgrey" ? tall.style.color = "black" : tall.style.color = "darkgrey";
         }
 
     </script>
