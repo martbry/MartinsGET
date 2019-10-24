@@ -55,7 +55,7 @@
             margin: 0 0 20px 0;
         }
     </style>
-    <script src="game.js"></script>
+    <script src="game2.js"></script>
 </head>
 <body>
 
@@ -131,55 +131,63 @@
             spill.lagLevel(rutenett);
         }
 
-
-        function skraver(rute) {
-            rute.target.style.backgroundColor == "black" ? rute.target.style.backgroundColor = "white" : rute.target.style.backgroundColor = "black";
-            rute.target.style.backgroundColor == "black" ? rute.target.farget = true : rute.target.farget = false;
-            //rute.target.farget == true ? rute.target.farget = false : rute.target.farget = true;
-            //console.log(rute.target.farget);
-            //for (i = 0; i < spillerslosning.length; i++) {
-            //    let denne = document.getElementById(spillerlosning[i]);
-            //    console.log(spillerslosning[i]);
-            //    if (document.denne.farget == true){
-            //        document.denne.style.backgroundColor = "black";
-            //    }
-            //}
-            //rute.target.style.backgroundColor == "black" ? rute.target.style.borderColor = "white" : rute.target.style.borderColor = "black";
-            if (rute.target.farget == true) {
-                spillerslosning.push(rute.target.id);
-            } else {
-                let index = spillerslosning.indexOf(rute.target.id);
-                if (index > -1) {
-                    spillerslosning.splice(index, 1);
-                }
-            }
-
-            //spillerslosning.sort();
-            //console.log(rute.target.classList);
-            console.log(spillerslosning);
-
-            if (spill.sjekkLosning()) {
-                vunnet();
-            }
-
-            //for (i = 0; i < level315[1].length; i++) {
-            //    document.getElementById(level315[1][i]).style.backgroundColor = "black";
-            //}
+        function farg(rute) {
+            rute.target.farget == false ? rute.target.farget = true : rute.target.farget = false;
+            
         }
 
-        function utelukk(rute) {
-            rute.target.style.backgroundColor == "grey" ? rute.target.style.backgroundColor = "white" : rute.target.style.backgroundColor = "grey";
-            rute.target.farget = false;
-            let index = spillerslosning.indexOf(rute.target.id);
-            if (index > -1) {
-                spillerslosning.splice(index, 1);
-            }
-            //console.log(spillerslosning);
-
-            if (spill.sjekkLosning()) {
-                vunnet();
-            }
+        function utelukk() {
+            return;
         }
+
+        //function skraver(rute) {
+        //    rute.target.style.backgroundColor == "black" ? rute.target.style.backgroundColor = "white" : rute.target.style.backgroundColor = "black";
+        //    rute.target.style.backgroundColor == "black" ? rute.target.farget = true : rute.target.farget = false;
+        //    //rute.target.farget == true ? rute.target.farget = false : rute.target.farget = true;
+        //    //console.log(rute.target.farget);
+        //    //for (i = 0; i < spillerslosning.length; i++) {
+        //    //    let denne = document.getElementById(spillerlosning[i]);
+        //    //    console.log(spillerslosning[i]);
+        //    //    if (document.denne.farget == true){
+        //    //        document.denne.style.backgroundColor = "black";
+        //    //    }
+        //    //}
+        //    //rute.target.style.backgroundColor == "black" ? rute.target.style.borderColor = "white" : rute.target.style.borderColor = "black";
+        //    if (rute.target.farget == true) {
+        //        spillerslosning.push(rute.target.id);
+        //    } else {
+        //        let index = spillerslosning.indexOf(rute.target.id);
+        //        if (index > -1) {
+        //            spillerslosning.splice(index, 1);
+        //        }
+        //    }
+
+        //    //spillerslosning.sort();
+        //    //console.log(rute.target.classList);
+        //    console.log(spillerslosning);
+
+        //    if (spill.sjekkLosning()) {
+        //        vunnet();
+        //    }
+
+        //    //for (i = 0; i < level315[1].length; i++) {
+        //    //    document.getElementById(level315[1][i]).style.backgroundColor = "black";
+        //    //}
+        //}
+
+        //function utelukk(rute) {
+        //    rute.target.style.backgroundColor == "grey" ? rute.target.style.backgroundColor = "white" : rute.target.style.backgroundColor = "grey";
+        //    rute.target.farget = false;
+        //    let index = spillerslosning.indexOf(rute.target.id);
+        //    if (index > -1) {
+        //        spillerslosning.splice(index, 1);
+        //    }
+        //    //console.log(spillerslosning);
+
+        //    if (spill.sjekkLosning()) {
+        //        vunnet();
+        //    }
+        //}
 
 
         function vunnet() {
