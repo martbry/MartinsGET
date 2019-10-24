@@ -16,14 +16,19 @@ class Game {
 
         this.losning = this.losning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
             .map(a => a.split('.').map(n => +n - 100000).join('.'));
+
+        this.lagLevel();
     }
 
-    lagLevel(table) {
+    lagLevel() {
         var table = document.getElementById("rutenett");
         for (var rad = 0; rad < this.storrelse + 1; rad++) {
             var row = document.createElement("tr");
             for (var kolonne = 0; kolonne < this.storrelse + 1; kolonne++) {
                 var col = document.createElement("td");
+                if (rad == 0 && kolonne == 0) {
+                    col.innerHTML = `${this.storrelse}*${this.storrelse} <br /> ${this.navn}`;
+                }
                 if (rad % 5 == 0) {
                     col.classList.add("borderbot");
                 }
@@ -36,13 +41,14 @@ class Game {
                 } else if (kolonne == 0) {
                     col.classList.add("rammevenstre");
                 } else {
-                    col.classList.add("ruter")
-                    col.addEventListener("click", skraver);
+                    col.classList.add("ruter");
+                    col.addEventListener("click", farg);
                     col.addEventListener("contextmenu", utelukk);
                 }
 
                 col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
-                col.farget = "false";
+                col.farget = false;
+                col.utelukket = false;
                 row.appendChild(col);
             }
             table.appendChild(row);
@@ -136,7 +142,7 @@ class Game {
     skrivKolonneHint() {
         for (let i = 0; i < this.storrelse; i++) {
             for (let x = 0; x < this.kolonnehint[i].length; x++) {
-                document.getElementById('-1' + this.koordinatskille + i).innerHTML += `<span onclick="graaHint(this)"> ${this.kolonnehint[i][x]} </span><br />`;
+                document.getElementById('-1' + this.koordinatskille + i).innerHTML += `<span onclick="spill.graaHint(this)"> ${this.kolonnehint[i][x]} </span><br />`;
             }
         }
     }
@@ -221,7 +227,7 @@ class Game {
     skrivRadHint() {
         for (let i = 0; i < this.storrelse; i++) {
             for (let x = 0; x < this.radhint[i].length; x++) {
-                document.getElementById(i + this.koordinatskille + '-1').innerHTML += `<span onclick="graaHint(this)">  ${this.radhint[i][x]}  </span>`;
+                document.getElementById(i + this.koordinatskille + '-1').innerHTML += `<span onclick="spill.graaHint(this)">  ${this.radhint[i][x]}  </span>`;
             }
         }
     }
@@ -246,6 +252,10 @@ class Game {
             }
         }
         return true;
+    }
+
+    graaHint(tall) {
+        tall.style.color == "darkgrey" ? tall.style.color = "black" : tall.style.color = "darkgrey";
     }
 
 }
