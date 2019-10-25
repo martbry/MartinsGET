@@ -1,0 +1,24 @@
+
+
+//PICROSS TODO:
+
+Lage en meny som kan skjules og vises. Undermeny: 5*5, 10*10, 15*15 [...]. Undermeny: Level1, level2, level3 [...].
+
+
+
+
+Funksjoner:
+Hovring av kolonne og rad når musa er over en rute.
+
+Holde inne og dra for å skravere flere "på en gang".
+
+DONE: Grå ut alle hvite felt når man er ferdig?
+
+
+
+Tegne:
+DONE: En lettere måte å legge inn en liste for å vise en hel tegning.
+DONE: Input tekstfelt (som kan skjules), hvor man skriver inn koordinater som blir pushet inn i spillerslosning[]. (Kan legge inn hele løsningslister for å tegne alt instant og dobbelsjekke hint).
+
+
+

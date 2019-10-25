@@ -2,16 +2,11 @@
 
 class Game {
     constructor(navn, storrelselosning) {
-        //console.log(storrelselosning[1]);
         this.navn = navn;
         this.storrelse = storrelselosning[0];
         this.losning = storrelselosning[1];
-
         this.kolonnehint = [];
         this.radhint = [];
-
-        //losning.sort();
-
         this.koordinatskille = ".";
 
         this.losning = this.losning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
@@ -42,6 +37,7 @@ class Game {
                     col.classList.add("rammevenstre");
                 } else {
                     col.classList.add("ruter");
+                    //col.addEventListener("click", farg);
                     col.addEventListener("click", farg);
                     col.addEventListener("contextmenu", utelukk);
                 }
@@ -163,18 +159,14 @@ class Game {
             sist = null;
             for (let rute = 0; rute < this.losning.length; rute++) {
                 let koordinat = this.losning[rute];
-                //console.log('cord', koordinat);
                 let index = koordinat.indexOf(this.koordinatskille);
                 let partone = koordinat.slice(0, index);
-                //console.log(partone);
                 let parttwo = koordinat.slice(index + 1, koordinat.length);
-                //console.log(parttwo);
                 if (partone == rad) {
                     tall.push(parttwo);
                 }
             }
 
-            //console.log('TALL: ',kolonne, ' ', tall);
 
             if (tall.length == 0) {
                 radtall.push([0]);
