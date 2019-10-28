@@ -13,6 +13,9 @@ class Game {
             .map(a => a.split('.').map(n => +n - 100000).join('.'));
 
         this.lagLevel();
+
+        this.hoveredkolonne;
+        this.hoveredrad;
     }
 
     lagLevel() {
@@ -38,8 +41,10 @@ class Game {
                 } else {
                     col.classList.add("ruter");
                     //col.addEventListener("click", farg);
-                    col.addEventListener("click", farg);
-                    col.addEventListener("contextmenu", utelukk);
+                    col.addEventListener("click", this.farg);
+                    col.addEventListener("contextmenu", this.utelukk);
+                    col.addEventListener("mouseout", this.unhover);
+                    col.addEventListener("mouseover", this.hover);
                 }
 
                 col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
@@ -224,6 +229,24 @@ class Game {
         }
     }
 
+    farg(rute) {
+        if (solved == true || rute.target.utelukket == true) {
+            return;
+        }
+
+        //rute.target.utelukket = false;
+        rute.target.farget == false ? rute.target.farget = true : rute.target.farget = false;
+        show();
+    }
+
+    utelukk(rute) {
+        if (solved == true || rute.target.farget == true) {
+            return;
+        }
+        //rute.target.farget = false;
+        rute.target.utelukket == false ? rute.target.utelukket = true : rute.target.utelukket = false;
+        show();
+    }
 
     sjekkLosning() {
         spillerslosning = spillerslosning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
@@ -244,6 +267,40 @@ class Game {
             }
         }
         return true;
+    }
+
+    hover(rute) {
+        //this er denne ruta inni her//
+        let index = this.id.indexOf(spill.koordinatskille);
+
+        //let partone = this.id.slice
+        let partone = this.id.slice(0, index);
+        let parttwo = this.id.slice(index + 1, this.id.length);
+
+        //hoverID: (-1, parttwo) og (partone, -1);
+
+        //console.log(this.id);
+
+        let hoveredk = document.getElementById("" + -1 + spill.koordinatskille + parttwo);
+        hoveredk.style.backgroundColor = "orange";
+        spill.hoveredkolonne = hoveredk;
+
+        //console.log("farge: " + document.getElementById("" + partone + spill.koordinatskille + -1).id);
+
+        let hoveredr = document.getElementById("" + partone + spill.koordinatskille + -1);
+
+        //console.log("bakfarge" + hoveredr.style.backgroundColor);
+
+        hoveredr.style.backgroundColor = "orange";
+        spill.hoveredrad = hoveredr;
+        //console.log("var " + spill.hoveredrad);
+        //console.log("ruta: " + hoveredr);
+    }
+
+    unhover() {
+        //console.log("ele :" + spill.hoveredk);
+        spill.hoveredkolonne.style.backgroundColor = "lightslategrey";
+        spill.hoveredrad.style.backgroundColor = "lightslategrey";
     }
 
     graaHint(tall) {

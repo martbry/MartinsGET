@@ -8,7 +8,7 @@ Lage en meny som kan skjules og vises. Undermeny: 5*5, 10*10, 15*15 [...]. Under
 
 
 Funksjoner:
-Hovring av kolonne og rad når musa er over en rute.
+DONE: Hovring av kolonne og rad når musa er over en rute.
 
 Holde inne og dra for å skravere flere "på en gang".
 

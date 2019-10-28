@@ -186,24 +186,6 @@
             }
         }
 
-        function farg(rute) {
-            if (solved == true || rute.target.utelukket == true) {
-                return;
-            }
-            //rute.target.utelukket = false;
-            rute.target.farget == false ? rute.target.farget = true : rute.target.farget = false;
-            show();
-        }
-
-        function utelukk(rute) {
-            if (solved == true || rute.target.farget == true) {
-                return;
-            }
-            //rute.target.farget = false;
-            rute.target.utelukket == false ? rute.target.utelukket = true : rute.target.utelukket = false;
-            show();
-        }
-
         function vunnet() {
             ferdig.style.display = "block";
         }
