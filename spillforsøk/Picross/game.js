@@ -278,27 +278,18 @@ class Game {
         let parttwo = this.id.slice(index + 1, this.id.length);
 
         //hoverID: (-1, parttwo) og (partone, -1);
-
-        //console.log(this.id);
-
         let hoveredk = document.getElementById("" + -1 + spill.koordinatskille + parttwo);
-        hoveredk.style.backgroundColor = "orange";
+        hoveredk.style.backgroundColor = "rgba(119, 136, 153, 0.3)";
         spill.hoveredkolonne = hoveredk;
 
-        //console.log("farge: " + document.getElementById("" + partone + spill.koordinatskille + -1).id);
-
         let hoveredr = document.getElementById("" + partone + spill.koordinatskille + -1);
-
-        //console.log("bakfarge" + hoveredr.style.backgroundColor);
-
-        hoveredr.style.backgroundColor = "orange";
+        hoveredr.style.backgroundColor = "rgba(119, 136, 153, 0.3)";
         spill.hoveredrad = hoveredr;
-        //console.log("var " + spill.hoveredrad);
-        //console.log("ruta: " + hoveredr);
     }
 
-    unhover() {
-        //console.log("ele :" + spill.hoveredk);
+
+    unhover(rute) {
+        //hoverkolonne blir deklarert i hover()
         spill.hoveredkolonne.style.backgroundColor = "lightslategrey";
         spill.hoveredrad.style.backgroundColor = "lightslategrey";
     }
