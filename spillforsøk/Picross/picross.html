@@ -21,7 +21,18 @@
                 text-align: center;
                 vertical-align: bottom;
                 background-color: lightslategrey;
+                
                 -webkit-user-select: none;
+                /*-khtml-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+                
+                -webkit-user-drag: none;
+                -khtml-user-drag: none;
+                -moz-user-drag: none;
+                -o-user-drag: none;
+                user-drag: none;*/
             }
 
             #rutenett .rammevenstre {
@@ -47,11 +58,10 @@
                 border-width: thin;
                 border-color: darkslategray;
                 background-color: white;
-
             }
 
 
-            /*#rutenett .ruter:hover{
+        /*#rutenett .ruter:hover{
                 background-color: orange;
             }*/
 
@@ -117,6 +127,18 @@
 
         document.getElementById("rutenett").addEventListener("contextmenu", function (event) {
             event.preventDefault()
+        });
+
+        document.getElementById("rutenett").addEventListener("dragstart", function (event) {
+            event.preventDefault()
+        });
+
+        document.addEventListener("mouseup", function (event) {
+            try {
+                spill.mousehold = false;
+            } catch{
+                return;
+            }
         });
 
         let solved = false;

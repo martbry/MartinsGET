@@ -234,7 +234,7 @@ class Game {
     }
 
     farg(rute) {
-
+        console.log(rute.id);
         if (solved == true || rute.utelukket == true) {
             return;
         }
