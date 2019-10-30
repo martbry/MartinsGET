@@ -11,6 +11,7 @@ Funksjoner:
 DONE: Hovring av kolonne og rad når musa er over en rute.
 
 DONE: Holde inne og dra for å skravere flere "på en gang".
+DONE: Kun farge i én rad/kolonne av gangen når man drar.
 
 DONE: Grå ut alle hvite felt når man er ferdig?
 
