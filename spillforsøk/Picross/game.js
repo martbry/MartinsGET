@@ -18,6 +18,11 @@ class Game {
         this.hoveredrad;
         this.mousehold = false;
         this.button;
+        this.sisttryktruteid1;
+        this.sisttryktruteid2;
+
+        this.kolonneskravering = false;
+        this.radskravering = false;
     }
 
     lagLevel() {
@@ -42,13 +47,14 @@ class Game {
                     col.classList.add("rammevenstre");
                 } else {
                     col.classList.add("ruter");
+                    //col.innerHTML = `${rad-1}, ${kolonne-1}`;
                     //col.addEventListener("click", farg);
                     //col.addEventListener("click", this.farg);
                     col.addEventListener("contextmenu", this.utelukk);
                     col.addEventListener("mouseout", this.unhover);
                     col.addEventListener("mouseover", this.hover);
                     col.addEventListener("mousedown", this.mouseHold);
-                    col.addEventListener("mouseup", this.stopMouseHold);
+                    //col.addEventListener("mouseup", this.stopMouseHold);
                 }
 
                 col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
@@ -234,7 +240,6 @@ class Game {
     }
 
     farg(rute) {
-        console.log(rute.id);
         if (solved == true || rute.utelukket == true) {
             return;
         }
@@ -243,11 +248,42 @@ class Game {
             if (rute.farget == true) {
                 return;
             }
+
+            let index = rute.id.indexOf(spill.koordinatskille);
+
+            let partone = rute.id.slice(0, index);
+            let parttwo = rute.id.slice(index + 1, rute.id.length);
+
+            if (spill.kolonneskravering == false && spill.radskravering == false) {
+                if (partone == spill.sisttryktruteid1 && (parttwo > spill.sisttryktruteid2 || parttwo < spill.sisttryktruteid2)) {
+                    spill.radskravering = true;
+                } else if (parttwo == spill.sisttryktruteid2 && (partone > spill.sisttryktruteid1 || partone < spill.sisttryktruteid1))
+                    spill.kolonneskravering = true;
+            }
+
+            if (spill.radskravering == true) {
+                let rutairaden = document.getElementById(`${spill.sisttryktruteid1}${spill.koordinatskille}${parttwo}`);
+                if (rutairaden.farget == true) {
+                    return;
+                }
+                rutairaden.farget == false ? rutairaden.farget = true : rutairaden.farget = false;
+            } else if (spill.kolonneskravering == true) {
+                let rutaikolonna = document.getElementById(`${partone}${spill.koordinatskille}${spill.sisttryktruteid2}`);
+                if (rutaikolonna.farget == true) {
+                    return;
+                }
+                rutaikolonna.farget == false ? rutaikolonna.farget = true : rutaikolonna.farget = false;
+            }
+
         }
 
-        rute.farget == false ? rute.farget = true : rute.farget = false;
+        if (arguments.length == 1) {
+            rute.farget == false ? rute.farget = true : rute.farget = false;
+        }
+
         show();
     }
+
 
     utelukk(rute) {
         if (solved == true || rute.farget == true) {
@@ -258,9 +294,38 @@ class Game {
             if (rute.utelukket == true) {
                 return;
             }
+
+            let index = rute.id.indexOf(spill.koordinatskille);
+
+            let partone = rute.id.slice(0, index);
+            let parttwo = rute.id.slice(index + 1, rute.id.length);
+
+            if (spill.kolonneskravering == false && spill.radskravering == false) {
+                if (partone == spill.sisttryktruteid1 && (parttwo > spill.sisttryktruteid2 || parttwo < spill.sisttryktruteid2)) {
+                    spill.radskravering = true;
+                } else if (parttwo == spill.sisttryktruteid2 && (partone > spill.sisttryktruteid1 || partone < spill.sisttryktruteid1))
+                    spill.kolonneskravering = true;
+            }
+
+            if (spill.radskravering == true) {
+                let rutairaden = document.getElementById(`${spill.sisttryktruteid1}${spill.koordinatskille}${parttwo}`);
+                if (rutairaden.utelukket == true) {
+                    return;
+                }
+                rutairaden.utelukket == false ? rutairaden.utelukket = true : rutairaden.utelukket = false;
+            } else if (spill.kolonneskravering == true) {
+                let rutaikolonna = document.getElementById(`${partone}${spill.koordinatskille}${spill.sisttryktruteid2}`);
+                if (rutaikolonna.utelukket == true) {
+                    return;
+                }
+                rutaikolonna.utelukket == false ? rutaikolonna.utelukket = true : rutaikolonna.utelukket = false;
+            }
+
         }
 
-        rute.utelukket == false ? rute.utelukket = true : rute.utelukket = false;
+        if (arguments.length == 1) {
+            rute.utelukket == false ? rute.utelukket = true : rute.utelukket = false;
+        }
         show();
     }
 
@@ -270,8 +335,6 @@ class Game {
 
         this.losning = this.losning.map(a => a.split('.').map(n => +n + 100000).join('.')).sort()
             .map(a => a.split('.').map(n => +n - 100000).join('.'));
-        //spillerslosning.sort();
-        //this.losning.sort();
 
 
         if (spillerslosning.length != this.losning.length) {
@@ -288,6 +351,16 @@ class Game {
     mouseHold(mouseevent) {
         //this er ruta inni her
         spill.button = mouseevent.button;
+        //spill.sisttryktruteid = this.id;
+
+        let index = this.id.indexOf(spill.koordinatskille);
+
+        let partone = this.id.slice(0, index);
+        let parttwo = this.id.slice(index + 1, this.id.length);
+
+        spill.sisttryktruteid1 = partone;
+        spill.sisttryktruteid2 = parttwo;
+
         spill.mousehold = true;
 
         if (spill.button == 0) {
@@ -297,13 +370,13 @@ class Game {
         }
     }
 
-    stopMouseHold() {
-        spill.mousehold = false;
-    }
+    //stopMouseHold() {
+    //    spill.mousehold = false;
+    //}
 
     hover(rute) {
         //this er denne ruta inni her//
-        
+
         if (spill.mousehold == true) {
             if (spill.button == 0) {
                 spill.farg(this, "dra");
@@ -313,7 +386,6 @@ class Game {
         }
         let index = this.id.indexOf(spill.koordinatskille);
 
-        //let partone = this.id.slice
         let partone = this.id.slice(0, index);
         let parttwo = this.id.slice(index + 1, this.id.length);
 

@@ -21,13 +21,12 @@
                 text-align: center;
                 vertical-align: bottom;
                 background-color: lightslategrey;
-                
                 -webkit-user-select: none;
                 /*-khtml-user-select: none;
                 -moz-user-select: none;
                 -o-user-select: none;
                 user-select: none;
-                
+
                 -webkit-user-drag: none;
                 -khtml-user-drag: none;
                 -moz-user-drag: none;
@@ -136,9 +135,12 @@
         document.addEventListener("mouseup", function (event) {
             try {
                 spill.mousehold = false;
+                spill.kolonneskravering = false;
+                spill.radskravering = false;
             } catch{
                 return;
             }
+
         });
 
         let solved = false;
