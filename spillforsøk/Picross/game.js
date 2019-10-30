@@ -16,6 +16,8 @@ class Game {
 
         this.hoveredkolonne;
         this.hoveredrad;
+        this.mousehold = false;
+        this.button;
     }
 
     lagLevel() {
@@ -45,6 +47,8 @@ class Game {
                     col.addEventListener("contextmenu", this.utelukk);
                     col.addEventListener("mouseout", this.unhover);
                     col.addEventListener("mouseover", this.hover);
+                    col.addEventListener("mousedown", this.mousehold);
+                    col.addEventListener("mouseup", this.mousehold);
                 }
 
                 col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
@@ -230,6 +234,7 @@ class Game {
     }
 
     farg(rute) {
+
         if (solved == true || rute.target.utelukket == true) {
             return;
         }
@@ -269,8 +274,23 @@ class Game {
         return true;
     }
 
+    mousehold(rute) {
+        //this er ruta inni her
+        spill.mousehold == false ? spill.mousehold = true : spill.mousehold = false;
+        spill.button = rute.button;
+    }
+
     hover(rute) {
         //this er denne ruta inni her//
+        let denneruta = this;
+        console.log(denneruta);
+        if (spill.mousehold == true) {
+            if (spill.button == 0) {
+                spill.farg(denneruta);
+            } else if (spill.button == 2) {
+                spill.utelukk(denneruta);
+            }
+        }
         let index = this.id.indexOf(spill.koordinatskille);
 
         //let partone = this.id.slice
