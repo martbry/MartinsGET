@@ -240,15 +240,11 @@ class Game {
     }
 
     farg(rute) {
-        if (solved == true || rute.utelukket == true) {
+        if (solved == true) {
             return;
         }
 
         if (arguments.length == 2) {
-            if (rute.farget == true) {
-                return;
-            }
-
             let index = rute.id.indexOf(spill.koordinatskille);
 
             let partone = rute.id.slice(0, index);
@@ -263,21 +259,22 @@ class Game {
 
             if (spill.radskravering == true) {
                 let rutairaden = document.getElementById(`${spill.sisttryktruteid1}${spill.koordinatskille}${parttwo}`);
-                if (rutairaden.farget == true) {
+                if (rutairaden.farget == true || rutairaden.utelukket == true) {
                     return;
                 }
-                rutairaden.farget == false ? rutairaden.farget = true : rutairaden.farget = false;
+                rutairaden.farget = true;
             } else if (spill.kolonneskravering == true) {
                 let rutaikolonna = document.getElementById(`${partone}${spill.koordinatskille}${spill.sisttryktruteid2}`);
-                if (rutaikolonna.farget == true) {
+                if (rutaikolonna.farget == true || rutaikolonna.utelukket == true) {
                     return;
                 }
-                rutaikolonna.farget == false ? rutaikolonna.farget = true : rutaikolonna.farget = false;
+                rutaikolonna.farget = true;
             }
 
         }
 
         if (arguments.length == 1) {
+            rute.utelukket = false;
             rute.farget == false ? rute.farget = true : rute.farget = false;
         }
 
@@ -286,15 +283,11 @@ class Game {
 
 
     utelukk(rute) {
-        if (solved == true || rute.farget == true) {
+        if (solved == true) {
             return;
         }
 
         if (arguments.length == 2) {
-            if (rute.utelukket == true) {
-                return;
-            }
-
             let index = rute.id.indexOf(spill.koordinatskille);
 
             let partone = rute.id.slice(0, index);
@@ -309,21 +302,22 @@ class Game {
 
             if (spill.radskravering == true) {
                 let rutairaden = document.getElementById(`${spill.sisttryktruteid1}${spill.koordinatskille}${parttwo}`);
-                if (rutairaden.utelukket == true) {
+                if (rutairaden.utelukket == true || rutairaden.farget == true) {
                     return;
                 }
-                rutairaden.utelukket == false ? rutairaden.utelukket = true : rutairaden.utelukket = false;
+                rutairaden.utelukket = true;
             } else if (spill.kolonneskravering == true) {
                 let rutaikolonna = document.getElementById(`${partone}${spill.koordinatskille}${spill.sisttryktruteid2}`);
-                if (rutaikolonna.utelukket == true) {
+                if (rutaikolonna.utelukket == true || rutaikolonna.farget == true) {
                     return;
                 }
-                rutaikolonna.utelukket == false ? rutaikolonna.utelukket = true : rutaikolonna.utelukket = false;
+                rutaikolonna.utelukket = true;
             }
 
         }
 
         if (arguments.length == 1) {
+            rute.farget = false;
             rute.utelukket == false ? rute.utelukket = true : rute.utelukket = false;
         }
         show();
