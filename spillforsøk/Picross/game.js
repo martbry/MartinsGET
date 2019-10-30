@@ -43,12 +43,12 @@ class Game {
                 } else {
                     col.classList.add("ruter");
                     //col.addEventListener("click", farg);
-                    col.addEventListener("click", this.farg);
+                    //col.addEventListener("click", this.farg);
                     col.addEventListener("contextmenu", this.utelukk);
                     col.addEventListener("mouseout", this.unhover);
                     col.addEventListener("mouseover", this.hover);
-                    col.addEventListener("mousedown", this.mousehold);
-                    col.addEventListener("mouseup", this.mousehold);
+                    col.addEventListener("mousedown", this.mouseHold);
+                    col.addEventListener("mouseup", this.stopMouseHold);
                 }
 
                 col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
@@ -235,21 +235,32 @@ class Game {
 
     farg(rute) {
 
-        if (solved == true || rute.target.utelukket == true) {
+        if (solved == true || rute.utelukket == true) {
             return;
         }
 
-        //rute.target.utelukket = false;
-        rute.target.farget == false ? rute.target.farget = true : rute.target.farget = false;
+        if (arguments.length == 2) {
+            if (rute.farget == true) {
+                return;
+            }
+        }
+
+        rute.farget == false ? rute.farget = true : rute.farget = false;
         show();
     }
 
     utelukk(rute) {
-        if (solved == true || rute.target.farget == true) {
+        if (solved == true || rute.farget == true) {
             return;
         }
-        //rute.target.farget = false;
-        rute.target.utelukket == false ? rute.target.utelukket = true : rute.target.utelukket = false;
+
+        if (arguments.length == 2) {
+            if (rute.utelukket == true) {
+                return;
+            }
+        }
+
+        rute.utelukket == false ? rute.utelukket = true : rute.utelukket = false;
         show();
     }
 
@@ -274,21 +285,30 @@ class Game {
         return true;
     }
 
-    mousehold(rute) {
+    mouseHold(mouseevent) {
         //this er ruta inni her
-        spill.mousehold == false ? spill.mousehold = true : spill.mousehold = false;
-        spill.button = rute.button;
+        spill.button = mouseevent.button;
+        spill.mousehold = true;
+
+        if (spill.button == 0) {
+            spill.farg(this);
+        } else if (spill.button == 2) {
+            spill.utelukk(this);
+        }
+    }
+
+    stopMouseHold() {
+        spill.mousehold = false;
     }
 
     hover(rute) {
         //this er denne ruta inni her//
-        let denneruta = this;
-        console.log(denneruta);
+        
         if (spill.mousehold == true) {
             if (spill.button == 0) {
-                spill.farg(denneruta);
+                spill.farg(this, "dra");
             } else if (spill.button == 2) {
-                spill.utelukk(denneruta);
+                spill.utelukk(this, "dra");
             }
         }
         let index = this.id.indexOf(spill.koordinatskille);

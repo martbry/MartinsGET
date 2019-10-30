@@ -10,7 +10,7 @@ Lage en meny som kan skjules og vises. Undermeny: 5*5, 10*10, 15*15 [...]. Under
 Funksjoner:
 DONE: Hovring av kolonne og rad når musa er over en rute.
 
-Holde inne og dra for å skravere flere "på en gang".
+DONE: Holde inne og dra for å skravere flere "på en gang".
 
 DONE: Grå ut alle hvite felt når man er ferdig?
 
