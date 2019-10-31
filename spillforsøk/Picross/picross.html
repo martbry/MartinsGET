@@ -6,13 +6,28 @@
     <title>Picross</title>
     <style>
 
-        /*table, tr, th, td{
-            border-collapse: collapse;
-        }*/
+        div.page {
+            display: grid;
+            height: 95vh;
+            width: 95vw;
+
+            grid-template-rows: 100px 1fr;
+            grid-template-areas: 'levels' 'spillet';
+        }
+
+        div.levelwrapper {
+            grid-area: levels;
+        }
+
+        div #spillet {
+            grid-area: spillet;
+        }
 
         #rutenett {
             margin-left: 20px;
             border-collapse: collapse;
+            /*height: 100%;
+            width: 100%;*/
         }
 
             #rutenett .rammetopp {
@@ -22,16 +37,6 @@
                 vertical-align: bottom;
                 background-color: lightslategrey;
                 -webkit-user-select: none;
-                /*-khtml-user-select: none;
-                -moz-user-select: none;
-                -o-user-select: none;
-                user-select: none;
-
-                -webkit-user-drag: none;
-                -khtml-user-drag: none;
-                -moz-user-drag: none;
-                -o-user-drag: none;
-                user-drag: none;*/
             }
 
             #rutenett .rammevenstre {
@@ -53,17 +58,12 @@
             #rutenett .ruter {
                 height: 40px;
                 width: 40px;
+
                 border: solid;
                 border-width: thin;
                 border-color: darkslategray;
                 background-color: white;
             }
-
-
-        /*#rutenett .ruter:hover{
-                background-color: orange;
-            }*/
-
 
         div.levels {
             display: inline-block;
@@ -74,50 +74,61 @@
 </head>
 <body>
 
+    <div class="page">
+
+        <div class="levelwrapper">
+
+            <div class="levels" id="lvl5">
+                <span>5*5-puzzles<br /></span>
+                <button onclick="nyLevel('Level 1', level15)">5*5 level1</button>
+                <button onclick="nyLevel('level 2', level25)">5*5 level2</button>
+                <button onclick="nyLevel('level 3', level35)">5*5 level3</button>
+                <button onclick="nyLevel('level 4', level45)">5*5 level4</button>
+            </div>
+
+            <div class="levels" id="lvl10">
+                <span>10*10-puzzles<br /></span>
+                <button onclick="nyLevel('Level 1', level110)">10*10 level1</button>
+                <button onclick="nyLevel('level 2', level210)">10*10 level2</button>
+                <button onclick="nyLevel('level 3', level310)">10*10 level3</button>
+            </div>
+
+            <div class="levels" id="lvl15">
+                <span>15*15-puzzles<br /></span>
+                <button onclick="nyLevel('Level 1', level115)">15*15 level1</button>
+                <button onclick="nyLevel('level 2', level215)">15*15 level2</button>
+                <button onclick="nyLevel('level 3', level315)">15*15 level3</button>
+            </div>
+
+            <div class="levels" id="lvl20">
+                <span>20*20-puzzles<br /></span>
+                <button onclick="nyLevel('Level 1', level120)">20*20 level1</button>
+            </div>
+
+            <div class="levels" id="lvlblank">
+                <span>Blank<br /></span>
+                <button onclick="nyLevel('Level 1', [5,[]])">5*5</button>
+                <button onclick="nyLevel('Level 1', [10,[]])">10*10</button>
+                <button onclick="nyLevel('Level 1', [15,[]])">15*15</button>
+                <button onclick="nyLevel('Level 1', [20,[]])">20*20</button>
+            </div>
+        </div>
+
+        <div id="spillet">
+            <h1 id="ferdig" style="display: none; color: lawngreen;">WELL DONE!</h1>
+            <table id="rutenett"></table>
+
+            <button onclick="visTeksttegning()"></button>
+            <input id="tekstinput" type="text" onchange="tegnInput()" style="display: none" />
+        </div>
 
 
-    <div class="levels">
-        <span>5*5-puzzles<br /></span>
-        <button onclick="nyLevel('Level 1', level15)">5*5 level1</button>
-        <button onclick="nyLevel('level 2', level25)">5*5 level2</button>
-        <button onclick="nyLevel('level 3', level35)">5*5 level3</button>
-        <button onclick="nyLevel('level 4', level45)">5*5 level4</button>
+
+
     </div>
 
-    <div class="levels">
-        <span>10*10-puzzles<br /></span>
-        <button onclick="nyLevel('Level 1', level110)">10*10 level1</button>
-        <button onclick="nyLevel('level 2', level210)">10*10 level2</button>
-        <button onclick="nyLevel('level 3', level310)">10*10 level3</button>
-    </div>
-
-    <div class="levels">
-        <span>15*15-puzzles<br /></span>
-        <button onclick="nyLevel('Level 1', level115)">15*15 level1</button>
-        <button onclick="nyLevel('level 2', level215)">15*15 level2</button>
-        <button onclick="nyLevel('level 3', level315)">15*15 level3</button>
-    </div>
-
-    <div class="levels">
-        <span>20*20-puzzles<br /></span>
-        <button onclick="nyLevel('Level 1', level120)">20*20 level1</button>
-    </div>
-
-    <div class="levels">
-        <span>Blank<br /></span>
-        <button onclick="nyLevel('Level 1', [5,[]])">5*5</button>
-        <button onclick="nyLevel('Level 1', [10,[]])">10*10</button>
-        <button onclick="nyLevel('Level 1', [15,[]])">15*15</button>
-        <button onclick="nyLevel('Level 1', [20,[]])">20*20</button>
-    </div>
 
 
-
-    <h1 id="ferdig" style="display: none; color: lawngreen;">WELL DONE!</h1>
-    <table id="rutenett"></table>
-
-    <button onclick="visTeksttegning()"></button>
-    <input id="tekstinput" type="text" onchange="tegnInput()" style="display: none" />
 
 
 
