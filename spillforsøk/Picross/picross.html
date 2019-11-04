@@ -10,7 +10,6 @@
             display: grid;
             height: 95vh;
             width: 95vw;
-
             grid-template-rows: 100px 1fr;
             grid-template-areas: 'levels' 'spillet';
         }
@@ -58,7 +57,6 @@
             #rutenett .ruter {
                 height: 40px;
                 width: 40px;
-
                 border: solid;
                 border-width: thin;
                 border-color: darkslategray;
@@ -197,7 +195,8 @@
                     let denne = document.getElementById(i + spill.koordinatskille + x);
 
                     denne.farget == true ? denne.style.backgroundColor = "black" :
-                        denne.utelukket == true ? denne.style.backgroundColor = "grey" : denne.style.backgroundColor = "white";
+                        denne.utelukket == true ? denne.style.backgroundColor = "grey" :
+                            denne.hovered == true ? denne.style.backgroundColor = "rgba(100, 100, 200, 0.2)" : denne.style.backgroundColor = "white";
 
                     if (denne.farget == true) {
                         tempspillerslosning.push(denne.id);
