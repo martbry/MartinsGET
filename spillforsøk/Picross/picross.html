@@ -105,6 +105,9 @@
                 <button onclick="nyLevel('Level 2', level220)">20*20 level2</button>
             </div>
 
+            <input id="inputrandom" type="number" name="randomlevel" value="" min="2" max="30" />
+            <button onclick="makeRandom()">Random level</button>
+
             <div class="levels" id="lvlblank">
                 <span>Blank<br /></span>
                 <button onclick="nyLevel('Level 1', [5,[]])">5*5</button>
@@ -169,6 +172,7 @@
         let level25 = [5, ["0.0", "0.1", "0.2", "1.0", "1.2", "1.3", "1.4", "2.4", "3.2", "3.3", "3.4", "4.0", "4.1"]];
         let level35 = [5, ["0.2", "0.3", "0.4", "1.1", "1.3", "1.4", "2.2", "2.4", "3.2", "4.0", "4.2", "4.3", "4.4"]];
         let level45 = [5, ["0.1", "0.2", "0.3", "1.1", "1.3", "1.4", "2.3", "3.0", "3.1", "3.3", "3.4", "4.0", "4.1"]];
+        let levelrandom = [];
 
         let level110 = [10, ["0.2", "0.3", "0.4", "0.5", "0.6", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "2.3", "2.4", "2.6", "2.8", "3.3", "3.4", "3.6", "3.8", "4.6", "5.1", "5.2", "5.3", "5.4", "5.5", "5.6", "6.0", "6.1", "6.2", "6.4", "6.5", "6.9", "7.0", "7.1", "7.2", "7.3", "7.4", "7.5", "7.7", "7.9", "8.0", "8.1", "8.2", "8.3", "8.7", "8.8", "9.2", "9.3", "9.7"]];
         let level210 = [10, ["0.4", "0.5", "1.3", "1.4", "1.5", "2.2", "2.3", "2.4", "2.5", "3.0", "3.1", "3.2", "3.6", "3.7", "4.0", "4.1", "4.2", "4.6", "4.7", "4.8", "4.9", "5.0", "5.1", "5.5", "5.6", "5.8", "5.9", "6.0", "6.1", "6.2", "6.3", "6.4", "6.5", "6.6", "7.0", "7.1", "7.2", "7.4", "7.5", "7.6", "7.9", "8.0", "8.1", "8.2", "8.4", "8.5", "8.6", "9.0", "9.4", "9.5"]];
@@ -244,6 +248,30 @@
                 document.getElementById(arr[i]).farget = true;
             }
             show();
+        }
+
+        function makeRandom() {
+            let storrelse = document.getElementById("inputrandom").value;
+            if (storrelse < 2 || storrelse > 30) {
+                return;
+            } else {
+                randomBane(storrelse);
+            }
+        }
+
+        function randomBane(storrelse) {
+            levelrandom = [];
+            levelrandom.push(parseInt(storrelse));
+            let dennebanen = [];
+            for (let i = 0; i < storrelse; i++) {
+                for (let x = 0; x < storrelse; x++) {
+                    if (Math.random() > 0.5) {
+                        dennebanen.push(i + "." + x);
+                    }
+                }
+            }
+            levelrandom.push(dennebanen);
+            nyLevel("Random", levelrandom);
         }
 
     </script>
