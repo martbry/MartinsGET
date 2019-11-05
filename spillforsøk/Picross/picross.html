@@ -4,80 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <title>Picross</title>
-    <style>
 
-        div.page {
-            display: grid;
-            height: 95vh;
-            width: 95vw;
-            grid-template-rows: 100px 1fr;
-            grid-template-areas: 'levels' 'spillet';
-        }
-
-        div.levelwrapper {
-            grid-area: levels;
-        }
-
-        div #spillet {
-            grid-area: spillet;
-        }
-
-        #rutenett {
-            margin-left: 20px;
-            border-collapse: collapse;
-            /*height: 100%;
-            width: 100%;*/
-        }
-
-            #rutenett .rammetopp {
-                border: solid;
-                font-size: 20px;
-                text-align: center;
-                vertical-align: bottom;
-                background-color: lightslategrey;
-                -webkit-user-select: none;
-            }
-
-            #rutenett .rammevenstre {
-                border: solid;
-                font-size: 20px;
-                text-align: right;
-                background-color: lightslategrey;
-                -webkit-user-select: none;
-            }
-
-            #rutenett .borderbot {
-                border-bottom-width: medium !important;
-            }
-
-            #rutenett .borderright {
-                border-right-width: medium !important;
-            }
-
-            #rutenett .ruter {
-                height: 40px;
-                width: 40px;
-                border: solid;
-                border-width: thin;
-                border-color: darkslategray;
-                background-color: white;
-            }
-
-        div.levels {
-            display: inline-block;
-            margin: 0 0 20px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="StyleSheet.css" />
+    
     <script src="game.js"></script>
 </head>
 <body>
-
+    <button id="menyknapp" onmouseover="visOgSkjulMeny()" style="margin: 20px 0 0 20px">☰</button>
     <div class="page">
 
-        <div class="levelwrapper">
+        <div id="levelwrapper" class="levelwrapper" style="display: none;" onmouseleave="visOgSkjulMeny()">
 
             <div class="levels" id="lvl5">
-                <span>5*5-puzzles<br /></span>
+                <p>5*5-puzzles<br /></p>
                 <button onclick="nyLevel('Level 1', level15)">5*5 level1</button>
                 <button onclick="nyLevel('level 2', level25)">5*5 level2</button>
                 <button onclick="nyLevel('level 3', level35)">5*5 level3</button>
@@ -85,14 +24,14 @@
             </div>
 
             <div class="levels" id="lvl10">
-                <span>10*10-puzzles<br /></span>
+                <p>10*10-puzzles<br /></p>
                 <button onclick="nyLevel('Level 1', level110)">10*10 level1</button>
                 <button onclick="nyLevel('level 2', level210)">10*10 level2</button>
                 <button onclick="nyLevel('level 3', level310)">10*10 level3</button>
             </div>
 
             <div class="levels" id="lvl15">
-                <span>15*15-puzzles<br /></span>
+                <p>15*15-puzzles<br /></p>
                 <button onclick="nyLevel('Level 1', level115)">15*15 level1</button>
                 <button onclick="nyLevel('level 2', level215)">15*15 level2</button>
                 <button onclick="nyLevel('level 3', level315)">15*15 level3</button>
@@ -100,7 +39,7 @@
             </div>
 
             <div class="levels" id="lvl20">
-                <span>20*20-puzzles<br /></span>
+                <p>20*20-puzzles<br /></p>
                 <button onclick="nyLevel('Level 1', level120)">20*20 level1</button>
                 <button onclick="nyLevel('Level 2', level220)">20*20 level2</button>
             </div>
@@ -109,7 +48,7 @@
             <button onclick="makeRandom()">Random level</button>
 
             <div class="levels" id="lvlblank">
-                <span>Blank<br /></span>
+                <p>Blank<br /></p>
                 <button onclick="nyLevel('Level 1', [5,[]])">5*5</button>
                 <button onclick="nyLevel('Level 1', [10,[]])">10*10</button>
                 <button onclick="nyLevel('Level 1', [15,[]])">15*15</button>
@@ -121,19 +60,21 @@
             <h1 id="ferdig" style="display: none; color: lawngreen;">WELL DONE!</h1>
             <table id="rutenett"></table>
 
-            <button onclick="visTeksttegning()"></button>
+            <button onclick="visTeksttegning()" style="display: none"></button>
             <input id="tekstinput" type="text" onchange="tegnInput()" style="display: none" />
         </div>
 
-        <h2>HOW TO PLAY:</h2>
-        <a href="https://gerrycanavan.wordpress.com/2005/07/27/the-rules-of-picross/" target="_blank">Regler</a>
-        <br />
-        <p>Venstreklikk fyller ruter.</p>
-        <p>Høyreklikk "utelukker" ruter.</p>
-        <p>Du kan markere at du er ferdig med et hint ved å trykke på det aktuelle tallet i kolonnen/raden det gjelder.</p>
-        <h4>For tilfeldig bane:</h4>
-        <p>Velg en størrelse i inputfeltet (minst 2, maks 30) og trykk "random level"</p>
 
+        <div id="howto">
+            <h2>HOW TO PLAY:</h2>
+            <a href="https://gerrycanavan.wordpress.com/2005/07/27/the-rules-of-picross/" target="_blank">Regler</a>
+            <br />
+            <p>Venstreklikk fyller ruter.</p>
+            <p>Høyreklikk "utelukker" ruter.</p>
+            <p>Du kan markere at du er ferdig med et hint ved å trykke på det aktuelle tallet i kolonnen/raden det gjelder.</p>
+            <h4>For tilfeldig bane:</h4>
+            <p>Velg en størrelse i inputfeltet (minst 2, maks 30) og trykk "random level"</p>
+        </div>
 
 
     </div>
@@ -236,7 +177,7 @@
         }
 
         function vunnet() {
-            ferdig.style.display = "block";
+            ferdig.style.display = "initial";
         }
 
         function nullstill() {
@@ -280,6 +221,11 @@
             }
             levelrandom.push(dennebanen);
             nyLevel("Random", levelrandom);
+        }
+
+        function visOgSkjulMeny() {
+            let meny = document.getElementById("levelwrapper");
+            meny.style.display == "none" ? meny.style.display = "initial" : meny.style.display = "none";
         }
 
     </script>
