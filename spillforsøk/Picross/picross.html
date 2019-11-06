@@ -6,10 +6,10 @@
     <title>Picross</title>
 
     <link rel="stylesheet" href="StyleSheet.css" />
-    
+
     <script src="game.js"></script>
 </head>
-<body>
+<body onresize="celleStorrelse()">
     <button id="menyknapp" onmouseover="visOgSkjulMeny()" style="margin: 20px 0 0 20px">☰</button>
     <div class="page">
 
@@ -48,7 +48,7 @@
             <div class="levels" id="lvl25">
                 <p>25*25-puzzles<br /></p>
                 <button onclick="nyLevel('Level 1', level125)">25*25 level1</button>
-                
+
             </div>
 
             <div class="levels" id="lvlrandom">
@@ -115,8 +115,9 @@
             } catch{
                 return;
             }
-
         });
+
+
 
         let solved = false;
         let ferdig = document.getElementById("ferdig");
@@ -154,6 +155,7 @@
         function nyLevel(navn, storrelselosning) {
             nullstill();
             spill = new Game(navn, storrelselosning);
+            celleStorrelse();
         }
 
         function show() {
@@ -188,6 +190,38 @@
                     }
                 }
                 vunnet();
+            }
+        }
+
+        function celleStorrelse() {
+            //console.log(window.innerWidth);
+            //console.log(width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
+            //console.log(document.documentElement.clientWidth);
+            try {
+                let storrelseb = (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / spill.storrelse);
+                let storrelseh = ((Math.max(document.documentElement.clientHeight, window.innerHeight || 0)-400) / spill.storrelse);
+                console.log("b: " + storrelseb + "h: " + storrelseh);
+                for (let i = 0; i < spill.storrelse; i++) {
+                    for (let x = 0; x < spill.storrelse; x++) {
+                        if (storrelseb < 40 || storrelseh < 40) {
+                            let minst;
+                            if (storrelseb < storrelseh) {
+                                minst = storrelseb;
+                            } else {
+                                minst = storrelseh;
+                            }
+                            
+                            document.getElementById(`${i}${spill.koordinatskille}${x}`).style.height = `${minst}px`;
+                            document.getElementById(`${i}${spill.koordinatskille}${x}`).style.width = `${minst}px`;
+                        } else {
+                            document.getElementById(`${i}${spill.koordinatskille}${x}`).style.height = `40px`;
+                            document.getElementById(`${i}${spill.koordinatskille}${x}`).style.width = `40px`;
+                        }
+                            
+                    }
+                }
+            } catch{
+                return;
             }
         }
 

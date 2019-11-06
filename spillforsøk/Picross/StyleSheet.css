@@ -70,8 +70,10 @@ div #spillet {
     }
 
     #rutenett .ruter {
-        height: 40px;
-        width: 40px;
+        /*height: ;
+        width: ;*/
+        max-height: 40px !important;
+        max-width: 40px !important;
         border: solid;
         border-width: thin;
         border-color: darkslategray;
