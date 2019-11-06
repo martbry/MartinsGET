@@ -175,7 +175,6 @@
             }
             spillerslosning = tempspillerslosning;
             if (spill.losning.length == 0) {
-                console.log(spillerslosning);
             }
             if (spill.sjekkLosning()) {
                 solved = true;
@@ -194,13 +193,10 @@
         }
 
         function celleStorrelse() {
-            //console.log(window.innerWidth);
-            //console.log(width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
-            //console.log(document.documentElement.clientWidth);
             try {
                 let storrelseb = (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / spill.storrelse);
                 let storrelseh = ((Math.max(document.documentElement.clientHeight, window.innerHeight || 0)-400) / spill.storrelse);
-                console.log("b: " + storrelseb + "h: " + storrelseh);
+
                 for (let i = 0; i < spill.storrelse; i++) {
                     for (let x = 0; x < spill.storrelse; x++) {
                         if (storrelseb < 40 || storrelseh < 40) {
