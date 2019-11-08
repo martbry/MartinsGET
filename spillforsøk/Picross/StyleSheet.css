@@ -1,0 +1,91 @@
+﻿body
+{
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    /*background-color: skyblue;
+    color: black;*/
+    font-size: 80%;
+}
+
+button #menyknapp{
+    padding: 20px;
+    grid-area: meny;
+}
+
+div.levelwrapper p{
+    font-weight: 700;
+}
+
+div.page {
+    display: grid;
+    height: 95vh;
+    width: 95vw;
+    grid-template-rows: 20px 1fr 1fr;
+    grid-template-areas: 'meny' 'spillet' 'howto';
+}
+
+div.levelwrapper {
+    background-color: rgba(150, 148, 255, 0.3);
+    margin-left: 20px;
+    /*grid-area: meny;*/
+    position: absolute;
+}
+
+div #spillet {
+    grid-area: spillet;
+    margin-top: 30px;
+}
+
+#rutenett {
+    margin-left: 20px;
+    border-collapse: collapse;
+}
+
+    #rutenett .rammetopp {
+        border: solid;
+        font-size: 20px;
+        text-align: center;
+        vertical-align: bottom;
+        background-color: lightslategrey;
+        -webkit-user-select: none;
+    }
+
+    #rutenett .rammevenstre {
+        border: solid;
+        font-size: 20px;
+        text-align: right;
+        background-color: lightslategrey;
+        -webkit-user-select: none;
+    }
+
+    #rutenett .borderbot {
+        border-bottom-width: medium !important;
+    }
+
+    #rutenett .borderright {
+        border-right-width: medium !important;
+    }
+
+    #rutenett .ruter {
+        /*height: ;
+        width: ;*/
+        max-height: 40px !important;
+        max-width: 40px !important;
+        border: solid;
+        border-width: thin;
+        border-color: darkslategray;
+        background-color: white;
+    }
+
+div.levels {
+    display: inline-block;
+    margin: 0 0 20px 0;
+}
+
+div #howto {
+    grid-area: howto;
+    margin-left: 20px;
+}

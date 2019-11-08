@@ -42,24 +42,25 @@ class Game {
                 }
                 if (rad == 0) {
                     col.classList.add("rammetopp");
+                    col.addEventListener("mouseover", this.hoverRamme);
+                    col.addEventListener("mouseout", this.unhoverRamme);
                     row.appendChild(col);
                 } else if (kolonne == 0) {
                     col.classList.add("rammevenstre");
+                    col.addEventListener("mouseover", this.hoverRamme);
+                    col.addEventListener("mouseout", this.unhoverRamme);
                 } else {
                     col.classList.add("ruter");
-                    //col.innerHTML = `${rad-1}, ${kolonne-1}`;
-                    //col.addEventListener("click", farg);
-                    //col.addEventListener("click", this.farg);
                     col.addEventListener("contextmenu", this.utelukk);
                     col.addEventListener("mouseout", this.unhover);
                     col.addEventListener("mouseover", this.hover);
                     col.addEventListener("mousedown", this.mouseHold);
-                    //col.addEventListener("mouseup", this.stopMouseHold);
                 }
 
                 col.id = "" + (rad - 1) + this.koordinatskille + (kolonne - 1);
                 col.farget = false;
                 col.utelukket = false;
+                col.hovered = false;
                 row.appendChild(col);
             }
             table.appendChild(row);
@@ -398,6 +399,46 @@ class Game {
         //hoverkolonne blir deklarert i hover()
         spill.hoveredkolonne.style.backgroundColor = "lightslategrey";
         spill.hoveredrad.style.backgroundColor = "lightslategrey";
+    }
+
+    hoverRamme(rute) {
+        this.style.backgroundColor = "rgba(119, 136, 153, 0.3)";
+
+        let index = this.id.indexOf(spill.koordinatskille);
+
+        let partone = this.id.slice(0, index);
+        let parttwo = this.id.slice(index + 1, this.id.length);
+
+
+        for (let i = 0; i < spill.storrelse; i++) {
+            if (partone == "-1" && parttwo == "-1") {
+                break;
+            } else if (partone == "-1") {
+                document.getElementById(`${i}${spill.koordinatskille}${parttwo}`).hovered = true;
+            } else if (parttwo == "-1") {
+                document.getElementById(`${partone}${spill.koordinatskille}${i}`).hovered = true;
+            }
+        }
+        show();
+    }
+
+    unhoverRamme(rute) {
+        this.style.backgroundColor = "lightslategrey";
+        let index = this.id.indexOf(spill.koordinatskille);
+
+        let partone = this.id.slice(0, index);
+        let parttwo = this.id.slice(index + 1, this.id.length);
+
+        for (let i = 0; i < spill.storrelse; i++) {
+            if (partone == "-1" && parttwo == "-1") {
+                break;
+            } else if (partone == "-1") {
+                document.getElementById(`${i}${spill.koordinatskille}${parttwo}`).hovered = false;
+            } else if (parttwo == "-1") {
+                document.getElementById(`${partone}${spill.koordinatskille}${i}`).hovered = false;
+            }
+        }
+        show();
     }
 
     graaHint(tall) {
