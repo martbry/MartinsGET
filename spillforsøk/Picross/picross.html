@@ -193,11 +193,15 @@
         }
 
         function celleStorrelse() {
+            //let el = document.getElementById
+            //console.log(window.getComputedStyle(HTMLBodyElement));
+            let tip = document.getElementById("0.-1");
+            //console.log(tip.offsetWidth);
             try {
-                let storrelseb = (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / spill.storrelse);
+                let storrelseb = (Math.max(document.documentElement.clientWidth-tip.offsetWidth, window.innerWidth-tip.offsetWidth || 0) / spill.storrelse);
                 let storrelseh = ((Math.max(document.documentElement.clientHeight-150, window.innerHeight-150 || 0)) / spill.storrelse);
-                console.log(document.documentElement.clientHeight);
-                console.log(window.innerHeight);
+                //console.log(document.documentElement.clientHeight);
+                //console.log(window.innerHeight);
 
                 for (let i = 0; i < spill.storrelse; i++) {
                     for (let x = 0; x < spill.storrelse; x++) {
