@@ -2,7 +2,7 @@
 
 //PICROSS TODO:
 
-Lage en meny som kan skjules og vises. Undermeny: 5*5, 10*10, 15*15 [...]. Undermeny: Level1, level2, level3 [...].
+SEMI: Lage en meny som kan skjules og vises. Undermeny: 5*5, 10*10, 15*15 [...]. Undermeny: Level1, level2, level3 [...].
 
 
 
