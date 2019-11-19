@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" onkeydown="if(event.keyCode==13) add(this)" />
+    <div id="todo">Laster data...</div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBLtdZycj3z8lWLCREbrWXq_33AQYsN4oI",
+            authDomain: "martingetintro.firebaseapp.com",
+            databaseURL: "https://martingetintro.firebaseio.com",
+            projectId: "martingetintro",
+            storageBucket: "martingetintro.appspot.com",
+            messagingSenderId: "608176597056",
+            appId: "1:608176597056:web:6494ffd6ced5d5c4b217a5",
+            measurementId: "G-V70X2EW6SK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        let db = firebase.firestore('highscores');
+
+        //console.log(db.collection());
+
+                //let todoCollection = db.collection('todoItems');
+                //// db.collection('todoItems').get().then(
+                //todoCollection.onSnapshot(
+                //    function (collectionSnapshot) {
+                //        let html = '<ul>';
+                //        collectionSnapshot.forEach(
+                //            function (todoItemSnapshot) {
+                //                let todoItem = todoItemSnapshot.data();
+                //                console.log(todoItem.todoDate);
+                //                html += '<li>' + todoItem.todoText + ' (' + todoItem.todoDate.toDate() + ')</li>';
+                //            });
+                //        html += '</ul>';
+                //        document.getElementById('todo').innerHTML = html;
+
+                //    });
+
+                //let todoCollection = db.collection('todoItems');
+                //// db.collection('todoItems').get().then(
+                //todoCollection.onSnapshot(
+                //    function (collectionSnapshot) {
+                //        let html = '<ul>';
+                //        collectionSnapshot.forEach(
+                //            function (todoItemSnapshot) {
+                //                let todoItem = todoItemSnapshot.data();
+                //                console.log(todoItem.todoDate);
+                //                html += '<li>' + todoItem.todoText + ' (' + todoItem.todoDate.toDate() + ')</li>';
+                //            });
+                //        html += '</ul>';
+                //        document.getElementById('todo').innerHTML = html;
+
+                //    });
+
+                //function add(inputTag) {
+                //    let todoItem = {
+                //        todoText: inputTag.value,
+                //        todoDate: new Date()
+                //    };
+                //    todoCollection.add(todoItem);
+
+                //}
+    </script>
+</body>
+</html>
