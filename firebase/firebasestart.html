@@ -32,9 +32,18 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
-        let db = firebase.firestore('highscores');
+        let db = firebase.firestore();
 
-        //console.log(db.collection());
+        //console.log(db.collection('highscores'));
+
+        let highscoreCollection = db.collection('highscores');
+
+        console.log(highscoreCollection);
+
+        highscoreCollection.get().then(function (snapshot) {
+            console.log(snapshot);
+            console.log('y: ', snapshot.data);
+        });
 
                 //let todoCollection = db.collection('todoItems');
                 //// db.collection('todoItems').get().then(
