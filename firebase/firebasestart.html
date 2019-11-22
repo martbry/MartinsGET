@@ -45,6 +45,7 @@
                 collectionSnapshot.forEach(
                     function (highscoreSnapshot) {
                         console.log(highscoreSnapshot.data());
+                        document.getElementById('todo').innerHTML = highscoreSnapshot.data().navn;
                     });
 
             });
