@@ -44,7 +44,7 @@
 
         let highscoreCollection = db.collection('highscores');
 
-        //console.log(highscoreCollection);
+        console.log(firebase.analytics);
 
         highscoreCollection.onSnapshot(
             function (collectionSnapshot) {
