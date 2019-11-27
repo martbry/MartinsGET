@@ -5,7 +5,10 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" onkeydown="if(event.keyCode==13) add(this)" />
+    <input type="text" id="i1" />
+    <input type="number" id="i2" />
+    <button onclick="add()">Legg til</button>
+    <button onclick="remove()">Fjern</button>
     <div id="todo">Laster data...</div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -18,6 +21,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
 
     <script>
+        let i1 = document.getElementById('i1');
+        let i2 = document.getElementById('i2');
+
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyBLtdZycj3z8lWLCREbrWXq_33AQYsN4oI",
@@ -38,44 +44,46 @@
 
         let highscoreCollection = db.collection('highscores');
 
-        console.log(highscoreCollection);
+        //console.log(highscoreCollection);
 
-        highscoreCollection.get().then(function (snapshot) {
-            console.log(snapshot);
-            console.log('y: ', snapshot.data);
-        });
+        highscoreCollection.onSnapshot(
+            function (collectionSnapshot) {
+                let html = '';
+                collectionSnapshot.forEach(
+                    function (highscoreSnapshot) {
+                        //console.log(highscoreSnapshot.data());
+                        html += highscoreSnapshot.data().navn + ' ' + highscoreSnapshot.data().poeng + '<br />';
+                        //document.getElementById('todo').innerHTML = highscoreSnapshot.data().navn;
+                    });
+                document.getElementById('todo').innerHTML = html;
+            });
 
-                //let todoCollection = db.collection('todoItems');
-                //// db.collection('todoItems').get().then(
-                //todoCollection.onSnapshot(
-                //    function (collectionSnapshot) {
-                //        let html = '<ul>';
-                //        collectionSnapshot.forEach(
-                //            function (todoItemSnapshot) {
-                //                let todoItem = todoItemSnapshot.data();
-                //                console.log(todoItem.todoDate);
-                //                html += '<li>' + todoItem.todoText + ' (' + todoItem.todoDate.toDate() + ')</li>';
-                //            });
-                //        html += '</ul>';
-                //        document.getElementById('todo').innerHTML = html;
 
-                //    });
+        function add(navn, poeng) {
+            let highscorer = {
+                navn: i1.value,
+                poeng: i2.value
+            };
+            highscoreCollection.add(highscorer);
+        }
 
-                //let todoCollection = db.collection('todoItems');
-                //// db.collection('todoItems').get().then(
-                //todoCollection.onSnapshot(
-                //    function (collectionSnapshot) {
-                //        let html = '<ul>';
-                //        collectionSnapshot.forEach(
-                //            function (todoItemSnapshot) {
-                //                let todoItem = todoItemSnapshot.data();
-                //                console.log(todoItem.todoDate);
-                //                html += '<li>' + todoItem.todoText + ' (' + todoItem.todoDate.toDate() + ')</li>';
-                //            });
-                //        html += '</ul>';
-                //        document.getElementById('todo').innerHTML = html;
-
-                //    });
+        function remove(navn) {
+            //console.log(highscoreCollection.doc('LCxDNrmNwmiKp4ErRDZA').delete());
+            //highscoreCollection.doc().delete();
+            highscoreCollection.get().then(
+            function (collectionSnapshot) {
+                collectionSnapshot.forEach(
+                    function (highscoreSnapshot) {
+                        //console.log(highscoreSnapshot.data());
+                        if (highscoreSnapshot.data().navn == i1.value) {
+                            console.log('slår til');
+                            console.log(highscoreSnapshot.id);
+                            highscoreCollection.doc(highscoreSnapshot.id).delete();
+                            //highscoreSnapshot.data().delete();
+                        }
+                    });
+            });
+        }
 
                 //function add(inputTag) {
                 //    let todoItem = {
